@@ -3,29 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
-
+    tools:context=".ui.MainActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_height="@dimen/common_headerbar_height"
         android:layout_width="match_parent"
-        android:background="?attr/colorPrimary">
+        android:background="@color/colorPrimary">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
-            <Button
+            <TextView
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
                 android:background="@color/transparent"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:text="活动"/>
-            <Button
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="15dp"
+                android:background="@color/white"/>
+            <TextView
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:background="@color/transparent"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -33,13 +38,19 @@
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
         android:id="@+id/bottombar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_bottombar_height"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/white">
+        android:background="@color/bottomColor">
         <ImageButton
             android:id="@+id/menu"
             android:layout_weight="1"
@@ -60,7 +71,7 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:background="@color/transparent"
-            android:src="@drawable/ic_bottombar_raise"/>
+            android:src="@mipmap/ic_raise_seleted"/>
         <ImageButton
             android:id="@+id/message"
             android:layout_weight="1"
@@ -76,11 +87,4 @@
             android:background="@color/transparent"
             android:src="@drawable/ic_bottombar_my"/>
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_above="@id/bottombar"
-        android:layout_below="@id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 </RelativeLayout>

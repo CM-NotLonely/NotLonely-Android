@@ -12,14 +12,11 @@ import com.efan.notlonely.R;
  * Created by 一帆 on 2016/3/22.
  */
 public class MessageFragment extends BaseFragment {
-    @Override
-    protected void initView(View var1) {
 
-    }
 
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
-        return var1.inflate(R.layout.fragment_message,null);
+        return var1.inflate(R.layout.fragment_message,var2,false);
     }
 
     @Override

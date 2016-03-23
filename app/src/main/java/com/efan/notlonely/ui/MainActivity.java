@@ -1,12 +1,11 @@
-package com.efan.notlonely.ui.main;
+package com.efan.notlonely.ui;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.activity.BaseFragmentActivity;
@@ -33,8 +32,6 @@ public class MainActivity extends BaseFragmentActivity {
     private Button button1;
     @ViewInject(id = R.id.button2)
     private Button button2;
-    @ViewInject(id = R.id.framelayout)
-    private FrameLayout frameLayout;
     @ViewInject(id = R.id.menu)
     private ImageButton menuButton;
     @ViewInject(id = R.id.find)
@@ -45,18 +42,19 @@ public class MainActivity extends BaseFragmentActivity {
     private ImageButton messageButton;
     @ViewInject(id = R.id.mine)
     private ImageButton mineButton;
+    @ViewInject(id = R.id.bottombar)
+    private LinearLayout bottomLayout;
+    @ViewInject(id = R.id.framelayout)
+    private FrameLayout frameLayout;
 
     private FragmentTabAdapter fragmentTabAdapter;
-    private List<BaseFragment> list = new ArrayList<BaseFragment>();
+    private List<BaseFragment> list;
 
     @Override
     public void initView() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         setStatusBarColor();
-        setSeletedBottomBar(1);
         setFrameLayout();
-        Log.d("haha","ssss");
+        setSeletedBottomBar(1);
     }
 
     @Override
@@ -74,12 +72,10 @@ public class MainActivity extends BaseFragmentActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button1:
-                Snackbar.make(v, "button1", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
                 break;
             case R.id.button2:
-                Snackbar.make(v, "button2", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
                 break;
             case R.id.menu:
                 setSeletedBottomBar(1);
@@ -88,13 +84,15 @@ public class MainActivity extends BaseFragmentActivity {
                 setSeletedBottomBar(2);
                 break;
             case R.id.raise:
-                setSeletedBottomBar(3);
+                setSeletedBottomBar(1);
                 break;
             case R.id.message:
                 setSeletedBottomBar(4);
                 break;
             case R.id.mine:
                 setSeletedBottomBar(5);
+                break;
+            default:
                 break;
         }
     }
@@ -103,16 +101,12 @@ public class MainActivity extends BaseFragmentActivity {
      * 设置FrameLyout
      */
     private void setFrameLayout(){
-        BaseFragment fragment = new MenuFragment();
-        list.add(fragment);
-        fragment = new FindFragment();
-        list.add(fragment);
-        fragment = new MessageFragment();
-        list.add(fragment);
-        fragment = new MineFragment();
-        list.add(fragment);
+        list = new ArrayList<BaseFragment>();
+        list.add(new MenuFragment());
+        list.add(new FindFragment());
+        list.add(new MessageFragment());
+        list.add(new MineFragment());
         fragmentTabAdapter = new FragmentTabAdapter(this, list, R.id.framelayout);
-        fragmentTabAdapter.setCurrentTab(1);
         fragmentTabAdapter.setOnFragmentListener(new FragmentTabAdapter.onFragmentChangedListener() {
             @Override
             public void onFragmentChanged(int index) {
@@ -126,26 +120,42 @@ public class MainActivity extends BaseFragmentActivity {
      * @param index
      */
     private void setSeletedBottomBar(int index){
-        menuButton.setSelected(false);
-        findButton.setSelected(false);
-        raiseButton.setSelected(false);
-        messageButton.setSelected(false);
-        mineButton.setSelected(false);
         switch (index){
             case 1:
                 menuButton.setSelected(true);
+                findButton.setSelected(false);
+                messageButton.setSelected(false);
+                mineButton.setSelected(false);
+                fragmentTabAdapter.setCurrentTab(0);
                 break;
             case 2:
                 findButton.setSelected(true);
+                menuButton.setSelected(false);
+                messageButton.setSelected(false);
+                mineButton.setSelected(false);
+                fragmentTabAdapter.setCurrentTab(1);
                 break;
             case 3:
-                raiseButton.setSelected(true);
+                menuButton.setSelected(false);
+                findButton.setSelected(false);
+                messageButton.setSelected(false);
+                mineButton.setSelected(false);
                 break;
             case 4:
                 messageButton.setSelected(true);
+                menuButton.setSelected(false);
+                findButton.setSelected(false);
+                mineButton.setSelected(false);
+                fragmentTabAdapter.setCurrentTab(2);
                 break;
             case 5:
                 mineButton.setSelected(true);
+                menuButton.setSelected(false);
+                findButton.setSelected(false);
+                messageButton.setSelected(false);
+                fragmentTabAdapter.setCurrentTab(3);
+                break;
+            default:
                 break;
         }
     }

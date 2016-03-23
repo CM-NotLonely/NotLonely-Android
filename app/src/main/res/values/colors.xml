@@ -11,4 +11,6 @@
     <color name="background">#f9f9f9</color>
     <color name="common">#ffb11b</color>
 
+    <color name="bottomColor">#aaFFFFFF</color>
+
 </resources>
