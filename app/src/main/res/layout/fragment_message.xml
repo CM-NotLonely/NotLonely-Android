@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
-    <TextView
-        android:layout_width="wrap_content"
+    <com.efan.notlonely.view.PagerSlidingTabStrip
+        android:id="@+id/slidingTabStrip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="第四个界面"/>
+        app:allowWidthFull="false"
+        app:slidingBlock="@drawable/image_sliding_block">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_slidingTabTitle"
+                android:layout_weight="1"
+                android:text="穿越火线" />
+
+            <TextView
+                style="@style/text_slidingTabTitle"
+                android:layout_weight="1"
+                android:text="剑灵" />
+
+            <TextView
+                style="@style/text_slidingTabTitle"
+                android:layout_weight="1"
+                android:text="跑跑卡丁车" />
+        </LinearLayout>
+    </com.efan.notlonely.view.PagerSlidingTabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

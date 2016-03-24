@@ -9,12 +9,22 @@
         android:layout_height="@dimen/common_headerbar_height"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary">
+        <TextView
+            android:id="@+id/tv_title"
+            android:textSize="20sp"
+            android:text="发现"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
         <LinearLayout
+            android:id="@+id/ll_title"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
             <TextView
-                android:id="@+id/button1"
+                android:id="@+id/tv_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
@@ -27,14 +37,14 @@
                 android:layout_height="15dp"
                 android:background="@color/white"/>
             <TextView
-                android:id="@+id/button2"
+                android:id="@+id/tv_circle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:background="@color/transparent"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:text="广场"/>
+                android:text="圈子"/>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
