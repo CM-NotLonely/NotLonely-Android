@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/common</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="toolbarStyle">@style/ClubToolbar</item>
+    </style>
+
+    <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+    </style>
+    <!-- 文本 - 滑动标签标题 -->
+    <style name="text_slidingTabTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/common</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+</resources>

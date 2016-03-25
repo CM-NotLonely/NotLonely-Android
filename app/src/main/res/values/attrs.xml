@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PxBlurringView">
+        <attr name="blurRadius" format="integer"/>
+        <attr name="downsampleFactor" format="integer"/>
+        <attr name="overlayColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="slidingBlock" format="reference|color"/>
+        <attr name="allowWidthFull" format="boolean"/>
+        <attr name="disableViewPager" format="boolean"/>
+        <attr name="disableTensileSlidingBlock" format="boolean"/>
+    </declare-styleable>
+</resources>
