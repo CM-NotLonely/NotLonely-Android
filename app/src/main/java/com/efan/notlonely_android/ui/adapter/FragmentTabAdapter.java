@@ -1,4 +1,4 @@
-package com.efan.notlonely.ui.adapter;
+package com.efan.notlonely_android.ui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;

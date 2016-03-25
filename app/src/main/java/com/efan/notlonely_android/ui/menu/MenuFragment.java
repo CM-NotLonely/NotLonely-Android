@@ -1,22 +1,17 @@
-package com.efan.notlonely.ui.menu;
+package com.efan.notlonely_android.ui.menu;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.activity.BaseFragmentActivity;
-import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
-import com.efan.notlonely.R;
-import com.efan.notlonely.ui.adapter.FragmentTabAdapter;
-import com.efan.notlonely.utils.ToastUtils;
+import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.ui.adapter.FragmentTabAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +20,7 @@ import java.util.List;
  * Created by 一帆 on 2016/3/22.
  */
 public class MenuFragment extends BaseFragment {
-    @ViewInject(id=R.id.framelayout_menu)
+    @ViewInject(id= R.id.framelayout_menu)
     private FrameLayout frameLayout;
 
     private TextView tv_activity;

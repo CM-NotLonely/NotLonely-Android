@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.efan.notlonely.view;
+package com.efan.notlonely_android.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -23,18 +23,15 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
-import com.efan.notlonely.R;
+import com.efan.notlonely_android.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -54,7 +51,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
     private Drawable slidingBlockDrawable;
     private ViewPager viewPager;
     private ViewGroup tabsLayout;
-    private ViewPager.OnPageChangeListener onPageChangeListener;
+    private OnPageChangeListener onPageChangeListener;
     private OnClickTabListener onClickTabListener;
     private List<View> tabViews;
     private boolean disableTensileSlidingBlock;

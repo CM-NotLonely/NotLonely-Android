@@ -1,4 +1,4 @@
-package com.efan.notlonely.view;
+package com.efan.notlonely_android.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,14 +7,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v8.renderscript.Allocation;
+import android.support.v8.renderscript.Element;
+import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.ScriptIntrinsicBlur;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.efan.notlonely.R;
+import com.efan.notlonely_android.R;
 
 /**
  * A custom view for presenting a dynamically blurred version of another view's content.

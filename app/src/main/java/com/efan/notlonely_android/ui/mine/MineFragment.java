@@ -1,4 +1,4 @@
-package com.efan.notlonely.ui.mine;
+package com.efan.notlonely_android.ui.mine;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.efan.basecmlib.activity.BaseFragment;
-import com.efan.notlonely.R;
+import com.efan.notlonely_android.R;
 
 /**
  * Created by 一帆 on 2016/3/22.

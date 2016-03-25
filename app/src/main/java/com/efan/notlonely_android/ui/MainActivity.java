@@ -1,4 +1,4 @@
-package com.efan.notlonely.ui;
+package com.efan.notlonely_android.ui;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,12 +14,12 @@ import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.basecmlib.others.SystemBarTintManager;
-import com.efan.notlonely.R;
-import com.efan.notlonely.ui.adapter.FragmentTabAdapter;
-import com.efan.notlonely.ui.find.FindFragment;
-import com.efan.notlonely.ui.menu.MenuFragment;
-import com.efan.notlonely.ui.message.MessageFragment;
-import com.efan.notlonely.ui.mine.MineFragment;
+import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.ui.adapter.FragmentTabAdapter;
+import com.efan.notlonely_android.ui.find.FindFragment;
+import com.efan.notlonely_android.ui.menu.MenuFragment;
+import com.efan.notlonely_android.ui.message.MessageFragment;
+import com.efan.notlonely_android.ui.mine.MineFragment;
 
 import java.util.ArrayList;
 import java.util.List;

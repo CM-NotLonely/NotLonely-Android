@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
-    <com.efan.notlonely.view.PagerSlidingTabStrip
+    <com.efan.notlonely_android.view.PagerSlidingTabStrip
         android:id="@+id/slidingTabStrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                 style="@style/text_slidingTabTitle"
                 android:text="点赞" />
         </LinearLayout>
-    </com.efan.notlonely.view.PagerSlidingTabStrip>
+    </com.efan.notlonely_android.view.PagerSlidingTabStrip>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

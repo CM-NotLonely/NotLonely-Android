@@ -1,4 +1,4 @@
-package com.efan.notlonely;
+package com.efan.notlonely_android;
 
 import com.efan.basecmlib.application.BaseApplication;
 

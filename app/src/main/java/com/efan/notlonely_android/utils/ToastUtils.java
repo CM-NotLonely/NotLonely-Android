@@ -1,4 +1,4 @@
-package com.efan.notlonely.utils;
+package com.efan.notlonely_android.utils;
 
 import android.content.Context;
 import android.widget.Toast;

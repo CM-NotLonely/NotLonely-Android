@@ -1,32 +1,23 @@
-package com.efan.notlonely.ui.message;
+package com.efan.notlonely_android.ui.message;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseFragment;
-import com.efan.basecmlib.activity.BaseFragmentActivity;
-import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
-import com.efan.notlonely.R;
-import com.efan.notlonely.ui.adapter.FragmentTabAdapter;
-import com.efan.notlonely.ui.adapter.MsgViewPagerAdapter;
-import com.efan.notlonely.ui.menu.ActivityFragment;
-import com.efan.notlonely.ui.menu.CircleFragment;
-import com.efan.notlonely.utils.ToastUtils;
-import com.efan.notlonely.view.PagerSlidingTabStrip;
+import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.ui.menu.ActivityFragment;
+import com.efan.notlonely_android.ui.menu.CircleFragment;
+import com.efan.notlonely_android.view.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by 一帆 on 2016/3/22.
