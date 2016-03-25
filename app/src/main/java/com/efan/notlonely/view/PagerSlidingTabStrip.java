@@ -25,6 +25,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
@@ -38,7 +39,6 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * רΪViewPager���ƵĻ���ѡ� HOME URL��http://github.com/xiaopansky/PagerSlidingTabStrip
  * @version 1.6.0
  * @author Peng fei Pan
  */
@@ -49,15 +49,15 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
     private float currentPositionOffset;	//��ǰλ��ƫ����
     private float FirstPositionOffset;
     private boolean start;
-    private boolean allowWidthFull;    // ���ݿ���޷�����ʱ�������Զ�����Item�Ŀ���Գ���
-    private boolean disableViewPager;   // ����ViewPager
-    private Drawable slidingBlockDrawable;	//����
-    private ViewPager viewPager;	//ViewPager
-    private ViewGroup tabsLayout;	//�������
-    private ViewPager.OnPageChangeListener onPageChangeListener;	//ҳ��ı������
+    private boolean allowWidthFull;
+    private boolean disableViewPager;
+    private Drawable slidingBlockDrawable;
+    private ViewPager viewPager;
+    private ViewGroup tabsLayout;
+    private ViewPager.OnPageChangeListener onPageChangeListener;
     private OnClickTabListener onClickTabListener;
     private List<View> tabViews;
-    private boolean disableTensileSlidingBlock; // ��ֹ���컬��ͼƬ
+    private boolean disableTensileSlidingBlock;
     private TabViewFactory tabViewFactory;
 
     public PagerSlidingTabStrip(Context context) {
@@ -119,13 +119,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    /**
-     * ����views�����е�View��������View�Ŀ�ȼ��������õ���parentViewWidth
-     * @param views ��View����
-     * @param parentViewWidth ��Vie�Ŀ��
-     * @param parentWidthMeasureSpec ��View�Ŀ�ȹ���
-     * @param parentHeightMeasureSpec ��View�ĸ߶ȹ���
-     */
     private void adjustChildWidthWithParent(List<View> views, int parentViewWidth, int parentWidthMeasureSpec, int parentHeightMeasureSpec){
         for(View view : views){
             if(view.getLayoutParams() instanceof MarginLayoutParams){
@@ -134,7 +127,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
             }
         }
 
-        // ȥ����ȴ���ƽ����ȵ�View���ٴμ���ƽ�����
         int averageWidth = parentViewWidth /views.size();
         int bigTabCount = views.size();
         while(true){
@@ -162,23 +154,18 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
             }
         }
 
-        int i=0;
-        // �޸Ŀ��С���µ�ƽ����ȵ�View�Ŀ��
+
         for(View view : views){
             if(view.getMeasuredWidth() < averageWidth){
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
                 layoutParams.width = averageWidth;
-                //----_>
-                //rest[i]=averageWidth-view.getMeasuredWidth();
                 view.setLayoutParams(layoutParams);
-                // �ٴβ������¿����Ч
                 if(layoutParams instanceof MarginLayoutParams){
                     measureChildWithMargins(view, parentWidthMeasureSpec, 0, parentHeightMeasureSpec, 0);
                 }else{
                     measureChild(view, parentWidthMeasureSpec, parentHeightMeasureSpec);
                 }
             }
-            i++;
         }
     }
 
@@ -187,7 +174,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         super.onLayout(changed, l, t, r, b);
         ViewGroup tabViewGroup = getTabsLayout();
         FirstPositionOffset=(float)tabViewGroup.getLeft();
-        Log.e("aaaaaa", String.valueOf(FirstPositionOffset));
+
         if(tabViewGroup != null){
 
             currentPosition = viewPager != null?viewPager.getCurrentItem():0;
@@ -196,10 +183,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
                 selectedTab(currentPosition);
             }
 
-            //��ÿһ��tab���õ���¼����������ʱ���л�Pager
             for(int w = 0; w < tabViewGroup.getChildCount(); w++){
                 View itemView = tabViewGroup.getChildAt(w);
                 itemView.setTag(w);
+                itemView.setClickable(true);
                 itemView.setOnClickListener(this);
             }
         }
@@ -220,7 +207,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(disableViewPager) return;
-		/* ���ƻ��� */
         ViewGroup tabsLayout = getTabsLayout();
         if(tabsLayout != null && tabsLayout.getChildCount() > 0 && slidingBlockDrawable != null){
             View currentTab = tabsLayout.getChildAt(currentPosition);
@@ -237,7 +223,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
                     }
                 }
 
-                // ������
                 if(disableTensileSlidingBlock){
                     int center = (int) (slidingBlockLeft + (slidingBlockRight-slidingBlockLeft)/2);
                     slidingBlockLeft = center - slidingBlockDrawable.getIntrinsicWidth()/2;
@@ -250,9 +235,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         }
     }
 
-    /**
-     * ��ȡ����
-     */
     private ViewGroup getTabsLayout(){
         if(tabsLayout == null){
             if(getChildCount() > 0){
@@ -268,20 +250,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         return tabsLayout;
     }
 
-    /**
-     * ���ã��������tab
-     */
     public void reset(){
         if(tabViewFactory != null){
             tabViewFactory.addTabs(getTabsLayout(), viewPager != null?viewPager.getCurrentItem():0);
         }
     }
 
-    /**
-     * ��ȡTab
-     * @param position λ��
-     * @return Tab��View
-     */
     public View getTab(int position){
         if(tabsLayout != null && tabsLayout.getChildCount() > position){
             return tabsLayout.getChildAt(position);
@@ -290,21 +264,16 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         }
     }
 
-    /**
-     * ������ָ����λ��
-     */
     private void scrollToChild(int position, int offset) {
         ViewGroup tabsLayout = getTabsLayout();
         if(tabsLayout != null && tabsLayout.getChildCount() > 0 && position < tabsLayout.getChildCount()){
             View view = tabsLayout.getChildAt(position);
             if(view != null){
-                //�����µ�X����
                 int newScrollX = view.getLeft() + offset - getLeftMargin(view);
                 if (position > 0 || offset > 0) {
                     newScrollX -= getWidth()/2 - getOffset(view.getWidth())/2;
                 }
 
-                //���ͬ�ϴ�X���겻һ����ִ�й���
                 if (newScrollX != lastScrollX) {
                     lastScrollX = newScrollX;
                     scrollTo(newScrollX, 0);
@@ -331,9 +300,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         return 0;
     }
 
-    /**
-     * ��ȡƫ����
-     */
     private int getOffset(int newOffset){
         if(lastOffset < newOffset){
             if(start){
@@ -360,9 +326,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         }
     }
 
-    /**
-     * ѡ��ָ��λ�õ�TAB
-     */
     private void selectedTab(int newSelectedTabPosition){
         ViewGroup tabsLayout = getTabsLayout();
         if(newSelectedTabPosition > -1 && tabsLayout != null && newSelectedTabPosition < tabsLayout.getChildCount()){
@@ -373,10 +336,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         }
     }
 
-    /**
-     * ����ViewPager
-     * @param viewPager ViewPager
-     */
     public void setViewPager(ViewPager viewPager) {
         if(disableViewPager) return;
         this.viewPager = viewPager;
@@ -413,63 +372,42 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
                 }
             }
         });
+        viewPager.setCurrentItem(1);
         requestLayout();
     }
 
-    /**
-     * ����Page�л�������
-     * @param onPageChangeListener Page�л�������
-     */
+
+
     public void setOnPageChangeListener(OnPageChangeListener onPageChangeListener) {
         this.onPageChangeListener = onPageChangeListener;
     }
 
-    /**
-     * �����Ƿ������Ļ
-     * @param allowWidthFull true�������ݵĿ���޷�������Ļʱ���Զ�����ÿһ��Item�Ŀ���Գ�����Ļ
-     */
+
     public void setAllowWidthFull(boolean allowWidthFull) {
         this.allowWidthFull = allowWidthFull;
         requestLayout();
     }
 
-    /**
-     * ���û���ͼƬ
-     */
     public void setSlidingBlockDrawable(Drawable slidingBlockDrawable) {
         this.slidingBlockDrawable = slidingBlockDrawable;
         requestLayout();
     }
 
-    /**
-     * �����Ƿ��ֹ���컬��ͼƬ
-     * @param disableTensileSlidingBlock �Ƿ��ֹ���컬��ͼƬ
-     */
     public void setDisableTensileSlidingBlock(boolean disableTensileSlidingBlock) {
         this.disableTensileSlidingBlock = disableTensileSlidingBlock;
         invalidate();
     }
 
-    /**
-     * ��ȡTab����
-     */
     public int getTabCount(){
         ViewGroup tabsLayout = getTabsLayout();
         return tabsLayout!=null?tabsLayout.getChildCount():0;
     }
 
-    /**
-     * ����Tab���������
-     * @param onClickTabListener Tab���������
-     */
     public void setOnClickTabListener(OnClickTabListener onClickTabListener) {
         this.onClickTabListener = onClickTabListener;
     }
 
-    /**
-     * ���ò�ʹ��ViewPager
-     * @param disableViewPager ��ʹ��ViewPager
-     */
+
     public void setDisableViewPager(boolean disableViewPager) {
         this.disableViewPager = disableViewPager;
         if(viewPager != null){
@@ -479,31 +417,16 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements View.O
         requestLayout();
     }
 
-    /**
-     * ����TabView������
-     * @param tabViewFactory
-     */
     public void setTabViewFactory(TabViewFactory tabViewFactory) {
         this.tabViewFactory = tabViewFactory;
         tabViewFactory.addTabs(getTabsLayout(), viewPager!=null?viewPager.getCurrentItem():0);
     }
 
-    /**
-     * Tab���������
-     */
     public interface OnClickTabListener {
         public void onClickTab(View tab, int index);
     }
 
-    /**
-     * TabView������
-     */
     public interface TabViewFactory{
-        /**
-         * ���tab
-         * @param parent
-         * @param defaultPosition
-         */
         public void addTabs(ViewGroup parent, int defaultPosition);
     }
 }
