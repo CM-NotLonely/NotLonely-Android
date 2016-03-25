@@ -11,7 +11,7 @@
         android:src="@mipmap/test"
         android:layout_height="200dp"
         android:scaleType="centerCrop" />
-    <com.efan.notlonely.view.BlurringView
+    <com.efan.notlonely_android.view.BlurringView
         android:id="@+id/blur"
         android:layout_width="match_parent"
         android:layout_height="200dp"
