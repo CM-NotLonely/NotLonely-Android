@@ -61,9 +61,9 @@
         android:layout_height="@dimen/common_bottombar_height"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        app:blurRadius="18"
+        app:blurRadius="5"
         app:downsampleFactor="6"
-        app:overlayColor="#95FFFFFF"/>
+        app:overlayColor="#88FFFFFF"/>
 
     <LinearLayout
         android:id="@+id/bottombar"
