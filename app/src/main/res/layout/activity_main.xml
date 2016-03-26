@@ -63,7 +63,7 @@
         android:layout_gravity="center"
         app:blurRadius="5"
         app:downsampleFactor="6"
-        app:overlayColor="#88FFFFFF"/>
+        app:overlayColor="#11ffffff"/>
 
     <LinearLayout
         android:id="@+id/bottombar"
@@ -72,7 +72,6 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:background="@color/bottomColor">
-        android:background="@color/transparent">
         <ImageButton
             android:id="@+id/menu"
             android:layout_weight="1"

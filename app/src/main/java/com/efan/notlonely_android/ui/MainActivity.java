@@ -20,6 +20,7 @@ import com.efan.notlonely_android.ui.find.FindFragment;
 import com.efan.notlonely_android.ui.menu.MenuFragment;
 import com.efan.notlonely_android.ui.message.MessageFragment;
 import com.efan.notlonely_android.ui.mine.MineFragment;
+import com.efan.notlonely_android.view.BlurringView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,12 +52,15 @@ public class MainActivity extends BaseFragmentActivity {
     private LinearLayout bottomLayout;
     @ViewInject(id = R.id.framelayout)
     private FrameLayout frameLayout;
+    @ViewInject(id=R.id.blurring_view)
+    private BlurringView blur;
 
     private FragmentTabAdapter fragmentTabAdapter;
     private List<BaseFragment> list;
 
     @Override
     public void initView() {
+        blur.setBlurredView(frameLayout);
         setStatusBarColor();
         setFrameLayout();
         setSeletedBottomBar(1);

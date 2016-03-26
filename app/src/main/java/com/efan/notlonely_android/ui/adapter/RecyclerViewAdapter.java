@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.efan.notlonely_android.R;
 
 /**
- * Created by root on 16-3-25.
+ * Created by linqh0806 on 16-3-25.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

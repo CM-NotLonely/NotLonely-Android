@@ -13,26 +13,30 @@ import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.RecyclerViewAdapter;
 import com.efan.notlonely_android.utils.DividerItemDecoration;
+import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
 /**
  * Created by linqh0806 on 16-3-23.
  */
-public class ActivityFragment extends BaseFragment{
-    @ViewInject(id=R.id.recyclerview)
+public class ActivityFragment extends BaseFragment {
+    @ViewInject(id = R.id.recyclerview)
     private RecyclerView recyclerView;
-    @ViewInject(id=R.id.refresh_widget)
+    @ViewInject(id = R.id.refresh_widget)
     private JellyRefreshLayout mRefreshLayout;
 
+    private BlurringView blurringView;
     private RecyclerViewAdapter adapter;
+
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
-        return var1.inflate(R.layout.fragment_activity,var2,false);
+        return var1.inflate(R.layout.fragment_activity, var2, false);
     }
 
 
     @Override
     public void initView() {
+        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
         mRefreshLayout.setRefreshListener(new JellyRefreshLayout.JellyRefreshListener() {
             @Override
             public void onRefresh(JellyRefreshLayout jellyRefreshLayout) {
@@ -48,16 +52,22 @@ public class ActivityFragment extends BaseFragment{
 
     @Override
     public void initData() {
-        adapter=new RecyclerViewAdapter(getContext());
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
+        adapter = new RecyclerViewAdapter(getContext());
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
         recyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
     public void initEvent() {
-
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                blurringView.invalidate();
+            }
+        });
     }
 
     @Override
@@ -65,4 +75,15 @@ public class ActivityFragment extends BaseFragment{
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        blurringView.invalidate();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
+    }
 }

@@ -12,22 +12,20 @@ import com.efan.basecmlib.activity.BaseFragmentActivity;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.FragmentTabAdapter;
+import com.efan.notlonely_android.view.BlurringView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 一帆 on 2016/3/22.
+ * Created by linqh0806 on 2016/3/22.
  */
 public class MenuFragment extends BaseFragment {
-    @ViewInject(id= R.id.framelayout_menu)
-    private FrameLayout frameLayout;
-
     private TextView tv_activity;
     private TextView tv_circle;
     private List<BaseFragment> fragments;
     private FragmentTabAdapter fragmentTabAdapter;
-
+    private BlurringView blurringView;
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
         return var1.inflate(R.layout.fragment_menu,var2,false);
@@ -35,6 +33,7 @@ public class MenuFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        blurringView= (BlurringView) getActivity().findViewById(R.id.blurring_view);
         tv_activity= (TextView) getActivity().findViewById(R.id.tv_activity);
         tv_circle= (TextView) getActivity().findViewById(R.id.tv_circle);
         tv_activity.setOnClickListener(this);
@@ -59,11 +58,9 @@ public class MenuFragment extends BaseFragment {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_activity:
-                //ToastUtils.show(getContext(),"first");
                 fragmentTabAdapter.setCurrentTab(0);
                 break;
             case R.id.tv_circle:
-                //ToastUtils.show(getContext(),"Second");
                 fragmentTabAdapter.setCurrentTab(1);
                 break;
             default:
@@ -71,4 +68,15 @@ public class MenuFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        blurringView.invalidate();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden&&blurringView instanceof BlurringView) blurringView.invalidate();
+    }
 }

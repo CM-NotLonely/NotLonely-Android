@@ -18,5 +18,5 @@
         android:layout_gravity="center"
         app:blurRadius="5"
         app:downsampleFactor="6"
-        app:overlayColor="#99FFFFFF"/>/>
+        app:overlayColor="#88FFFFFF"/>/>
 </FrameLayout>
