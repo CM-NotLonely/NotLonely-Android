@@ -1,9 +1,6 @@
 # Notlonely Android
 
 > 我们用的最新版 jdk-8u73 Android Api 23 Android Studio 2.0 Beta 5 进行编译并运行。
-# Notlonely Server
-
->
 
 ## Intro
 
