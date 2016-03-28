@@ -1,6 +1,6 @@
-# Notlonely iOS
+# Notlonely Android
 
-> 我们用的最新版 Cocoapods（version 0.39.0）和 Xcode 7.2 进行编译并运行。
+> 我们用的最新版  jdk-8u73 Android Api 23 Android Studio 2.1 进行编译并运行。
 
 ## Intro
 
