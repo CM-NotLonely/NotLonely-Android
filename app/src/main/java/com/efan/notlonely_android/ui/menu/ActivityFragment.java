@@ -1,7 +1,6 @@
 package com.efan.notlonely_android.ui.menu;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +10,7 @@ import android.view.ViewGroup;
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.ui.adapter.RecyclerViewAdapter;
-import com.efan.notlonely_android.utils.DividerItemDecoration;
+import com.efan.notlonely_android.ui.adapter.ActivityAdapter;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -26,7 +24,7 @@ public class ActivityFragment extends BaseFragment {
     private JellyRefreshLayout mRefreshLayout;
 
     private BlurringView blurringView;
-    private RecyclerViewAdapter adapter;
+    private ActivityAdapter adapter;
 
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
@@ -52,8 +50,7 @@ public class ActivityFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        adapter = new RecyclerViewAdapter(getContext());
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+        adapter = new ActivityAdapter(getContext());
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

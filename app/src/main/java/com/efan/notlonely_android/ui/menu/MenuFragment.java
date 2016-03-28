@@ -58,9 +58,13 @@ public class MenuFragment extends BaseFragment {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_activity:
+                tv_activity.setTextColor(getResources().getColor(R.color.title_selected));
+                tv_circle.setTextColor(getResources().getColor(R.color.title_unselected));
                 fragmentTabAdapter.setCurrentTab(0);
                 break;
             case R.id.tv_circle:
+                tv_circle.setTextColor(getResources().getColor(R.color.title_selected));
+                tv_activity.setTextColor(getResources().getColor(R.color.title_unselected));
                 fragmentTabAdapter.setCurrentTab(1);
                 break;
             default:
