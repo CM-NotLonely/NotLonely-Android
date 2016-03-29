@@ -16,5 +16,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--mine-->
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zhuce_one">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zhuce_two">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zhuce_three">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_personaldetails">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_push">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_join">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zan">
+        </activity>
+        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_denglu_one">
+        </activity>
     </application>
 </manifest>
