@@ -107,7 +107,8 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="早上七点集合后就出发，每人确保一辆可以长途骑行的单车，其他个人所需物品自己准备，大概人均消费70元，明天不见不散！"
+            android:text="早上七点集合后就出发，每人确保一辆可以长途骑行的单车，其他个人所需物品自己准备，大概人均消
+            费70元，明天不见不散！"
             android:textColor="@color/black"
             android:textSize="@dimen/text_mid_14" />
 
