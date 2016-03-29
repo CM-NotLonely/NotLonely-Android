@@ -1,6 +1,7 @@
 package com.efan.notlonely_android.ui;
 
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -13,6 +14,8 @@ import com.efan.basecmlib.activity.BaseFragmentActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
+import com.efan.basecmlib.okhttputils.OkHttpUtils;
+import com.efan.basecmlib.okhttputils.callback.Callback;
 import com.efan.basecmlib.others.SystemBarTintManager;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.FragmentTabAdapter;
@@ -23,7 +26,12 @@ import com.efan.notlonely_android.ui.mine.MineFragment;
 import com.efan.notlonely_android.view.BlurringView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 @ContentView(id = R.layout.activity_main)
 public class MainActivity extends BaseFragmentActivity {
@@ -68,7 +76,33 @@ public class MainActivity extends BaseFragmentActivity {
 
     @Override
     public void initData() {
-
+//        Map<String,String> params = new HashMap<>();
+//        params.put("username","123456");
+//        params.put("password","123456");
+//        params.put("introduction","test");
+//        params.put("sex","true");
+//        params.put("nickname","test");
+//
+//        OkHttpUtils.post()
+//                .url("http://192.168.1.236:3000/create.json")
+//                .params(params)
+//                .build()
+//                .execute(new Callback() {
+//                    @Override
+//                    public Object parseNetworkResponse(Response response) throws Exception {
+//                        return response.body().string();
+//                    }
+//
+//                    @Override
+//                    public void onError(Call call, Exception e) {
+//                        Log.d("bb",e.toString());
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Object response) {
+//                        Log.d("aa",response.toString());
+//                    }
+//                });
     }
 
     @Override
