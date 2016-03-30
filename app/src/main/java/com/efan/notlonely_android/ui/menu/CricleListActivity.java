@@ -14,7 +14,6 @@ import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.SimpleHeaderRecyclerAdapter;
-import com.efan.notlonely_android.view.BlurringView;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -41,8 +40,8 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
     private View mRecyclerViewBackground;
     @ViewInject(id = R.id.cricle_details)
     private RelativeLayout mTitleView;
-    @ViewInject(id=R.id.blurring_view)
-    private BlurringView blur;
+//    @ViewInject(id=R.id.blurring_view)
+//    private BlurringView blur;
 
     private int mActionBarSize;
     private int mFlexibleSpaceImageHeight;
@@ -88,12 +87,14 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
                 ViewHelper.setTranslationY(mRecyclerViewBackground, mFlexibleSpaceImageHeight);
             }
         });
+
         ViewHelper.setTranslationY(mOverlayView, mFlexibleSpaceImageHeight);
+
         mTitleView.post(new Runnable() {
             @Override
             public void run() {
-                ViewHelper.setTranslationY(mTitleView, (int) (mFlexibleSpaceImageHeight - mTitleView.getHeight()));
-//                ViewHelper.setTranslationY(mTitleView, (int) 0);
+//                ViewHelper.setTranslationY(mTitleView, (int) (mFlexibleSpaceImageHeight - mTitleView.getHeight()));
+                ViewHelper.setTranslationY(mTitleView, (int) 0);
                 ViewHelper.setPivotX(mTitleView, 0);
                 ViewHelper.setPivotY(mTitleView, 0);
 //                ViewHelper.setScaleX(mTitleView, scale);
@@ -141,11 +142,12 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
         ViewHelper.setPivotY(mTitleView, 0);
 //        ViewHelper.setScaleX(mTitleView, scale);
 //        ViewHelper.setScaleY(mTitleView, scale);
-
         // Translate title text
         int maxTitleTranslationY = (int) (mFlexibleSpaceImageHeight - mTitleView.getHeight());
-        int titleTranslationY = maxTitleTranslationY - scrollY;
-        ViewHelper.setTranslationY(mTitleView, titleTranslationY);
+        int titleTranslationY = scrollY;
+        ViewHelper.setTranslationY(mTitleView, -titleTranslationY);
+//        ViewHelper.setTranslationY(blur, titleTranslationY);
+//        blur.invalidate();
     }
 
     @Override

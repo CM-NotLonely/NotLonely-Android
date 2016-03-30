@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.ui.menu.ActivityFragment;
-import com.efan.notlonely_android.ui.menu.CircleFragment;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.PagerSlidingTabStrip;
 
@@ -46,9 +44,9 @@ public class MessageFragment extends BaseFragment {
     @Override
     public void initData() {
         fragments = new ArrayList<BaseFragment>();
-        fragments.add(new ActivityFragment());
-        fragments.add(new CircleFragment());
-        fragments.add(new ActivityFragment());
+        fragments.add(new WithMeFragment());
+        fragments.add(new MyInterestFragment());
+        fragments.add(new ZanFragment());
         adapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(5);
