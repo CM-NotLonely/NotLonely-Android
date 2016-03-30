@@ -97,20 +97,22 @@ public class CircleFragment extends BaseFragment {
         adapter.setOnItemClickListener(new CircleAdapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(),CricleListActivity.class);
-                startActivity(intent);
-//                if(position!=0){
-//                    Blurry.with(getContext())
-//                            .radius(5)
-//                            .sampling(2)
-//                            .async()
-//                            .capture(view.findViewById(R.id.iv_background))
-//                            .into((ImageView) view.findViewById(R.id.iv_background));
-//                }
+                if (position != 0) {
+                    Intent intent = new Intent(getActivity(), CricleListActivity.class);
+                    startActivity(intent);
+                }
             }
+
             @Override
             public void onItemLongClick(View view, int position) {
-//                initBlur();
+                if (position != 0) {
+                    Blurry.with(getContext())
+                            .radius(5)
+                            .sampling(2)
+                            .async()
+                            .capture(view.findViewById(R.id.iv_background))
+                            .into((ImageView) view.findViewById(R.id.iv_background));
+                }
             }
         });
     }

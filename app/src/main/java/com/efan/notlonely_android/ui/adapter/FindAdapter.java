@@ -3,9 +3,7 @@ package com.efan.notlonely_android.ui.adapter;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Message;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.utils.blurry.Blurry;
 import com.efan.notlonely_android.view.BlurringView;
 
 import java.util.ArrayList;
@@ -25,16 +22,19 @@ import java.util.ArrayList;
 /**
  * Created by linqh0806 on 16-3-25.
  */
-public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int TYPE_ITEM = 0;
-    private static final int TYPE_FOOTER = 1;
-    private static final int TYPE_HEADER = 2;
+    private static final int TYPE_ITEM_1 = 0;
+    private static final int TYPE_ITEM_2 = 1;
+    private static final int TYPE_FOOTER = 2;
+    private static final int TYPE_HEADER_1 = 3;
+    private static final int TYPE_HEADER_2 = 4;
 
     private Context mContext;
     private int BottomHeight = 0;
     private LayoutInflater mInflater;
-    private ArrayList<Drawable> mData;
+    private ArrayList<Drawable> mData_people;
+    private ArrayList<Drawable> mData_circle;
 
     private onItemClickListener onItemClickListener;
 
@@ -49,33 +49,37 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.onItemClickListener = onItemClickListener;
     }
 
-    public CircleAdapter(Context mContext, ArrayList<Drawable> mData) {
+    public FindAdapter(Context mContext, ArrayList<Drawable> people, ArrayList<Drawable> circle) {
         this.mContext = mContext;
-        this.mData = mData;
+        this.mData_people = people;
+        this.mData_circle = circle;
         mInflater = LayoutInflater.from(mContext);
         BottomHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, mContext.getResources().getDisplayMetrics());
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType==TYPE_HEADER){
-                Button button=new Button(mContext);
-                RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(parent.getWidth(),BottomHeight/5*4);
-                lp.setMargins(0, BottomHeight/10,0, 0);
-                button.setLayoutParams(lp);
-                button.setGravity(Gravity.CENTER);
-                button.setTextColor(mContext.getResources().getColor(R.color.common));
-                button.setText("创建新圈子");
-                button.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
-                button.setBackgroundResource(R.drawable.shape_join_background);
-                HeaderViewHolder holder=new HeaderViewHolder(button);
-                return holder;
+        if (viewType == TYPE_HEADER_1) {
+            View view = mInflater.inflate(R.layout.item_circle_header_people, parent, false);
+            HeaderViewHolder holder = new HeaderViewHolder(view);
+            return holder;
         }
-        if (viewType == TYPE_ITEM) {
+        if (viewType == TYPE_ITEM_1) {
+            View view = mInflater.inflate(R.layout.item_cardview_poeple, parent, false);
+            vHold holder = new vHold(view);
+            return holder;
+        }
+        if (viewType == TYPE_HEADER_2) {
+            View view = mInflater.inflate(R.layout.item_circle_header_interest, parent, false);
+            HeaderViewHolder holder = new HeaderViewHolder(view);
+            return holder;
+        }
+        if (viewType == TYPE_ITEM_2) {
             View view = mInflater.inflate(R.layout.item_cardview_circle, parent, false);
             vHold holder = new vHold(view);
             return holder;
-        } else if (viewType == TYPE_FOOTER) {
+        }
+        if (viewType == TYPE_FOOTER) {
             View view = new View(mContext);
             RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(0, 0);
             lp.setMargins(0, BottomHeight, 0, 0);
@@ -88,8 +92,11 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        if (position + 1 != getItemCount()&&position!=0)
-            ((vHold) holder).imageView.setImageDrawable(mData.get(position-1));
+        if(position==0||position==mData_people.size()+1) ((HeaderViewHolder)holder).tv_more.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        if (position > 0 && position < mData_people.size() + 1)
+            ((vHold) holder).imageView.setImageDrawable(mData_people.get(position - 1));
+        else if (position > mData_people.size() + 1 && position < mData_circle.size() + mData_people.size() + 2)
+            ((vHold) holder).imageView.setImageDrawable(mData_circle.get(position - 1-mData_people.size()-1));
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,15 +119,19 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if (position + 1 == getItemCount()) {
             return TYPE_FOOTER;
         } else if (position == 0) {
-            return TYPE_HEADER;
+            return TYPE_HEADER_1;
+        } else if (position == mData_people.size() + 1) {
+            return TYPE_HEADER_2;
+        } else if (position > 0 && position < mData_people.size() + 1) {
+            return TYPE_ITEM_1;
         } else {
-            return TYPE_ITEM;
+            return TYPE_ITEM_2;
         }
     }
 
     @Override
     public int getItemCount() {
-        return mData.size() + 2;
+        return mData_people.size() + mData_circle.size() + 3;
     }
 
     public class vHold extends RecyclerView.ViewHolder {
@@ -140,9 +151,12 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    private class HeaderViewHolder extends RecyclerView.ViewHolder{
+    private class HeaderViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_more;
+
         public HeaderViewHolder(View itemView) {
             super(itemView);
+            tv_more = (TextView) itemView.findViewById(R.id.tv_more);
         }
     }
 
