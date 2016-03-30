@@ -11,7 +11,7 @@ import com.efan.notlonely_android.R;
 /**
  * Created by linqh0806 on 16-3-25.
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
@@ -30,14 +30,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.onItemClickListener = onItemClickListener;
     }
 
-    public RecyclerViewAdapter(Context mContext) {
+    public ActivityAdapter(Context mContext) {
         this.mContext = mContext;
         mInflater = LayoutInflater.from(mContext);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_cardview, parent, false);
+        View view = mInflater.inflate(R.layout.item_cardview_activity, parent, false);
         vHold hold = new vHold(view);
         return hold;
     }

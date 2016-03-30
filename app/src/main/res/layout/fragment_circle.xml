@@ -4,19 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:src="@mipmap/test"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop" />
-    <com.efan.notlonely_android.view.BlurringView
-        android:id="@+id/blur"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        app:blurRadius="5"
-        app:downsampleFactor="6"
-        app:overlayColor="#88FFFFFF"/>/>
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </FrameLayout>

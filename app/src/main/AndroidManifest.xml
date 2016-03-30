@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.efan.notlonely_android">
-
     <application
         android:name="com.efan.notlonely_android.MainApplication"
         android:allowBackup="true"
@@ -9,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,11 +17,28 @@
             </intent-filter>
         </activity>
         <!--menu-->
-        <activity android:name=".ui.menu.CricleListActivity"/>
+        <activity android:name=".ui.menu.CricleListActivity"
+            android:screenOrientation="portrait"/>
         <!--find-->
 
         <!--message-->
 
         <!--mine-->
+        <activity android:name=".ui.mine.MineFragment_zhuce_one"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_zhuce_two"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_zhuce_three"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_personaldetails"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_push"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_join"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_zan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.MineFragment_denglu_one"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

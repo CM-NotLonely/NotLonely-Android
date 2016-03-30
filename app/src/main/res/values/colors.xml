@@ -13,6 +13,9 @@
     <color name="background">#f9f9f9</color>
     <color name="common">#ffb11b</color>
 
+    <!--Title-->
+    <color name="title_selected">#ffffff</color>
+    <color name="title_unselected">#77ffffff</color>
     <!--Bottom-->
     <color name="bottomColor">#aaFFFFFF</color>
 

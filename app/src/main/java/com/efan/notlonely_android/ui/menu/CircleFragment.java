@@ -1,14 +1,17 @@
 package com.efan.notlonely_android.ui.menu;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.ui.adapter.CircleAdapter;
 import com.efan.notlonely_android.view.BlurringView;
 
 /**
@@ -17,9 +20,10 @@ import com.efan.notlonely_android.view.BlurringView;
 public class CircleFragment extends BaseFragment{
     @ViewInject(id=R.id.blur)
     private BlurringView blur;
-    @ViewInject(id=R.id.iv_image)
-    private ImageView iv;
+    @ViewInject(id=R.id.recyclerview)
+    private RecyclerView recyclerView;
 
+    private CircleAdapter adapter;
     private BlurringView blurringView;
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
@@ -33,7 +37,22 @@ public class CircleFragment extends BaseFragment{
 
     @Override
     public void initData() {
-        blur.setBlurredView(iv);
+        adapter=new CircleAdapter(getContext());
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        adapter.setOnItemClickListener(new CircleAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(),CricleListActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
