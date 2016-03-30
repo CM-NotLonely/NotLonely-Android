@@ -11,7 +11,8 @@
     <dimen name="cricle_image_height">400dp</dimen>
     <dimen name="cricle_blur_height">80dp</dimen>
 
-    <dimen name="text_small_12">12sp</dimen>
-    <dimen name="text_mid_14">14sp</dimen>
-    <dimen name="text_big_16">16sp</dimen>
+    <dimen name="text_small_12">14sp</dimen>
+    <dimen name="text_mid_14">16sp</dimen>
+    <dimen name="text_big_16">18sp</dimen>
+    <dimen name="text_max_18">20sp</dimen>
 </resources>

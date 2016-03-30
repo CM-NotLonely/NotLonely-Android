@@ -3,33 +3,12 @@
     xmlns:tools="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     tools:cardBackgroundColor="#ffffffff"
     tools:cardCornerRadius="2dp">
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tv_md_name"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:padding="5dp"-->
-    <!--android:text="test_CardView"-->
-    <!--android:textColor="@color/black"-->
-    <!--android:textSize="20sp" />-->
-
-    <!--<ImageView-->
-    <!--android:layout_marginLeft="20dp"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="100dp"-->
-    <!--android:scaleType="centerCrop"-->
-    <!--android:src="@mipmap/test" />-->
-
-    <!--</LinearLayout>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="by:闫一帆"
+            android:textColor="@color/content"
             android:textSize="@dimen/text_small_12" />
 
         <TextView
@@ -53,8 +33,8 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:text="周末骑行都江堰一日游"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_big_16" />
+            android:textColor="@color/title"
+            android:textSize="@dimen/text_max_18" />
 
         <View
             android:id="@+id/line"
@@ -75,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3月7日 7:00 · "
+                android:textColor="@color/content"
                 android:textSize="@dimen/text_small_12" />
 
             <TextView
@@ -82,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="学校西门 · "
+                android:textColor="@color/content"
                 android:textSize="@dimen/text_small_12" />
 
             <TextView
@@ -89,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="￥70 · "
+                android:textColor="@color/content"
                 android:textSize="@dimen/text_small_12" />
 
             <TextView
@@ -96,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3人/10人"
+                android:textColor="@color/content"
                 android:textSize="@dimen/text_small_12" />
         </LinearLayout>
 
@@ -107,8 +91,9 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="3"
+            android:lineSpacingExtra="2dp"
             android:text="早上七点集合后就出发，每人确保一辆可以长途骑行的单车，其他个人所需物品自己准备，大概人均消费70元，明天不见不散！"
-            android:textColor="@color/black"
+            android:textColor="@color/content"
             android:textSize="@dimen/text_mid_14" />
 
         <RelativeLayout
@@ -152,14 +137,15 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <!--<com.facebook.drawee.view.SimpleDraweeView-->
-        <!--android:id="@+id/fresco"-->
-        <!--android:layout_width="50dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="right"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--tools:backgroundImage="@mipmap/test"-->
-        <!--tools:roundAsCircle="true" />-->
+    <com.efan.notlonely_android.view.touxiang.CircularImage
+        android:id="@+id/civ_face"
+        android:layout_marginTop="-6dp"
+        android:layout_marginRight="-6dp"
+        android:scaleType="centerCrop"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:src="@mipmap/touxiang"
+        />
 
 </android.support.v7.widget.CardView>

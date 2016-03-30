@@ -68,7 +68,33 @@ public class MainActivity extends BaseFragmentActivity {
 
     @Override
     public void initData() {
-
+//        Map<String,String> params = new HashMap<>();
+//        params.put("username","123456");
+//        params.put("password","123456");
+//        params.put("introduction","test");
+//        params.put("sex","true");
+//        params.put("nickname","test");
+//
+//        OkHttpUtils.post()
+//                .url("http://192.168.1.236:3000/create.json")
+//                .params(params)
+//                .build()
+//                .execute(new Callback() {
+//                    @Override
+//                    public Object parseNetworkResponse(Response response) throws Exception {
+//                        return response.body().string();
+//                    }
+//
+//                    @Override
+//                    public void onError(Call call, Exception e) {
+//                        Log.d("bb",e.toString());
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Object response) {
+//                        Log.d("aa",response.toString());
+//                    }
+//                });
     }
 
     @Override

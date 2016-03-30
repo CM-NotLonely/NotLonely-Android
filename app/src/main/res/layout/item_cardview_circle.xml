@@ -2,41 +2,10 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/tools"
-    android:layout_margin="2dp"
-    tools:cardBackgroundColor="#ffffffff"
-    tools:cardCornerRadius="2dp">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="吉他社"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_big_16" />
-        <TextView
-            android:id="@+id/tv_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="test_CardView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/tv_people"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:text="test_CardView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-    </RelativeLayout>
+    android:layout_marginTop="5dp"
+    android:background="@color/background">
 
 
     <ImageView
@@ -47,12 +16,57 @@
         android:src="@mipmap/test" />
 
     <com.efan.notlonely_android.view.BlurringView
-        android:id="@+id/blur"
+        android:id="@+id/blurring"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:blurRadius="1"
-        app:downsampleFactor="6"
-        app:overlayColor="#00FFFFFF"/>
+        app:blurRadius="2"
+        app:downsampleFactor="2"
+        app:overlayColor="#10ffffff"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="吉他社"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_max_18" />
+
+            <TextView
+                android:id="@+id/tv_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="22人"
+                android:textColor="@color/common"
+                android:textSize="@dimen/text_big_16" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="吉他爱好者们的聚集地"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_mid_14" />
+
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
