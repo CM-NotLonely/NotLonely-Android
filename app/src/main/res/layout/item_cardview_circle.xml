@@ -5,6 +5,7 @@
     android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/tools"
     android:layout_marginTop="5dp"
+    tools:cardCornerRadius="5dp"
     android:background="@color/background">
 
 
@@ -43,7 +44,7 @@
                 android:padding="5dp"
                 android:text="吉他社"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_max_18" />
+                android:textSize="@dimen/text_max_20" />
 
             <TextView
                 android:id="@+id/tv_people"
@@ -52,7 +53,7 @@
                 android:padding="5dp"
                 android:text="22人"
                 android:textColor="@color/common"
-                android:textSize="@dimen/text_big_16" />
+                android:textSize="@dimen/text_mid_16" />
         </LinearLayout>
 
         <TextView
@@ -64,7 +65,7 @@
             android:padding="5dp"
             android:text="吉他爱好者们的聚集地"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_mid_14" />
+            android:textSize="@dimen/text_small_14" />
 
 
     </LinearLayout>
