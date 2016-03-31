@@ -99,14 +99,14 @@ public class FindFragment extends BaseFragment {
 
             @Override
             public void onItemLongClick(View view, int position) {
-                if (position != 0) {
-                    Blurry.with(getContext())
-                            .radius(5)
-                            .sampling(2)
-                            .async()
-                            .capture(view.findViewById(R.id.iv_background))
-                            .into((ImageView) view.findViewById(R.id.iv_background));
-                }
+//                if (position != 0) {
+//                    Blurry.with(getContext())
+//                            .radius(5)
+//                            .sampling(2)
+//                            .async()
+//                            .capture(view.findViewById(R.id.iv_background))
+//                            .into((ImageView) view.findViewById(R.id.iv_background));
+//                }
             }
         });
     }
