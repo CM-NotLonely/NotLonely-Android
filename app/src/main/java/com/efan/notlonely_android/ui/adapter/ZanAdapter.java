@@ -41,7 +41,7 @@ public class ZanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
-            View view = mInflater.inflate(R.layout.item_cardview_activity, parent, false);
+            View view = mInflater.inflate(R.layout.item_cardview_zan, parent, false);
             vHold hold = new vHold(view);
             return hold;
         } else if (viewType == TYPE_FOOTER) {

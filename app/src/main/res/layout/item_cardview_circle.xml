@@ -66,8 +66,5 @@
             android:text="吉他爱好者们的聚集地"
             android:textColor="@color/white"
             android:textSize="@dimen/text_small_14" />
-
-
     </LinearLayout>
-
 </android.support.v7.widget.CardView>

@@ -14,8 +14,9 @@ import com.efan.notlonely_android.R;
  */
 public class MyInsterestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int TYPE_ITEM = 0;
+    private static final int TYPE_ITEM_ACTIVITY = 0;
     private static final int TYPE_FOOTER = 1;
+    private static final int TYPE_ITEM_CRICLE = 2;
     private int BottomHeight=0;
     private Context mContext;
     private LayoutInflater mInflater;
@@ -40,8 +41,12 @@ public class MyInsterestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_ITEM) {
-            View view = mInflater.inflate(R.layout.item_cardview_activity, parent, false);
+        if (viewType == TYPE_ITEM_ACTIVITY) {
+            View view = mInflater.inflate(R.layout.item_cardview_myinterest_activity, parent, false);
+            vHold hold = new vHold(view);
+            return hold;
+        } else if (viewType == TYPE_ITEM_CRICLE) {
+            View view = mInflater.inflate(R.layout.item_cardview_myinterest_cricle, parent, false);
             vHold hold = new vHold(view);
             return hold;
         } else if (viewType == TYPE_FOOTER) {
@@ -78,8 +83,10 @@ public class MyInsterestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public int getItemViewType(int position) {
         if (position+1 == getItemCount()) {
             return TYPE_FOOTER;
-        } else {
-            return TYPE_ITEM;
+        } else if(position == 2){
+            return TYPE_ITEM_ACTIVITY;
+        } else{
+            return  TYPE_ITEM_CRICLE;
         }
     }
 
