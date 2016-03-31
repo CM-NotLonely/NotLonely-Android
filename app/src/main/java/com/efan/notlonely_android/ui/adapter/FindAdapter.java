@@ -3,18 +3,16 @@ package com.efan.notlonely_android.ui.adapter;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.view.BlurringView;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -66,7 +64,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         if (viewType == TYPE_ITEM_1) {
             View view = mInflater.inflate(R.layout.item_cardview_poeple, parent, false);
-            vHold holder = new vHold(view);
+            vHold_Item_1 holder = new vHold_Item_1(view);
             return holder;
         }
         if (viewType == TYPE_HEADER_2) {
@@ -76,7 +74,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         if (viewType == TYPE_ITEM_2) {
             View view = mInflater.inflate(R.layout.item_cardview_circle, parent, false);
-            vHold holder = new vHold(view);
+            vHold_Item_2 holder = new vHold_Item_2(view);
             return holder;
         }
         if (viewType == TYPE_FOOTER) {
@@ -93,10 +91,13 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if(position==0||position==mData_people.size()+1) ((HeaderViewHolder)holder).tv_more.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-        if (position > 0 && position < mData_people.size() + 1)
-            ((vHold) holder).imageView.setImageDrawable(mData_people.get(position - 1));
+        if (position > 0 && position < mData_people.size() + 1){
+            ((vHold_Item_1) holder).getSimpleDraweeView_face.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
+            ((vHold_Item_1) holder).simpleDraweeView_background.setImageURI(Uri.parse("res:///"+R.mipmap.test));
+        }
+//        mData_people.get(position - 1)
         else if (position > mData_people.size() + 1 && position < mData_circle.size() + mData_people.size() + 2)
-            ((vHold) holder).imageView.setImageDrawable(mData_circle.get(position - 1-mData_people.size()-1));
+            ((vHold_Item_2) holder).simpleDraweeView.setImageURI(Uri.parse("res:///"+R.mipmap.test1));
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,14 +135,22 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mData_people.size() + mData_circle.size() + 3;
     }
 
-    public class vHold extends RecyclerView.ViewHolder {
-        public ImageView imageView;
-        public BlurringView blurringView;
-
-        public vHold(View itemView) {
+    public class vHold_Item_1 extends RecyclerView.ViewHolder {
+        public SimpleDraweeView getSimpleDraweeView_face;
+        public SimpleDraweeView simpleDraweeView_background;
+        public vHold_Item_1(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.iv_background);
-            blurringView = (BlurringView) itemView.findViewById(R.id.blurring);
+            simpleDraweeView_background = (SimpleDraweeView) itemView.findViewById(R.id.drawee_background);
+            getSimpleDraweeView_face= (SimpleDraweeView) itemView.findViewById(R.id.drawee_face);
+        }
+    }
+
+    public class vHold_Item_2 extends RecyclerView.ViewHolder {
+        public SimpleDraweeView simpleDraweeView;
+
+        public vHold_Item_2(View itemView) {
+            super(itemView);
+            simpleDraweeView = (SimpleDraweeView) itemView.findViewById(R.id.drawee_background);
         }
     }
 

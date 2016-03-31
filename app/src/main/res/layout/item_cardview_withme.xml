@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 style="@style/common_text_little"
                 android:textColor="@color/content"
-                android:text="创建了新活动"/>
+                android:text="邀请你加入圈子"/>
             <TextView
                 android:id="@+id/time"
                 android:layout_alignParentRight="true"

@@ -7,7 +7,8 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     tools:cardBackgroundColor="#ffffffff"
-    tools:cardCornerRadius="2dp">
+    tools:cardPreventCornerOverlap="false"
+    tools:cardCornerRadius="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -137,15 +138,14 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <com.efan.notlonely_android.view.touxiang.CircularImage
-        android:id="@+id/civ_face"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/face"
         android:layout_marginTop="-10dp"
         android:layout_marginRight="-10dp"
         android:scaleType="centerCrop"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="right"
-        android:src="@mipmap/touxiang"
-        />
+        tools:roundAsCircle="true"/>
 
 </android.support.v7.widget.CardView>

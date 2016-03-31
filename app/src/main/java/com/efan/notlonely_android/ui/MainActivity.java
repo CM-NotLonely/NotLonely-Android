@@ -21,6 +21,7 @@ import com.efan.notlonely_android.ui.menu.MenuFragment;
 import com.efan.notlonely_android.ui.message.MessageFragment;
 import com.efan.notlonely_android.ui.mine.MineFragment;
 import com.efan.notlonely_android.view.BlurringView;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     @Override
     public void initView() {
+        Fresco.initialize(this);
         blur.setBlurredView(frameLayout);
         setStatusBarColor();
         setFrameLayout();

@@ -1,14 +1,15 @@
 package com.efan.notlonely_android.ui.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.efan.notlonely_android.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
  * Created by linqh0806 on 16-3-25.
@@ -58,6 +59,9 @@ public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        if(position+1!=getItemCount()) {
+            ((vHold) holder).simpleDraweeView.setImageURI(Uri.parse("res:///" + R.mipmap.touxiang));
+        }
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,9 +94,10 @@ public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class vHold extends RecyclerView.ViewHolder {
-
+        public SimpleDraweeView simpleDraweeView;
         public vHold(View itemView) {
             super(itemView);
+            simpleDraweeView= (SimpleDraweeView) itemView.findViewById(R.id.face);
         }
     }
 

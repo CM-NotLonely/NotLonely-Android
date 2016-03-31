@@ -1,23 +1,18 @@
 package com.efan.notlonely_android.ui.adapter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Message;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.utils.blurry.Blurry;
-import com.efan.notlonely_android.view.BlurringView;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
@@ -89,7 +84,7 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (position + 1 != getItemCount()&&position!=0)
-            ((vHold) holder).imageView.setImageDrawable(mData.get(position-1));
+            ((vHold) holder).simpleDraweeView.setImageURI(Uri.parse("res:///"+R.mipmap.test));
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,13 +119,11 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public class vHold extends RecyclerView.ViewHolder {
-        public ImageView imageView;
-        public BlurringView blurringView;
+        public SimpleDraweeView simpleDraweeView;
 
         public vHold(View itemView) {
             super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.iv_background);
-            blurringView = (BlurringView) itemView.findViewById(R.id.blurring);
+            simpleDraweeView = (SimpleDraweeView) itemView.findViewById(R.id.drawee_background);
         }
     }
 

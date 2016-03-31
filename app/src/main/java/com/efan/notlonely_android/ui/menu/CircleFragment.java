@@ -105,14 +105,14 @@ public class CircleFragment extends BaseFragment {
 
             @Override
             public void onItemLongClick(View view, int position) {
-                if (position != 0) {
-                    Blurry.with(getContext())
-                            .radius(5)
-                            .sampling(2)
-                            .async()
-                            .capture(view.findViewById(R.id.iv_background))
-                            .into((ImageView) view.findViewById(R.id.iv_background));
-                }
+//                if (position != 0) {
+//                    Blurry.with(getContext())
+//                            .radius(5)
+//                            .sampling(2)
+//                            .async()
+//                            .capture(view.findViewById(R.id.iv_background))
+//                            .into((ImageView) view.findViewById(R.id.iv_background));
+//                }
             }
         });
     }
@@ -126,19 +126,19 @@ public class CircleFragment extends BaseFragment {
      * 对RecyclerView中的item图片进行高斯模糊处理
      */
     private void initBlur() {
-        for (int i = 0; i < adapter.getItemCount(); i++) {
-            View views = recyclerView.getChildAt(i);
-            if (views != null) {
-                CircleAdapter.vHold vHold = (CircleAdapter.vHold) recyclerView.getChildViewHolder(views);
-                View blurringView = vHold.imageView;
-                Blurry.with(getContext())
-                        .radius(5)
-                        .sampling(2)
-                        .async()
-                        .capture(blurringView)
-                        .into((ImageView) blurringView);
-            }
-        }
+//        for (int i = 0; i < adapter.getItemCount(); i++) {
+//            View views = recyclerView.getChildAt(i);
+//            if (views != null) {
+//                CircleAdapter.vHold vHold = (CircleAdapter.vHold) recyclerView.getChildViewHolder(views);
+//                View blurringView = vHold.imageView;
+//                Blurry.with(getContext())
+//                        .radius(5)
+//                        .sampling(2)
+//                        .async()
+//                        .capture(blurringView)
+//                        .into((ImageView) blurringView);
+//            }
+//        }
     }
 
     @Override
