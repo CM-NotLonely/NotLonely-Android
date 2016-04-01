@@ -20,6 +20,8 @@ import com.efan.notlonely_android.ui.find.FindFragment;
 import com.efan.notlonely_android.ui.menu.MenuFragment;
 import com.efan.notlonely_android.ui.message.MessageFragment;
 import com.efan.notlonely_android.ui.mine.MineFragment;
+import com.efan.notlonely_android.ui.publish.PublishActivity;
+import com.efan.notlonely_android.utils.IntentUtils;
 import com.efan.notlonely_android.view.BlurringView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -119,7 +121,7 @@ public class MainActivity extends BaseFragmentActivity {
                 setSeletedBottomBar(2);
                 break;
             case R.id.raise:
-                setSeletedBottomBar(1);
+                IntentUtils.startActivity(MainActivity.this,PublishActivity.class);
                 break;
             case R.id.message:
                 setSeletedBottomBar(4);

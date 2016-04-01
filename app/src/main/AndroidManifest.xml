@@ -3,6 +3,8 @@
     package="com.efan.notlonely_android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.efan.notlonely_android.MainApplication"
@@ -24,6 +26,13 @@
             android:screenOrientation="portrait"/>
         <!--find-->
 
+        <!--publish-->
+        <activity android:name=".ui.publish.PublishActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.ResultActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"/>
         <!--message-->
 
         <!--mine-->

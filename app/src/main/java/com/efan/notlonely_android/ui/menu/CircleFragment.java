@@ -3,6 +3,8 @@ package com.efan.notlonely_android.ui.menu;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,6 +36,13 @@ public class CircleFragment extends BaseFragment {
     private BlurringView blurringView;
     private LinearLayoutManager layoutManager;
     private ArrayList<Drawable> mData;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            blurringView.invalidate();
+        }
+    };
 
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
@@ -144,7 +153,18 @@ public class CircleFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        blurringView.invalidate();
+        final Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0);
+            }
+        });
+        thread.start();
     }
 
     @Override

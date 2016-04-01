@@ -29,4 +29,5 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.6.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.facebook.fresco:fresco:0.9.0+'
+    compile 'com.yalantis:ucrop:1.3.+'
 }

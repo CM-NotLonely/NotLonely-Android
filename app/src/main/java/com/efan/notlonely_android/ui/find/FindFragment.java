@@ -3,6 +3,8 @@ package com.efan.notlonely_android.ui.find;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,9 +36,17 @@ public class FindFragment extends BaseFragment {
     private FindAdapter adapter;
     private BlurringView blurringView;
     private ArrayList<Drawable> mData;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            blurringView.invalidate();
+        }
+    };
+
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
-        return var1.inflate(R.layout.fragment_find,var2,false);
+        return var1.inflate(R.layout.fragment_find, var2, false);
     }
 
 
@@ -53,7 +63,8 @@ public class FindFragment extends BaseFragment {
                     }
                 }, 3000);
             }
-        });    }
+        });
+    }
 
     @Override
     public void initData() {
@@ -63,7 +74,7 @@ public class FindFragment extends BaseFragment {
         mData.add(getResources().getDrawable(R.mipmap.test));
         mData.add(getResources().getDrawable(R.mipmap.test1));
         mData.add(getResources().getDrawable(R.mipmap.test1));
-        adapter = new FindAdapter(getContext(), mData,mData);
+        adapter = new FindAdapter(getContext(), mData, mData);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -88,6 +99,7 @@ public class FindFragment extends BaseFragment {
             }
         });
     }
+
     /**
      * ItemClickListener点击，加载高斯模糊变化
      */
@@ -116,15 +128,27 @@ public class FindFragment extends BaseFragment {
 
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        blurringView.invalidate();
+        final Thread thread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+               handler.sendEmptyMessage(0);
+            }
+        });
+        thread.start();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden&&blurringView instanceof BlurringView) blurringView.invalidate();
+        if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
     }
 }
