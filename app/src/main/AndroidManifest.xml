@@ -22,16 +22,17 @@
             </intent-filter>
         </activity>
         <!--menu-->
-        <activity android:name=".ui.menu.CricleListActivity"
+        <activity android:name=".ui.menu.CricleDetailActivity"
             android:screenOrientation="portrait"/>
         <!--find-->
 
         <!--publish-->
         <activity android:name=".ui.publish.PublishActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.publish.ResultActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.yalantis.ucrop.UCropActivity"
+        <activity android:name=".ui.publish.UCropActivity"
             android:screenOrientation="portrait"/>
         <!--message-->
 

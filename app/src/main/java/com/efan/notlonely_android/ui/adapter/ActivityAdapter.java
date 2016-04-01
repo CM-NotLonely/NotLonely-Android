@@ -3,7 +3,6 @@ package com.efan.notlonely_android.ui.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +59,9 @@ public class ActivityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        if(position+1!=getItemCount())((vHold)holder).simpleDraweeView.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
+        if(position+1!=getItemCount()) {
+            ((vHold) holder).simpleDraweeView.setImageURI(Uri.parse("res:///" + R.mipmap.touxiang));
+        }
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

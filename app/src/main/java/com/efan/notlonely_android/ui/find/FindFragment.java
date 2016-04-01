@@ -1,6 +1,5 @@
 package com.efan.notlonely_android.ui.find;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,15 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.ui.adapter.CircleAdapter;
 import com.efan.notlonely_android.ui.adapter.FindAdapter;
-import com.efan.notlonely_android.ui.menu.CricleListActivity;
-import com.efan.notlonely_android.utils.blurry.Blurry;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -36,7 +33,7 @@ public class FindFragment extends BaseFragment {
     private FindAdapter adapter;
     private BlurringView blurringView;
     private ArrayList<Drawable> mData;
-    private Handler handler=new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -95,7 +92,7 @@ public class FindFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
         });
     }
@@ -132,7 +129,7 @@ public class FindFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        final Thread thread=new Thread(new Runnable() {
+        final Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -140,15 +137,17 @@ public class FindFragment extends BaseFragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-               handler.sendEmptyMessage(0);
+                handler.sendEmptyMessage(0);
             }
         });
         thread.start();
+//        blurringView.invalidate();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
+        if (!hidden ) {
+        }
     }
 }

@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
@@ -26,12 +28,20 @@ import java.util.ArrayList;
  * Created by 一帆 on 2016/3/28.
  */
 @ContentView(id = R.layout.activity_cricle)
-public class CricleListActivity extends BaseActivity implements ObservableScrollViewCallbacks {
+public class CricleDetailActivity extends BaseActivity implements ObservableScrollViewCallbacks {
 
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
 
     @ViewInject(id = R.id.toolbar)
     private Toolbar toolbar;
+    @ViewInject(id = R.id.toolbar_cricle_title)
+    private TextView toolbarTitle;
+    @ViewInject(id = R.id.toolbar_cricle_join)
+    private ImageView toolbarJoin;
+    @ViewInject(id = R.id.toolbar_cricle_people)
+    private ImageView toolbarPeople;
+    @ViewInject(id = R.id.toolbar_cricle_title)
+    private TextView textView;
     @ViewInject(id = R.id.image)
     private View mImageView;
     @ViewInject(id = R.id.overlay)
@@ -40,6 +50,16 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
     private View mRecyclerViewBackground;
     @ViewInject(id = R.id.cricle_details)
     private RelativeLayout mTitleView;
+    @ViewInject(id = R.id.cricle_name)
+    private TextView cricleTitle;
+    @ViewInject(id = R.id.cricle_introduction)
+    private TextView cricleIntroduction;
+    @ViewInject(id = R.id.cricle_number)
+    private TextView cricleNumber;
+    @ViewInject(id = R.id.cricle_join)
+    private ImageView cricleJoin;
+    @ViewInject(id = R.id.cricle_people)
+    private ImageView criclePeople;
 //    @ViewInject(id=R.id.blurring_view)
 //    private BlurringView blur;
 
@@ -52,7 +72,9 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
     public void initView() {
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.colorPrimary)));
-
+        ViewHelper.setAlpha(toolbarTitle,0);
+        ViewHelper.setAlpha(toolbarJoin,0);
+        ViewHelper.setAlpha(toolbarPeople,0);
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.cricle_image_height);
         mActionBarSize = getResources().getDimensionPixelSize(R.dimen.common_headerbar_height);
 
@@ -71,7 +93,8 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
         for (int i = 1; i <= 20; i++) {
             items.add("Item " + i);
         }
-        adapter = new SimpleHeaderRecyclerAdapter(CricleListActivity.this,items,headerView);
+
+        adapter = new SimpleHeaderRecyclerAdapter(CricleDetailActivity.this,items,headerView);
         recyclerView.setAdapter(adapter);
 
         setTitle(null);
@@ -123,6 +146,17 @@ public class CricleListActivity extends BaseActivity implements ObservableScroll
         int baseColor = getResources().getColor(R.color.colorPrimary);
         float alpha = Math.min(1, (float) scrollY / mFlexibleSpaceImageHeight);
         toolbar.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor));
+        float detailsAlpha = Math.max(0, 1-alpha*2);
+        ViewHelper.setAlpha(cricleTitle,detailsAlpha);
+        ViewHelper.setAlpha(cricleIntroduction,detailsAlpha);
+        ViewHelper.setAlpha(cricleNumber,detailsAlpha);
+        ViewHelper.setAlpha(cricleJoin,detailsAlpha);
+        ViewHelper.setAlpha(criclePeople,detailsAlpha);
+
+        float ToolbarAlpha = (float) Math.max(0, alpha*2-0.5);
+        ViewHelper.setAlpha(toolbarTitle,ToolbarAlpha);
+        ViewHelper.setAlpha(toolbarPeople,ToolbarAlpha);
+        ViewHelper.setAlpha(toolbarJoin,ToolbarAlpha);
 
         // Translate overlay and image
         float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;

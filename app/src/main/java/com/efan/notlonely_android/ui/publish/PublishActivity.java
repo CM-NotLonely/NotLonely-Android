@@ -10,40 +10,51 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
+import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.yalantis.ucrop.UCrop;
+import com.efan.notlonely_android.utils.IntentUtils;
+import com.efan.notlonely_android.utils.UCrop;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 
 import java.io.File;
 
 /**
  * Created by linqh0806 on 16-3-31.
  */
-@ContentView(id= R.layout.activity_publish)
+@ContentView(id = R.layout.activity_publish)
 public class PublishActivity extends BaseActivity {
+    @ViewInject(id=R.id.select)
+    private SimpleDraweeView select;
+    @ViewInject(id=R.id.iv_back)
+    private ImageView iv_back;
+
     private static final String TAG = "PublishActivity";
     private Uri mDestinationUri;
-    protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
-    protected static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
+    private static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
+    private static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
     private static final int REQUEST_SELECT_PICTURE = 0x01;
     private static final String SAMPLE_CROPPED_IMAGE_NAME = "SampleCropImage.jpeg";
 
     private AlertDialog mAlertDialog;
+
     @Override
     public void initView() {
-
+        select.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
     }
 
     @Override
     public void initData() {
         mDestinationUri = Uri.fromFile(new File(getCacheDir(), SAMPLE_CROPPED_IMAGE_NAME));
-
     }
 
     @Override
@@ -52,12 +63,11 @@ public class PublishActivity extends BaseActivity {
     }
 
     @Override
-    @OnClick(value = {R.id.iv_select})
+    @OnClick(value = {R.id.select})
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.iv_select:
+        switch (v.getId()) {
+            case R.id.select:
                 pickFromGallery();
-                Log.e(TAG,"qqqqqqqqqq---------qq");
                 break;
         }
     }
@@ -67,6 +77,7 @@ public class PublishActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_SELECT_PICTURE) {
                 final Uri selectedUri = data.getData();
+                Log.e(TAG,"selectedUri:"+selectedUri);
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
                 } else {
@@ -84,9 +95,16 @@ public class PublishActivity extends BaseActivity {
     private void startCropActivity(@NonNull Uri uri) {
         UCrop uCrop = UCrop.of(uri, mDestinationUri);
         uCrop = uCrop.useSourceImageAspectRatio();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        float ratioX = Float.valueOf(dm.widthPixels);
+        float ratioY = Float.valueOf(getResources().getDimensionPixelSize(R.dimen.circle_menu_height));
+        if (ratioX > 0 && ratioY > 0) {
+            uCrop = uCrop.withAspectRatio(ratioX, ratioY);
+        }
         UCrop.Options options = new UCrop.Options();
         options.setCompressionQuality(50); //设置图片质量
-        uCrop=uCrop.withOptions(options);
+        uCrop = uCrop.withOptions(options);
         uCrop.start(PublishActivity.this);
     }
 
@@ -153,7 +171,9 @@ public class PublishActivity extends BaseActivity {
     private void handleCropResult(@NonNull Intent result) {
         final Uri resultUri = UCrop.getOutput(result);
         if (resultUri != null) {
-            ResultActivity.startWithUri(PublishActivity.this, resultUri);
+            IntentUtils.startActivity(PublishActivity.this,PublishActivity.class);
+            select.setImageURI(resultUri);
+//            ResultActivity.startWithUri(PublishActivity.this, resultUri);
         } else {
             Toast.makeText(PublishActivity.this, R.string.toast_cannot_retrieve_cropped_image, Toast.LENGTH_SHORT).show();
         }

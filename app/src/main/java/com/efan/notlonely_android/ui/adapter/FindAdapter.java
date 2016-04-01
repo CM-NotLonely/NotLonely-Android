@@ -6,16 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.view.BlurringView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;

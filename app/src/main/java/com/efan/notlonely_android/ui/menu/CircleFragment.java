@@ -10,13 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.CircleAdapter;
-import com.efan.notlonely_android.utils.blurry.Blurry;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -36,13 +34,7 @@ public class CircleFragment extends BaseFragment {
     private BlurringView blurringView;
     private LinearLayoutManager layoutManager;
     private ArrayList<Drawable> mData;
-    private Handler handler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            blurringView.invalidate();
-        }
-    };
+
 
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
@@ -51,7 +43,7 @@ public class CircleFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
+//        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
         mRefreshLayout.setRefreshListener(new JellyRefreshLayout.JellyRefreshListener() {
             @Override
             public void onRefresh(JellyRefreshLayout jellyRefreshLayout) {
@@ -94,7 +86,7 @@ public class CircleFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
         });
     }
@@ -107,7 +99,7 @@ public class CircleFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (position != 0) {
-                    Intent intent = new Intent(getActivity(), CricleListActivity.class);
+                    Intent intent = new Intent(getActivity(), CricleDetailActivity.class);
                     startActivity(intent);
                 }
             }
@@ -153,25 +145,13 @@ public class CircleFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        final Thread thread=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                handler.sendEmptyMessage(0);
-            }
-        });
-        thread.start();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden && blurringView instanceof BlurringView) {
-            blurringView.invalidate();
-        }
+//        if (!hidden && blurringView instanceof BlurringView) {
+//            blurringView.invalidate();
+//        }
     }
 }

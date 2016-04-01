@@ -70,7 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_bottombar_height"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#10ffb11b">
         <ImageButton
             android:id="@+id/menu"
             android:layout_weight="1"

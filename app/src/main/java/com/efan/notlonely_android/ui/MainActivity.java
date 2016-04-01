@@ -64,7 +64,7 @@ public class MainActivity extends BaseFragmentActivity {
     @Override
     public void initView() {
         Fresco.initialize(this);
-        blur.setBlurredView(frameLayout);
+//        blur.setBlurredView(frameLayout);
         setStatusBarColor();
         setFrameLayout();
         setSeletedBottomBar(1);
@@ -142,6 +142,7 @@ public class MainActivity extends BaseFragmentActivity {
         list.add(new MenuFragment());
         list.add(new FindFragment());
         list.add(new MessageFragment());
+       // list.add(new MineFragment());
         list.add(new MineFragment());
         fragmentTabAdapter = new FragmentTabAdapter(this, list, R.id.framelayout);
         fragmentTabAdapter.setOnFragmentListener(new FragmentTabAdapter.onFragmentChangedListener() {

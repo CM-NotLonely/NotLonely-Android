@@ -44,12 +44,12 @@ public class MyInterestFragment extends BaseFragment {
 
     @Override
     public void initEvent() {
-        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
+        //blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                blurringView.invalidate();
+             //   blurringView.invalidate();
             }
         });
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
