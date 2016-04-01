@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <!--menu-->
-        <activity android:name=".ui.menu.CricleListActivity"
+        <activity android:name=".ui.menu.CricleDetailActivity"
             android:screenOrientation="portrait"/>
         <!--find-->
 

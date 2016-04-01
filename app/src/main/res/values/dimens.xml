@@ -16,4 +16,7 @@
     <dimen name="text_mid_16">16sp</dimen>
     <dimen name="text_big_18">18sp</dimen>
     <dimen name="text_max_20">20sp</dimen>
+
+    <dimen name="flexible_space_image_height">200dp</dimen>
+    <dimen name="flexible_space_show_fab_offset">16dp</dimen>
 </resources>

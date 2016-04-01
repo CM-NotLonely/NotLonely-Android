@@ -11,7 +11,6 @@ import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.ActivityAdapter;
-import com.efan.notlonely_android.utils.DividerItemDecoration;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -35,7 +34,7 @@ public class ActivityFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
+//        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
         mRefreshLayout.setRefreshListener(new JellyRefreshLayout.JellyRefreshListener() {
             @Override
             public void onRefresh(JellyRefreshLayout jellyRefreshLayout) {
@@ -63,7 +62,7 @@ public class ActivityFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
         });
     }
@@ -76,12 +75,12 @@ public class ActivityFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        blurringView.invalidate();
+//        blurringView.invalidate();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
+//        if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
     }
 }

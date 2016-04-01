@@ -38,7 +38,7 @@ public class MessageFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
+        //blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
     }
 
     @Override
@@ -64,17 +64,17 @@ public class MessageFragment extends BaseFragment {
         slidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
 
             @Override
             public void onPageSelected(int position) {
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
         });
     }
@@ -103,12 +103,12 @@ public class MessageFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        blurringView.invalidate();
+        //blurringView.invalidate();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
+        //if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
     }
 }

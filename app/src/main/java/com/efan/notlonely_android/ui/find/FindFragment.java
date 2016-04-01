@@ -1,6 +1,5 @@
 package com.efan.notlonely_android.ui.find;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,15 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.ui.adapter.CircleAdapter;
 import com.efan.notlonely_android.ui.adapter.FindAdapter;
-import com.efan.notlonely_android.ui.menu.CricleListActivity;
-import com.efan.notlonely_android.utils.blurry.Blurry;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -42,7 +37,7 @@ public class FindFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
+//        blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
         mRefreshLayout.setRefreshListener(new JellyRefreshLayout.JellyRefreshListener() {
             @Override
             public void onRefresh(JellyRefreshLayout jellyRefreshLayout) {
@@ -84,7 +79,7 @@ public class FindFragment extends BaseFragment {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                blurringView.invalidate();
+//                blurringView.invalidate();
             }
         });
     }
@@ -119,12 +114,12 @@ public class FindFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        blurringView.invalidate();
+//        blurringView.invalidate();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden&&blurringView instanceof BlurringView) blurringView.invalidate();
+//        if(!hidden&&blurringView instanceof BlurringView) blurringView.invalidate();
     }
 }
