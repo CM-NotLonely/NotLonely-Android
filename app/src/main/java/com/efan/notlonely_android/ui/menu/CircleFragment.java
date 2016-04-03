@@ -15,6 +15,8 @@ import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.CircleAdapter;
+import com.efan.notlonely_android.ui.publish.PublishActivity;
+import com.efan.notlonely_android.utils.IntentUtils;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -98,7 +100,9 @@ public class CircleFragment extends BaseFragment {
         adapter.setOnItemClickListener(new CircleAdapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (position != 0) {
+                if (position == 0) {
+                    IntentUtils.startActivity(getActivity(),PublishActivity.class);
+                }else {
                     Intent intent = new Intent(getActivity(), CricleDetailActivity.class);
                     startActivity(intent);
                 }

@@ -30,8 +30,6 @@
         <activity android:name=".ui.publish.PublishActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.publish.ResultActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".ui.publish.UCropActivity"
             android:screenOrientation="portrait"/>
         <!--message-->

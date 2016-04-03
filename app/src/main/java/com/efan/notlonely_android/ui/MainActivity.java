@@ -121,7 +121,6 @@ public class MainActivity extends BaseFragmentActivity {
                 setSeletedBottomBar(2);
                 break;
             case R.id.raise:
-                IntentUtils.startActivity(MainActivity.this,PublishActivity.class);
                 break;
             case R.id.message:
                 setSeletedBottomBar(4);

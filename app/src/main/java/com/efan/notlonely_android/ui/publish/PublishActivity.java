@@ -93,6 +93,9 @@ public class PublishActivity extends BaseActivity {
     }
 
     private void startCropActivity(@NonNull Uri uri) {
+        String imageName= uri.getLastPathSegment().toString();
+        Log.e(TAG,"uri:"+uri+",lastSegment:"+imageName);
+        mDestinationUri = Uri.fromFile(new File(getCacheDir(), imageName));
         UCrop uCrop = UCrop.of(uri, mDestinationUri);
         uCrop = uCrop.useSourceImageAspectRatio();
         DisplayMetrics dm = new DisplayMetrics();
@@ -169,11 +172,11 @@ public class PublishActivity extends BaseActivity {
     }
 
     private void handleCropResult(@NonNull Intent result) {
-        final Uri resultUri = UCrop.getOutput(result);
+        Uri resultUri = UCrop.getOutput(result);
         if (resultUri != null) {
-            IntentUtils.startActivity(PublishActivity.this,PublishActivity.class);
+            Log.e(TAG,"resultUri:"+resultUri);
+         //   IntentUtils.startActivity(PublishActivity.this,PublishActivity.class);
             select.setImageURI(resultUri);
-//            ResultActivity.startWithUri(PublishActivity.this, resultUri);
         } else {
             Toast.makeText(PublishActivity.this, R.string.toast_cannot_retrieve_cropped_image, Toast.LENGTH_SHORT).show();
         }
