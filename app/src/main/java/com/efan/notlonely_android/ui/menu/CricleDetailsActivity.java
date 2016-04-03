@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * Created by 一帆 on 2016/3/28.
  */
 @ContentView(id = R.layout.activity_cricle)
-public class CricleDetailActivity extends BaseActivity implements ObservableScrollViewCallbacks {
+public class CricleDetailsActivity extends BaseActivity implements ObservableScrollViewCallbacks {
 
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
 
@@ -94,7 +94,7 @@ public class CricleDetailActivity extends BaseActivity implements ObservableScro
             items.add("Item " + i);
         }
 
-        adapter = new SimpleHeaderRecyclerAdapter(CricleDetailActivity.this,items,headerView);
+        adapter = new SimpleHeaderRecyclerAdapter(CricleDetailsActivity.this,items,headerView);
         recyclerView.setAdapter(adapter);
 
         setTitle(null);

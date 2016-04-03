@@ -96,7 +96,7 @@ public class CircleFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (position != 0) {
-                    Intent intent = new Intent(getActivity(), CricleDetailActivity.class);
+                    Intent intent = new Intent(getActivity(), CricleDetailsActivity.class);
                     startActivity(intent);
                 }
             }
