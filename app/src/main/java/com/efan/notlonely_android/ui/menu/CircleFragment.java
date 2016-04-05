@@ -13,6 +13,8 @@ import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.CircleAdapter;
+import com.efan.notlonely_android.ui.publish.PublishActivity;
+import com.efan.notlonely_android.utils.IntentUtils;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
@@ -32,6 +34,7 @@ public class CircleFragment extends BaseFragment {
     private BlurringView blurringView;
     private LinearLayoutManager layoutManager;
     private ArrayList<Drawable> mData;
+
 
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
@@ -95,7 +98,9 @@ public class CircleFragment extends BaseFragment {
         adapter.setOnItemClickListener(new CircleAdapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (position != 0) {
+                if (position == 0) {
+                    IntentUtils.startActivity(getActivity(),PublishActivity.class);
+                }else {
                     Intent intent = new Intent(getActivity(), CricleDetailsActivity.class);
                     startActivity(intent);
                 }
@@ -142,7 +147,6 @@ public class CircleFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-//        blurringView.invalidate();
     }
 
     @Override

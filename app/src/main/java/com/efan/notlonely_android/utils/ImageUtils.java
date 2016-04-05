@@ -270,4 +270,17 @@ public class ImageUtils {
         bitmap.setPixels(pix, 0, w, 0, 0, w, h);
         return (bitmap);
     }
+
+    /**
+     * dp转换为像素px
+     * <p>Title: Dp2Px
+     * <p>Description:
+     * @param context
+     * @param dp
+     * @return
+     */
+    public static int Dp2Px(Context context, float dp) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
+    }
 }

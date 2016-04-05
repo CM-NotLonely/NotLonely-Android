@@ -132,7 +132,8 @@
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/user_icon"
@@ -148,5 +149,28 @@
             android:layout_height="wrap_content"
             style="@style/common_text_big"
             android:text="闫一帆"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/not_login"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center">
+        <Button
+            android:id="@+id/register"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:background="@drawable/shape_join_background"
+            android:textColor="@color/colorPrimary"
+            android:text="注册"/>
+        <Button
+            android:id="@+id/login"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_toRightOf="@id/register"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/shape_join_background"
+            android:textColor="@color/colorPrimary"
+            android:text="登录"/>
     </RelativeLayout>
 </RelativeLayout>

@@ -3,6 +3,8 @@
     package="com.efan.notlonely_android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.efan.notlonely_android.MainApplication"
@@ -26,24 +28,16 @@
             android:screenOrientation="portrait"/>
         <!--find-->
 
+        <!--publish-->
+        <activity android:name=".ui.publish.PublishActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.UCropActivity"
+            android:screenOrientation="portrait"/>
         <!--message-->
 
         <!--mine-->
-        <activity android:name=".ui.mine.MineFragment_zhuce_one"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_zhuce_two"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_zhuce_three"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_personaldetails"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_push"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_join"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_zan"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.MineFragment_denglu_one"
+        <activity android:name=".ui.mine.RegisterActivity"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>

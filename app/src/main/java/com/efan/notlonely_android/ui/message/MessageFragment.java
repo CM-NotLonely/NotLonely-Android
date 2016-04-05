@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
@@ -110,5 +112,7 @@ public class MessageFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         //if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
+        if (!hidden ) {
+        }
     }
 }

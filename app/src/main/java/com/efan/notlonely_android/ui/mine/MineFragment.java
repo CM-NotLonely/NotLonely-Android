@@ -1,15 +1,18 @@
 package com.efan.notlonely_android.ui.mine;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseFragment;
+import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -34,8 +37,15 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     private TextView mTitleView;
     @ViewInject(id = R.id.user)
     private RelativeLayout userLayout;
+    @ViewInject(id = R.id.not_login)
+    private RelativeLayout notLoginLayout;
     @ViewInject(id = R.id.user_icon)
     private SimpleDraweeView simpleDraweeView;
+    @ViewInject(id = R.id.register)
+    private Button registerButton;
+    @ViewInject(id = R.id.login)
+    private Button loginButton;
+
     private int mActionBarSize;
     private int mFlexibleSpaceShowFabOffset;
     private int mFlexibleSpaceImageHeight;
@@ -47,6 +57,10 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
             Log.d("haha","fwsg");
         View view = var1.inflate(R.layout.fragment_mine,var2,false);
         return view;
+    }
+
+    @Override
+    public void initView() {
     }
 
     @Override
@@ -69,8 +83,17 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     }
 
     @Override
+    @OnClick(value =  {R.id.register, R.id.login})
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.register:
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.login:
 
+                break;
+        }
     }
 
     @Override
@@ -78,6 +101,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
         // Translate overlay and image
         ViewHelper.setTranslationY(mImageView,-scrollY / 2);
         ViewHelper.setTranslationY(userLayout,-scrollY / 2);
+        ViewHelper.setTranslationY(notLoginLayout,-scrollY / 2);
     }
 
     @Override
