@@ -1,6 +1,7 @@
 package com.efan.notlonely_android.ui;
 
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -20,6 +21,8 @@ import com.efan.notlonely_android.ui.find.FindFragment;
 import com.efan.notlonely_android.ui.menu.MenuFragment;
 import com.efan.notlonely_android.ui.message.MessageFragment;
 import com.efan.notlonely_android.ui.mine.MineFragment;
+import com.efan.notlonely_android.ui.publish.PubActivityActivity;
+import com.efan.notlonely_android.utils.IntentUtils;
 import com.efan.notlonely_android.view.BlurringView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -119,6 +122,7 @@ public class MainActivity extends BaseFragmentActivity {
                 setSeletedBottomBar(2);
                 break;
             case R.id.raise:
+                setSeletedBottomBar(3);
                 break;
             case R.id.message:
                 setSeletedBottomBar(4);
@@ -176,6 +180,7 @@ public class MainActivity extends BaseFragmentActivity {
                 fragmentTabAdapter.setCurrentTab(1);
                 break;
             case 3:
+                IntentUtils.startActivity(this,PubActivityActivity.class);
                 break;
             case 4:
                 tv_title.setText("消息");

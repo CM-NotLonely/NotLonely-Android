@@ -29,10 +29,11 @@
         <!--find-->
 
         <!--publish-->
-        <activity android:name=".ui.publish.PublishActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
         <activity android:name=".ui.publish.UCropActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.PubActivityActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.PubCircleActivity"
             android:screenOrientation="portrait"/>
         <!--message-->
 
