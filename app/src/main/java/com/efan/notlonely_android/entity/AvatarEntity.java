@@ -1,9 +1,9 @@
 package com.efan.notlonely_android.entity;
 
 /**
- * Created by 一帆 on 2016/3/30.
+ * Created by 一帆 on 2016/4/7.
  */
-public  class AvatarEntity {
+public class AvatarEntity {
     private String url;
 
     public String getUrl() {
@@ -12,5 +12,12 @@ public  class AvatarEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "AvatarEntity{" +
+                "url='" + url + '\'' +
+                '}';
     }
 }

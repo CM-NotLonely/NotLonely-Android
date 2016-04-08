@@ -1,15 +1,17 @@
 package com.efan.notlonely_android.ui.menu;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.SimpleAdapter;
 
 import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.ui.adapter.UserIconAndNameAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by 一帆 on 2016/4/1.
@@ -17,39 +19,28 @@ import java.util.HashMap;
 @ContentView(id = R.layout.activity_activity)
 public class ActivityDetailsActivity extends BaseActivity{
 
-//    @ViewInject(id = R.id.grid)
-//    private GridView gridView;
-    @ViewInject(id = R.id.list_background)
-    private View mListBackgroundView;
+    @ViewInject(id = R.id.recycler)
+    private RecyclerView recyclerView;
+
+    private UserIconAndNameAdapter adapter;
 
     @Override
     public void initView() {
-        ArrayList<HashMap<String, Object>> lstImageItem = new ArrayList<HashMap<String, Object>>();
-        for(int i=0;i<50;i++)
-        {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("ItemImage", R.mipmap.ic_launcher);//添加图像资源的ID
-            map.put("ItemText", "NO."+String.valueOf(i));//按序号做ItemText
-            lstImageItem.add(map);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        recyclerView.setHasFixedSize(false);
+
+        View header = LayoutInflater.from(this).inflate(R.layout.layout_activity_details_recycler_header, null);
+
+        ArrayList<Integer> items = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            items.add(i);
         }
-        //生成适配器的ImageItem <====> 动态数组的元素，两者一一对应
-        SimpleAdapter saImageItems = new SimpleAdapter(this, //没什么解释
-                lstImageItem,//数据来源
-                R.layout.item_grid_user,//night_item的XML实现
-
-                //动态数组与ImageItem对应的子项
-                new String[] {"ItemImage","ItemText"},
-
-                //ImageItem的XML文件里面的一个ImageView,两个TextView ID
-                new int[] {R.id.ItemImage,R.id.ItemText});
-        //添加并且显示
-//        gridView.setAdapter(saImageItems);
-        //添加消息处理
+        adapter = new UserIconAndNameAdapter(ActivityDetailsActivity.this,items, header);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void initData() {
-
     }
 
     @Override

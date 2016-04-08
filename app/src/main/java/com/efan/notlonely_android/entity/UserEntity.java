@@ -1,29 +1,23 @@
 package com.efan.notlonely_android.entity;
 
 /**
- * Created by 一帆 on 2016/3/30.
+ * Created by 一帆 on 2016/4/7.
  */
 public class UserEntity {
-    private int id;
+    private long userid;
     private String username;
     private String password;
     private String nickname;
     private boolean sex;
     private String introduction;
-    private String created_at;
-    private String updated_at;
-    /**
-     * url : avatar/.png
-     */
-
     private AvatarEntity avatar;
 
-    public int getId() {
-        return id;
+    public long getUserid() {
+        return userid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserid(long userid) {
+        this.userid = userid;
     }
 
     public String getUsername() {
@@ -50,7 +44,7 @@ public class UserEntity {
         this.nickname = nickname;
     }
 
-    public boolean isSex() {
+    public boolean getSex() {
         return sex;
     }
 
@@ -66,27 +60,24 @@ public class UserEntity {
         this.introduction = introduction;
     }
 
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
-    }
-
     public AvatarEntity getAvatar() {
         return avatar;
     }
 
     public void setAvatar(AvatarEntity avatar) {
         this.avatar = avatar;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", avatar=" + avatar +
+                '}';
     }
 }

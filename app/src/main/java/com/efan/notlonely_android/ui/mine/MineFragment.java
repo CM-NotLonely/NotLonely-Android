@@ -3,18 +3,20 @@ package com.efan.notlonely_android.ui.mine;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
+import com.efan.notlonely_android.MainApplication;
 import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.event.RefreshEvent;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -22,12 +24,12 @@ import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.nineoldandroids.view.ViewHelper;
 
+import org.greenrobot.eventbus.Subscribe;
+
 /**
  * Created by 一帆 on 2016/3/31.
  */
 public class MineFragment extends BaseFragment implements ObservableScrollViewCallbacks {
-
-    private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
 
     @ViewInject(id = R.id.image)
     private View mImageView;
@@ -35,9 +37,9 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     private ObservableScrollView mScrollView;
     @ViewInject(id = R.id.title)
     private TextView mTitleView;
-    @ViewInject(id = R.id.user)
+    @ViewInject(id = R.id.login_layout)
     private RelativeLayout userLayout;
-    @ViewInject(id = R.id.not_login)
+    @ViewInject(id = R.id.notlogin_layout)
     private RelativeLayout notLoginLayout;
     @ViewInject(id = R.id.user_icon)
     private SimpleDraweeView simpleDraweeView;
@@ -46,21 +48,31 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     @ViewInject(id = R.id.login)
     private Button loginButton;
 
+    private ImageView setting;
+
     private int mActionBarSize;
-    private int mFlexibleSpaceShowFabOffset;
     private int mFlexibleSpaceImageHeight;
-    private int mFabMargin;
-    private boolean mFabIsShown;
+
+    private boolean isLogin;
+
+    @Subscribe
+    public void onEventMainThread(RefreshEvent event){
+        if (event.type == RefreshEvent.RefreshType.LOGIN) {
+            changeLoginLayout(true);
+        }
+    }
 
     @Override
     protected View inflaterView(LayoutInflater var1, ViewGroup var2, Bundle var3) {
-            Log.d("haha","fwsg");
         View view = var1.inflate(R.layout.fragment_mine,var2,false);
         return view;
     }
 
     @Override
     public void initView() {
+        isLogin = MainApplication.getInstance().isLogin();
+        changeLoginLayout(isLogin);
+        setting = (ImageView) getActivity().findViewById(R.id.setting);
     }
 
     @Override
@@ -83,16 +95,32 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     }
 
     @Override
-    @OnClick(value =  {R.id.register, R.id.login})
+    @OnClick(value =  {R.id.register, R.id.login, R.id.setting})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                startActivity(intent);
                 break;
             case R.id.login:
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.setting:
 
                 break;
+        }
+    }
+
+    /**
+     * 根据登录状态的改变确定视图
+     * @param isLogin
+     */
+    private void changeLoginLayout(boolean isLogin){
+        if(isLogin){
+            userLayout.setVisibility(View.VISIBLE);
+            notLoginLayout.setVisibility(View.GONE);
+        }else{
+            userLayout.setVisibility(View.GONE);
+            notLoginLayout.setVisibility(View.VISIBLE);
         }
     }
 

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +40,8 @@ public class MainActivity extends BaseFragmentActivity {
     private Button button1;
     @ViewInject(id = R.id.tv_circle)
     private Button button2;
+    @ViewInject(id = R.id.setting)
+    private ImageView setting;
     @ViewInject(id = R.id.menu)
     private ImageButton menuButton;
     @ViewInject(id = R.id.find)
@@ -108,10 +111,6 @@ public class MainActivity extends BaseFragmentActivity {
     @OnClick(value = {R.id.tv_activity, R.id.tv_circle, R.id.menu, R.id.find, R.id.raise, R.id.message, R.id.mine})
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_activity:
-                break;
-            case R.id.tv_circle:
-                break;
             case R.id.menu:
                 setSeletedBottomBar(1);
                 break;
@@ -139,7 +138,6 @@ public class MainActivity extends BaseFragmentActivity {
         list.add(new MenuFragment());
         list.add(new FindFragment());
         list.add(new MessageFragment());
-       // list.add(new MineFragment());
         list.add(new MineFragment());
         fragmentTabAdapter = new FragmentTabAdapter(this, list, R.id.framelayout);
         fragmentTabAdapter.setOnFragmentListener(new FragmentTabAdapter.onFragmentChangedListener() {
@@ -161,11 +159,11 @@ public class MainActivity extends BaseFragmentActivity {
         mineButton.setSelected(false);
         tv_title.setVisibility(View.GONE);
         ll_title.setVisibility(View.GONE);
+        setting.setVisibility(View.GONE);
         switch (index){
             case 1:
                 ll_title.setVisibility(View.VISIBLE);
                 menuButton.setSelected(true);
-                tv_title.setVisibility(View.GONE);
                 ll_title.setVisibility(View.VISIBLE);
                 fragmentTabAdapter.setCurrentTab(0);
                 break;
@@ -186,6 +184,7 @@ public class MainActivity extends BaseFragmentActivity {
             case 5:
                 tv_title.setText("个人");
                 tv_title.setVisibility(View.VISIBLE);
+                setting.setVisibility(View.VISIBLE);
                 mineButton.setSelected(true);
                 fragmentTabAdapter.setCurrentTab(3);
                 break;
