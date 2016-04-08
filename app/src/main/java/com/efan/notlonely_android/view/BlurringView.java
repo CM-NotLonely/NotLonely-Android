@@ -14,7 +14,7 @@ import android.support.v8.renderscript.ScriptIntrinsicBlur;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.efan.notlonely.R;
+import com.efan.notlonely_android.R;
 
 /**
  * A custom view for presenting a dynamically blurred version of another view's content.

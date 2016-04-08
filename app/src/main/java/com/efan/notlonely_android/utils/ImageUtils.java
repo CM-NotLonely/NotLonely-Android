@@ -1,18 +1,32 @@
 package com.efan.notlonely_android.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import com.efan.notlonely_android.R;
+
 /**
  * Created by linqh0806 on 16-3-25.
  */
 public class ImageUtils {
 
+    public static Drawable getBlurDrawable(Context mcontext,int radius,int ResId){
+        Bitmap bitmap = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            bitmap = ImageUtils.drawableToBitmap(mcontext.getDrawable(R.mipmap.test));
+        }
+        Bitmap blurBitmap = ImageUtils.doBlur(bitmap, 30, true);   //bitmap to blur bitmap
+        Drawable blurdrawable = ImageUtils.BitmapToDrawble(blurBitmap);
+        return  blurdrawable;
+    }
+
     /**
      * 将Drawable转化为Bitmap
+     *
      * @param drawable resource
      * @return the drawable after reverse
      */
@@ -31,8 +45,10 @@ public class ImageUtils {
         drawable.draw(canvas);
         return bitmap;
     }
+
     /**
      * convert bitmap to Drawable
+     *
      * @param bitmap
      * @return
      */
@@ -42,8 +58,10 @@ public class ImageUtils {
         }
         return new BitmapDrawable(bitmap);
     }
+
     /**
-     *通过bitmap转化成高斯模糊图
+     * 通过bitmap转化成高斯模糊图
+     *
      * @param sentBitmap
      * @param radius
      * @param canReuseInBitmap
@@ -251,5 +269,18 @@ public class ImageUtils {
         }
         bitmap.setPixels(pix, 0, w, 0, 0, w, h);
         return (bitmap);
+    }
+
+    /**
+     * dp转换为像素px
+     * <p>Title: Dp2Px
+     * <p>Description:
+     * @param context
+     * @param dp
+     * @return
+     */
+    public static int Dp2Px(Context context, float dp) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 }

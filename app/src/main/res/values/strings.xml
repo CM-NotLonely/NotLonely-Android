@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Not Lonely</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_ok">OK</string>
+    <string name="menu_download">Download</string>
+    <string name="description_cropped_image">Cropped image</string>
+    <string name="format_crop_result_d_d">Crop Result (%1$dx%2$d)</string>
+    <string name="permission_title_rationale">Permission needed</string>
+    <string name="label_select_picture">选择图片</string>
+    <string name="permission_read_storage_rationale">Storage read permission is needed to pick files.</string>
+    <string name="permission_write_storage_rationale">Storage write permission is needed to save the image.</string>
+    <string name="toast_cannot_retrieve_selected_image">Cannot retrieve selected image</string>
+    <string name="toast_cannot_retrieve_cropped_image">Cannot retrieve cropped image</string>
+    <string name="toast_unexpected_error">Unexpected error</string>
 </resources>

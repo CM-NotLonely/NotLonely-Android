@@ -8,19 +8,20 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.ViewInject;
-import com.efan.notlonely.R;
-import com.efan.notlonely_android.ui.menu.ActivityFragment;
-import com.efan.notlonely_android.ui.menu.CircleFragment;
+import com.efan.notlonely_android.R;
+import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 一帆 on 2016/3/22.
+ * Created by linqh0806 on 2016/3/22.
  */
 public class MessageFragment extends BaseFragment {
     @ViewInject(id = R.id.slidingTabStrip)
@@ -28,6 +29,7 @@ public class MessageFragment extends BaseFragment {
     @ViewInject(id = R.id.viewPager)
     private ViewPager viewPager;
 
+    private BlurringView blurringView;
     private MyPagerAdapter adapter;
     private List<BaseFragment> fragments;
 
@@ -36,17 +38,17 @@ public class MessageFragment extends BaseFragment {
         return var1.inflate(R.layout.fragment_message, var2, false);
     }
 
-
     @Override
     public void initView() {
+        //blurringView = (BlurringView) getActivity().findViewById(R.id.blurring_view);
     }
 
     @Override
     public void initData() {
         fragments = new ArrayList<BaseFragment>();
-        fragments.add(new ActivityFragment());
-        fragments.add(new CircleFragment());
-        fragments.add(new ActivityFragment());
+        fragments.add(new WithMeFragment());
+        fragments.add(new MyInterestFragment());
+        fragments.add(new ZanFragment());
         adapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(5);
@@ -58,7 +60,23 @@ public class MessageFragment extends BaseFragment {
         slidingTabStrip.setOnClickTabListener(new PagerSlidingTabStrip.OnClickTabListener() {
             @Override
             public void onClickTab(View tab, int index) {
-                viewPager.setCurrentItem(index,true);
+                viewPager.setCurrentItem(index, true);
+            }
+        });
+        slidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                blurringView.invalidate();
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+//                blurringView.invalidate();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+//                blurringView.invalidate();
             }
         });
     }
@@ -69,20 +87,32 @@ public class MessageFragment extends BaseFragment {
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
 
-    public MyPagerAdapter(FragmentManager fm) {
-        super(fm);
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
     }
 
     @Override
-    public int getCount() {
-        return fragments.size();
+    public void onResume() {
+        super.onResume();
+        //blurringView.invalidate();
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return fragments.get(position);
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        //if (!hidden && blurringView instanceof BlurringView) blurringView.invalidate();
+        if (!hidden ) {
+        }
     }
-}
 }

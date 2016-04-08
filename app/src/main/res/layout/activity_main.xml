@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary">
         <TextView
             android:id="@+id/tv_title"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_max_20"
             android:text="发现"
             android:textColor="@color/white"
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:background="@color/transparent"
-                android:textColor="@color/white"
+                android:textColor="@color/title_selected"
                 android:textSize="20sp"
                 android:text="活动"/>
             <View
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:background="@color/transparent"
-                android:textColor="@color/white"
+                android:textColor="@color/title_unselected"
                 android:textSize="20sp"
                 android:text="圈子"/>
         </LinearLayout>
@@ -60,9 +60,9 @@
         android:layout_height="@dimen/common_bottombar_height"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        app:blurRadius="18"
+        app:blurRadius="1"
         app:downsampleFactor="6"
-        app:overlayColor="#95FFFFFF"/>
+        app:overlayColor="#11ffffff"/>
 
     <LinearLayout
         android:id="@+id/bottombar"
@@ -70,7 +70,7 @@
         android:layout_height="@dimen/common_bottombar_height"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/transparent">
+        android:background="#10ffb11b">
         <ImageButton
             android:id="@+id/menu"
             android:layout_weight="1"

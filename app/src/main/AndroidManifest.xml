@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.efan.notlonely">
+    package="com.efan.notlonely_android">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.efan.notlonely_android.MainApplication"
@@ -9,7 +13,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.efan.notlonely_android.ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,27 +22,38 @@
             </intent-filter>
         </activity>
         <!--menu-->
-
+        <activity android:name=".ui.menu.CricleDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.menu.ActivityDetailsActivity"
+            android:screenOrientation="portrait"/>
         <!--find-->
 
+        <!--publish-->
+        <activity android:name=".ui.publish.PublishActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.UCropActivity"
+            android:screenOrientation="portrait"/>
         <!--message-->
 
         <!--mine-->
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zhuce_one">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zhuce_two">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zhuce_three">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_personaldetails">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_push">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_join">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_zan">
-        </activity>
-        <activity android:name="com.efan.notlonely_android.ui.mine.MineFragment_denglu_one">
-        </activity>
+        <activity android:name=".ui.mine.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.IdentityActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.AccomplishActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.SuccessActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.HomepageActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.AttentionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.PushActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.JoinActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mine.PraiseActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

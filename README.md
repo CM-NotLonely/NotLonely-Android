@@ -1,19 +1,31 @@
-# Notlonely Server
+# Notlonely Android
 
->
+> We build in jdk-8u73 Android Api 23 Android Studio 2.1.
 
 ## Intro
 
-寻找共同兴趣的朋友，加入到我们的圈子，然后一起活动吧 ❤️
+Life is so colorful~~We always want to have fun with the like-minded people to discover a better life.
+
+But it comes to you when you have to...
+
+See a movie on your own, play 🃏 with ONE guy, play 🀄️ with TWO, or play LOL with only THREE......
+
+Holy shit! Are you desperate to this matter? 
+
+Don't worry,join our NotLonely, and you will get a big warm FAMILY.
 
 ## About
 
-我们是电子科技大学的创萌工作室，这是我和小伙伴们一起做的一款应用。
+We are ChuangMeng Studio from UESTC, we are devoted to Innovation and Entrepreneurship .
 
-我们有大三的老学长老学姐，大二的小学弟小学妹，还有大一的小鲜肉们。我们还有有研二的研究生..
+Our members come from all the grades of UESTC, undergraduate and postgraduate, seniors from grade three and freshmen from grade one. We are energetic, hard-working and experienced.
 
-希望志同道合的你加入我们一起开发~
+We are gathered together for only one purpose--To create a better products and make a better life.
+
+Hope you join us if you are also interested~
 
 ## License
 
 MIT
+
+## [中文介绍](https://github.com/CM-NotLonely/NotLonely-Android/blob/master/README_Chinese.md)

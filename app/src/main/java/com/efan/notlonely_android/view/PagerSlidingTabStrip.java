@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
-import com.efan.notlonely.R;
+import com.efan.notlonely_android.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
