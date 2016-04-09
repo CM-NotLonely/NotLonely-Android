@@ -8,9 +8,14 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/common</item>
-        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowBackground">@drawable/layout_splash</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
+    </style>
+
+    <style name="activity" parent="AppTheme.Base">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:screenOrientation">portrait</item>
     </style>
 
     <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">

@@ -9,43 +9,56 @@
         android:layout_height="@dimen/common_headerbar_height"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary">
-        <TextView
-            android:id="@+id/tv_title"
-            android:textSize="@dimen/text_max_20"
-            android:text="发现"
-            android:textColor="@color/white"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"/>
-        <LinearLayout
-            android:id="@+id/ll_title"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
             <TextView
-                android:id="@+id/tv_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:background="@color/transparent"
-                android:textColor="@color/title_selected"
-                android:textSize="20sp"
-                android:text="活动"/>
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="15dp"
-                android:background="@color/white"/>
-            <TextView
-                android:id="@+id/tv_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:background="@color/transparent"
-                android:textColor="@color/title_unselected"
-                android:textSize="20sp"
-                android:text="圈子"/>
-        </LinearLayout>
+                android:id="@+id/tv_title"
+                android:textSize="@dimen/text_max_20"
+                android:text="发现"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/ll_title"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/transparent"
+                    android:textColor="@color/title_selected"
+                    android:textSize="20sp"
+                    android:text="活动"/>
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="15dp"
+                    android:background="@color/white"/>
+                <TextView
+                    android:id="@+id/tv_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="@color/transparent"
+                    android:textColor="@color/title_unselected"
+                    android:textSize="20sp"
+                    android:text="圈子"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/setting"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_setting"/>
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <FrameLayout
