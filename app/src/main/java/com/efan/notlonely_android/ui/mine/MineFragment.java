@@ -2,11 +2,7 @@ package com.efan.notlonely_android.ui.mine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +86,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
-                intent = new Intent(getActivity(),RegisterActivity.class);
+                intent = new Intent(getActivity(),LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.register:
@@ -114,7 +110,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
                 startActivity(intent);
                 break;
             case R.id.mine_praise:
-                intent = new Intent(getActivity(),PraiseActivity.class);
+                intent = new Intent(getActivity(),ZanActivity.class);
                 startActivity(intent);
                 break;
         }

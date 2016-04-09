@@ -22,20 +22,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="发布的活动"
+                android:text="点赞的活动"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_max_20" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
     <com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/push_refresh_widget"
+        android:id="@+id/praise_refresh_widget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Loading..."
         android:textColor="#ffffff"
         app:jellyColor="@color/common">
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/push_recyclerview"
+            android:id="@+id/praise_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout>

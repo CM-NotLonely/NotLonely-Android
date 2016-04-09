@@ -21,7 +21,6 @@ import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.utils.IntentUtils;
 import com.efan.notlonely_android.utils.UCrop;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -31,14 +30,14 @@ import java.io.File;
 /**
  * Created by linqh0806 on 16-3-31.
  */
-@ContentView(id = R.layout.activity_publish)
-public class PublishActivity extends BaseActivity {
+@ContentView(id = R.layout.activity_pub_circle)
+public class PubCircleActivity extends BaseActivity {
     @ViewInject(id=R.id.select)
     private SimpleDraweeView select;
     @ViewInject(id=R.id.iv_back)
     private ImageView iv_back;
 
-    private static final String TAG = "PublishActivity";
+    private static final String TAG = "PubCircleActivity";
     private Uri mDestinationUri;
     private static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     private static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
@@ -81,7 +80,7 @@ public class PublishActivity extends BaseActivity {
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
                 } else {
-                    Toast.makeText(PublishActivity.this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PubCircleActivity.this, R.string.toast_cannot_retrieve_selected_image, Toast.LENGTH_SHORT).show();
                 }
             } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
@@ -108,7 +107,7 @@ public class PublishActivity extends BaseActivity {
         UCrop.Options options = new UCrop.Options();
         options.setCompressionQuality(50); //设置图片质量
         uCrop = uCrop.withOptions(options);
-        uCrop.start(PublishActivity.this);
+        uCrop.start(PubCircleActivity.this);
     }
 
     private void pickFromGallery() {
@@ -138,7 +137,7 @@ public class PublishActivity extends BaseActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(PublishActivity.this,
+                            ActivityCompat.requestPermissions(PubCircleActivity.this,
                                     new String[]{permission}, requestCode);
                         }
                     }, getString(R.string.label_ok), null, getString(R.string.label_cancel));
@@ -175,10 +174,10 @@ public class PublishActivity extends BaseActivity {
         Uri resultUri = UCrop.getOutput(result);
         if (resultUri != null) {
             Log.e(TAG,"resultUri:"+resultUri);
-         //   IntentUtils.startActivity(PublishActivity.this,PublishActivity.class);
+         //   IntentUtils.startActivity(PublishCircleActivity.this,PublishCircleActivity.class);
             select.setImageURI(resultUri);
         } else {
-            Toast.makeText(PublishActivity.this, R.string.toast_cannot_retrieve_cropped_image, Toast.LENGTH_SHORT).show();
+            Toast.makeText(PubCircleActivity.this, R.string.toast_cannot_retrieve_cropped_image, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -187,9 +186,9 @@ public class PublishActivity extends BaseActivity {
         final Throwable cropError = UCrop.getError(result);
         if (cropError != null) {
             Log.e(TAG, "handleCropError: ", cropError);
-            Toast.makeText(PublishActivity.this, cropError.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(PubCircleActivity.this, cropError.getMessage(), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(PublishActivity.this, R.string.toast_unexpected_error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(PubCircleActivity.this, R.string.toast_unexpected_error, Toast.LENGTH_SHORT).show();
         }
     }
 }

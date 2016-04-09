@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.efan.notlonely_android.ui.publish.PubActivityActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_headerbar_height"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:src="@mipmap/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="发起活动"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_max_20" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="10dp"
+        android:background="@color/common"
+        app:cardCornerRadius="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/ed_activity_name"
+                style="@style/edittext_style"
+                android:background="@drawable/bg_edittext_common"
+                android:gravity="center"
+                android:hint="活动名称"
+                android:textSize="@dimen/text_big_18" />
+
+            <EditText
+                style="@style/edittext_style"
+                android:id="@+id/ed_activity_time"
+                android:drawableLeft="@mipmap/ic_time"
+                android:hint="活动时间"
+                android:background="@drawable/bg_edittext_common"/>
+
+            <EditText
+                style="@style/edittext_style"
+                android:id="@+id/ed_activity_location"
+                android:drawableLeft="@mipmap/ic_location"
+                android:hint="活动地点"
+                android:background="@drawable/bg_edittext_common"/>
+
+            <EditText
+                style="@style/edittext_style"
+                android:id="@+id/ed_activity_people"
+                android:drawableLeft="@mipmap/ic_people"
+                android:hint="计划人数"
+                android:background="@drawable/bg_edittext_common"/>
+
+
+            <EditText
+                style="@style/edittext_style"
+                android:id="@+id/ed_activity_money"
+                android:drawableLeft="@mipmap/ic_money"
+                android:hint="人均花费"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_edittext_common"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_bottombar_height"
+        android:layout_alignParentBottom="true"
+        android:background="#10ffb11b"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="3dp"
+            android:src="@mipmap/ic_raise_seleted" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:text="提交"
+            android:textSize="@dimen/text_big_18" />
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottombar"
+        android:layout_below="@id/cardview_1"
+        android:layout_margin="10dp"
+        android:background="@color/common">
+
+        <EditText
+            android:id="@+id/et_activity_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="活动详情"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/text_mid_16" />
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

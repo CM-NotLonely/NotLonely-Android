@@ -29,19 +29,20 @@
         <!--find-->
 
         <!--publish-->
-        <activity android:name=".ui.publish.PublishActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
         <activity android:name=".ui.publish.UCropActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.PubActivityActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.publish.PubCircleActivity"
             android:screenOrientation="portrait"/>
         <!--message-->
 
         <!--mine-->
-        <activity android:name=".ui.mine.RegisterActivity"
+        <activity android:name=".ui.mine.LoginActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.mine.IdentityActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.AccomplishActivity"
+        <activity android:name=".ui.mine.RegisterActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.mine.SuccessActivity"
             android:screenOrientation="portrait"/>
@@ -53,7 +54,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.mine.JoinActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.mine.PraiseActivity"
+        <activity android:name=".ui.mine.ZanActivity"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>

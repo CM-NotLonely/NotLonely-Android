@@ -8,23 +8,23 @@ import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
-import com.efan.notlonely_android.ui.adapter.MypushAdapter;
+import com.efan.notlonely_android.ui.adapter.MyzanAdapter;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout;
 
 /**
  * Created by thinkpad on 2016/4/7.
  */
-@ContentView(id = R.layout.activity_push)
-public class PushActivity extends BaseActivity{
+@ContentView(id = R.layout.activity_zan)
+public class ZanActivity extends BaseActivity {
 
-    @ViewInject(id = R.id.push_recyclerview)
+    @ViewInject(id = R.id.praise_recyclerview)
     private RecyclerView recyclerView;
-    @ViewInject(id = R.id.push_refresh_widget)
+    @ViewInject(id = R.id.praise_refresh_widget)
     private JellyRefreshLayout mRefreshLayout;
 
     private BlurringView blurringView;
-    private MypushAdapter adapter;
+    private MyzanAdapter adapter;
 
     @Override
     public void initView() {
@@ -43,7 +43,7 @@ public class PushActivity extends BaseActivity{
 
     @Override
     public void initData() {
-        adapter = new MypushAdapter(this);
+        adapter = new MyzanAdapter(this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);

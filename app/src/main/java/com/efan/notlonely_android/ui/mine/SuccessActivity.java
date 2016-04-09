@@ -14,7 +14,7 @@ import com.efan.notlonely_android.view.BlurringView;
 /**
  * Created by thinkpad on 2016/4/7.
  */
-@ContentView(id = R.layout.activity_accomplished)
+@ContentView(id = R.layout.activity_success)
 public class SuccessActivity extends BaseActivity {
 
     private Intent intent;
@@ -44,7 +44,7 @@ public class SuccessActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.registered_login_success:
-                intent = new Intent(this,RegisterActivity.class);
+                intent = new Intent(this,LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;

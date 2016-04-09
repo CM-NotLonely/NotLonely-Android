@@ -1,4 +1,4 @@
-package com.efan.notlonely_android.ui.mine;
+package com.efan.notlonely_android.ui.publish;
 
 import android.view.View;
 
@@ -6,11 +6,10 @@ import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.notlonely_android.R;
 
-/**
- * Created by thinkpad on 2016/4/7.
- */
-@ContentView(id = R.layout.activity_praise)
-public class PraiseActivity extends BaseActivity {
+@ContentView(id= R.layout.activity_pub_activity)
+public class PubActivityActivity extends BaseActivity {
+
+
     @Override
     public void initView() {
 

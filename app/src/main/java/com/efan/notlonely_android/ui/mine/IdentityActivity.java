@@ -44,11 +44,11 @@ public class IdentityActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.next:
-                intent = new Intent(this,AccomplishActivity.class);
+                intent = new Intent(this,RegisterActivity.class);
                 startActivity(intent);
                 break;
             case R.id.registered_login:
-                intent = new Intent(this,RegisterActivity.class);
+                intent = new Intent(this,LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
