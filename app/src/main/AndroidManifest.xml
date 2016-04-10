@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity"
-            android:theme="@style/activity"/>
+            android:screenOrientation="portrait" />
         <!--menu-->
         <activity android:name=".ui.menu.CricleDetailsActivity"
             android:theme="@style/activity"/>

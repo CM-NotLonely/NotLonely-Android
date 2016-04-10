@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
+        style="@style/recyclerView_style"
         android:layout_marginTop="60dp"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
         android:scrollbars="vertical" />
 
     <android.support.v7.widget.Toolbar
@@ -18,58 +17,65 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_headerbar_height"
         android:background="@color/colorPrimary">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/back"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/ic_back"/>
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ic_back" />
+
             <TextView
                 android:id="@+id/toolbar_cricle_title"
+                style="@style/common_text_big"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                style="@style/common_text_big"
-                android:text="活动详情"/>
+                android:text="活动详情" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/content">
+
         <ImageView
             android:id="@+id/zan"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_zan_unpressed"/>
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/ic_zan_unpressed" />
+
         <TextView
             android:id="@+id/zan_num"
-            android:layout_toRightOf="@id/zan"
-            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/text_mid_16"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/zan"
+            android:text="1859"
             android:textColor="@color/common"
-            android:text="1859"/>
+            android:textSize="@dimen/text_mid_16" />
+
         <Button
             android:id="@+id/join"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
             android:background="@drawable/shape_join_background"
-            android:textSize="@dimen/text_mid_16"
+            android:text="我要参加"
             android:textColor="@color/common"
-            android:text="我要参加"/>
+            android:textSize="@dimen/text_mid_16" />
     </RelativeLayout>
 </RelativeLayout>

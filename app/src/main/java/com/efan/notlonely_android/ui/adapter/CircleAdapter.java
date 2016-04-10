@@ -53,18 +53,21 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType==TYPE_HEADER){
-                Button button=new Button(mContext);
-                RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(parent.getWidth(),BottomHeight/5*4);
-                lp.setMargins(0, BottomHeight/10,0, 0);
-                button.setLayoutParams(lp);
-                button.setGravity(Gravity.CENTER);
-                button.setTextColor(mContext.getResources().getColor(R.color.common));
-                button.setText("创建新圈子");
-                button.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
-                button.setBackgroundResource(R.drawable.shape_join_background);
-                HeaderViewHolder holder=new HeaderViewHolder(button);
-                return holder;
+        if (viewType == TYPE_HEADER) {
+            Button button = new Button(mContext);
+            button.setGravity(Gravity.CENTER);
+            button.setTextColor(mContext.getResources().getColor(R.color.common));
+            button.setText("创建新圈子");
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            button.setBackgroundResource(R.drawable.shape_join_background);
+            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(parent.getWidth()-BottomHeight / 5 * 2, BottomHeight / 5 * 4);
+            lp.leftMargin=BottomHeight / 10*2;
+            lp.rightMargin=BottomHeight / 10*2;
+            lp.topMargin=BottomHeight / 10;
+//            lp.setMargins(10, BottomHeight / 10,10, 0);
+            button.setLayoutParams(lp);
+            HeaderViewHolder holder = new HeaderViewHolder(button);
+            return holder;
         }
         if (viewType == TYPE_ITEM) {
             View view = mInflater.inflate(R.layout.item_cardview_circle, parent, false);
@@ -83,8 +86,8 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        if (position + 1 != getItemCount()&&position!=0)
-            ((vHold) holder).simpleDraweeView.setImageURI(Uri.parse("res:///"+R.mipmap.test));
+        if (position + 1 != getItemCount() && position != 0)
+            ((vHold) holder).simpleDraweeView.setImageURI(Uri.parse("res:///" + R.mipmap.test));
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,7 +136,7 @@ public class CircleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    private class HeaderViewHolder extends RecyclerView.ViewHolder{
+    private class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(View itemView) {
             super(itemView);
         }

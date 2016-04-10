@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
+
     <com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/refresh_widget"
         android:layout_width="match_parent"
@@ -11,11 +12,9 @@
         android:text="Loading..."
         android:textColor="#ffffff"
         app:jellyColor="@color/common">
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            style="@style/recyclerView_style" />
     </com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout>
 </LinearLayout>

@@ -24,7 +24,7 @@ import okhttp3.Response;
 /**
  * Created by 一帆 on 2016/4/8.
  */
-public class SplashActivity extends BaseActivity{
+public class SplashActivity extends BaseActivity {
 
     private Handler mHandler;
     private boolean isLogin;
@@ -37,8 +37,8 @@ public class SplashActivity extends BaseActivity{
         username = PreferencesUtils.getString(this, SPConfig.USER_NAME, null);
         password = PreferencesUtils.getString(this, SPConfig.USER_PASSWORD, null);
 
-        if((isLogin == true) && (username != null) && (password != null)){
-            login(username,password);
+        if ((isLogin == true) && (username != null) && (password != null)) {
+            login(username, password);
         }
         launchOprator();
     }
@@ -74,13 +74,14 @@ public class SplashActivity extends BaseActivity{
 
     /**
      * 网络请求-登录
+     *
      * @param username
      * @param password
      */
-    private void login(String username, String password){
-        Map<String,String> params = new HashMap<>();
-        params.put("username",username);
-        params.put("password",password);
+    private void login(String username, String password) {
+        Map<String, String> params = new HashMap<>();
+        params.put("username", username);
+        params.put("password", password);
 
         OkHttpUtils.post()
                 .url(APIConfig.LOGIN)
@@ -101,7 +102,7 @@ public class SplashActivity extends BaseActivity{
 
                     @Override
                     public void onResponse(UserEntity user) {
-                        if(user != null) {
+                        if (user != null) {
                             MainApplication.getInstance().setLogin(true);
                             MainApplication.getInstance().setUser(user);
                         }

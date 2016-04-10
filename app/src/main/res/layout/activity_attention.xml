@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_headerbar_height"
@@ -28,6 +30,7 @@
                 android:textSize="@dimen/text_max_20" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+
     <com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/attention_refresh"
         android:layout_width="match_parent"
@@ -35,11 +38,11 @@
         android:text="Loading..."
         android:textColor="#ffffff"
         app:jellyColor="@color/common">
+
         <android.support.v7.widget.RecyclerView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:id="@+id/attention_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            style="@style/recyclerView_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
     </com.efan.notlonely_android.view.Jellyrefresh.JellyRefreshLayout>
 </LinearLayout>
