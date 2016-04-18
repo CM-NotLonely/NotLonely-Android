@@ -61,11 +61,12 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initView() {
         blurringView.setBlurredView(background);
-        userIcon.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
+        userIcon.setImageURI(Uri.parse("res:///"+ R.mipmap.touxiang));
     }
 
     @Override
     public void initData() {
+        UserEntity user = MainApplication.getInstance().getUser();
         username = PreferencesUtils.getString(this, SPConfig.USER_NAME, null);
         password = PreferencesUtils.getString(this, SPConfig.USER_PASSWORD, null);
         if(username != null) {
@@ -117,8 +118,8 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public UserEntity parseNetworkResponse(Response response) throws Exception {
                         String string = response.body().string();
-                        LoginEntity register = new Gson().fromJson(string, LoginEntity.class);
-                        return register.getUser();
+                        LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
+                        return login.getUser();
                     }
 
                     @Override
@@ -145,10 +146,10 @@ public class LoginActivity extends BaseActivity {
      * @return
      */
     private boolean checkLogin(String username, String password){
-        if (username == null){
+        if (username.equals("")){
             Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (username == password){
+        }else if (password.equals("")){
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }

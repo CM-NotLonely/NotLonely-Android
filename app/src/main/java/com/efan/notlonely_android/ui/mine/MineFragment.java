@@ -1,8 +1,8 @@
 package com.efan.notlonely_android.ui.mine;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.annotate.OnClick;
@@ -80,7 +81,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
 
     @Override
     public void initData() {
-        simpleDraweeView.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
+        simpleDraweeView.setImageURI(Uri.parse("res:///"+ R.mipmap.touxiang));
         mFlexibleSpaceImageHeight = 300;
         mActionBarSize = 50;
         mScrollView.setScrollViewCallbacks(this);
@@ -98,7 +99,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     }
 
     @Override
-    @OnClick(value = {R.id.login,R.id.register,R.id.mine_homepage,R.id.mine_attention,R.id.mine_push,R.id.mine_join,R.id.mine_praise, R.id.setting})
+    @OnClick(value = {R.id.login, R.id.register, R.id.mine_homepage, R.id.mine_attention, R.id.mine_push, R.id.mine_join, R.id.mine_praise, R.id.setting})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
@@ -110,24 +111,39 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
                 startActivity(intent);
                 break;
             case R.id.mine_homepage:
-                intent = new Intent(getActivity(),HomepageActivity.class);
-                startActivity(intent);
+                if (MainApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(),AlterdataActivity.class);
+                    startActivity(intent);
+                }
+                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mine_attention:
-                intent = new Intent(getActivity(),AttentionActivity.class);
-                startActivity(intent);
+                if (MainApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(),AttentionActivity.class);
+                    startActivity(intent);
+                }
+                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mine_push:
-                intent = new Intent(getActivity(),PushActivity.class);
-                startActivity(intent);
+                if (MainApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(),PushActivity.class);
+                    startActivity(intent);
+                }
+                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mine_join:
-                intent = new Intent(getActivity(),JoinActivity.class);
-                startActivity(intent);
+                if (MainApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(),JoinActivity.class);
+                    startActivity(intent);
+                }
+                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mine_praise:
-                intent = new Intent(getActivity(),ZanActivity.class);
-                startActivity(intent);
+                if (MainApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(),ZanActivity.class);
+                    startActivity(intent);
+                }
+                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.setting:
 
