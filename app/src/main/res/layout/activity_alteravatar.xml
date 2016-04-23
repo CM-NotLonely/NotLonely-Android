@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
@@ -23,12 +23,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="修改资料"
+                android:text="修改头像"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_max_20" />
-
             <ImageView
-                android:id="@+id/password_yes"
+                android:id="@+id/alteravatar_yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -37,28 +36,25 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/newpassword"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:paddingLeft="5dp"
-        android:drawableLeft="@mipmap/ic_name"
-        android:drawablePadding="10dp"
-        android:hint="新密码"
-        android:background="@drawable/bg_edittext_gray"/>
-    <EditText
-        android:id="@+id/newpassword_again"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:paddingLeft="5dp"
-        android:drawableLeft="@mipmap/ic_passwd"
-        android:drawablePadding="10dp"
-        android:hint="再次输入密码"
-        android:background="@drawable/bg_edittext_gray"/>
-</LinearLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="128dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        app:roundAsCircle="true"
+        app:roundingBorderColor="@color/common"
+        app:roundingBorderWidth="1dp" />
+    <Button
+        android:id="@+id/alter_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common"
+        android:layout_below="@id/avatar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="本地上传图片"
+        android:textColor="@color/white"
+        android:textSize="20dp"/>
+</RelativeLayout>

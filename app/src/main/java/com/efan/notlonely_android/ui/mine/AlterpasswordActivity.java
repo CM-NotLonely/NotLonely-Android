@@ -8,20 +8,15 @@ import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
-import com.efan.basecmlib.okhttputils.OkHttpUtils;
-import com.efan.basecmlib.okhttputils.callback.Callback;
 import com.efan.notlonely_android.MainApplication;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.config.APIConfig;
 import com.efan.notlonely_android.entity.AlterpasswordEntity;
 import com.efan.notlonely_android.entity.UserEntity;
+import com.efan.request.RequestUtils;
+import com.efan.request.callback.Callback;
+import com.efan.request.response.Response;
 import com.google.gson.Gson;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by thinkpad on 2016/4/17.
@@ -53,7 +48,7 @@ public class AlterpasswordActivity extends BaseActivity{
     }
 
     @Override
-    @OnClick(value = {R.id.password_yes, R.id.password_no})
+    @OnClick(value = {R.id.password_yes})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.password_yes:
@@ -62,10 +57,6 @@ public class AlterpasswordActivity extends BaseActivity{
                 if (check()){
                     Yes();
                 }
-                finish();
-                break;
-            case R.id.password_no:
-                finish();
                 break;
         }
     }
@@ -91,30 +82,23 @@ public class AlterpasswordActivity extends BaseActivity{
     }
 
     private void alterpassword(){
-        Map<String,String> params = new HashMap<>();
-        params.put("password",setpassword);
-        params.put("password_confirmation",setagain);
-
-        OkHttpUtils.patch()
+        RequestUtils.patch()
                 .url(APIConfig.Alterpassword)
-                .params(params)
+                .addParams("password",setpassword)
+                .addParams("password_confirmation",setagain)
                 .build()
-                .execute(new Callback<AlterpasswordEntity>() {
+                .execute(new Callback() {
                     @Override
-                    public AlterpasswordEntity parseNetworkResponse(Response response) throws Exception {
-                        String string = response.body().string();
+                    public void onError(Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Response response) {
+                        String string = response.getBody();
                         AlterpasswordEntity alter = new Gson().fromJson(string, AlterpasswordEntity.class);
-                        return alter;
-                    }
 
-                    @Override
-                    public void onError(Call call, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(AlterpasswordEntity alter) {
-
+                        finish();
                     }
                 });
     }

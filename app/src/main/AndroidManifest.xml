@@ -63,5 +63,7 @@
             android:theme="@style/activity"/>
         <activity android:name=".ui.mine.ZanActivity"
             android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.AlteravatarActivity"
+            android:theme="@style/activity"/>
     </application>
 </manifest>

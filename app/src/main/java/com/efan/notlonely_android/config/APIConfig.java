@@ -8,4 +8,5 @@ public class APIConfig {
     public static final String Register = "http://192.168.1.147/register";
     public static final String Alterdata = "http://192.168.1.147/update";
     public static final String Alterpassword = "http://192.168.1.147/update_password";
+    public static final String Update_head_image= "http://192.168.1.147/update_head_image";
 }

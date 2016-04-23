@@ -99,7 +99,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     }
 
     @Override
-    @OnClick(value = {R.id.login, R.id.register, R.id.mine_homepage, R.id.mine_attention, R.id.mine_push, R.id.mine_join, R.id.mine_praise, R.id.setting})
+    @OnClick(value = {R.id.login, R.id.register, R.id.mine_homepage, R.id.mine_attention, R.id.mine_push, R.id.mine_join, R.id.mine_praise, R.id.setting, R.id.login_layout})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
@@ -145,8 +145,9 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
                 }
                 else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.setting:
-
+            case R.id.login_layout:
+                intent = new Intent(getActivity(),AlterdataActivity.class);
+                startActivity(intent);
                 break;
         }
     }

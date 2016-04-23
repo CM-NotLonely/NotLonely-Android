@@ -11,19 +11,14 @@ import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
-import com.efan.basecmlib.okhttputils.OkHttpUtils;
-import com.efan.basecmlib.okhttputils.callback.Callback;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.config.APIConfig;
 import com.efan.notlonely_android.entity.RegisterEntity;
 import com.efan.notlonely_android.view.BlurringView;
+import com.efan.request.RequestUtils;
+import com.efan.request.callback.Callback;
+import com.efan.request.response.Response;
 import com.google.gson.Gson;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by thinkpad on 2016/4/6.
@@ -89,30 +84,22 @@ public class RegisterActivity extends BaseActivity {
 
 
     private void Register(String username, String password, String password_confirmation){
-        Map<String,String> params = new HashMap<>();
-        params.put("username",username);
-        params.put("password",password);
-        params.put("password_confirmation",password_confirmation);
-
-        OkHttpUtils.post()
+        RequestUtils.post()
                 .url(APIConfig.Register)
-                .params(params)
+                .addParams("username",username)
+                .addParams("password",password)
+                .addParams("password_confirmation",password_confirmation)
                 .build()
-                .execute(new Callback<RegisterEntity>() {
+                .execute(new Callback() {
                     @Override
-                    public RegisterEntity parseNetworkResponse(Response response) throws Exception {
-                        String string = response.body().string();
+                    public void onError(Exception e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Response response) {
+                        String string = response.getBody();
                         RegisterEntity register = new Gson().fromJson(string, RegisterEntity.class);
-                        return register;
-                    }
-
-                    @Override
-                    public void onError(Call call, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(RegisterEntity register) {
                         if(register != null) {
                             intent = new Intent(RegisterActivity.this,SuccessActivity.class);
                             startActivity(intent);

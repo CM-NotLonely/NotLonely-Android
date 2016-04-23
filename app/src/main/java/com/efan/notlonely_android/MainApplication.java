@@ -6,6 +6,8 @@ import com.efan.basecmlib.application.BaseApplication;
 import com.efan.notlonely_android.config.SPConfig;
 import com.efan.notlonely_android.entity.UserEntity;
 import com.efan.notlonely_android.utils.PreferencesUtils;
+import com.efan.request.RequestUtils;
+import com.efan.request.okhttp.OkhttpClient;
 
 /**
  * Created by 一帆 on 2016/3/22.
@@ -21,6 +23,9 @@ public class MainApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+//        RequestUtils.getInstance().setTimeOutConfig(new TimeOutConfig(5));
+        RequestUtils.getInstance().setRequestClient(new OkhttpClient());
     }
 
     public static MainApplication getInstance() {
