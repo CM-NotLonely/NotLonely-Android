@@ -1,7 +1,6 @@
 package com.efan.notlonely_android.ui.mine;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -91,7 +90,7 @@ public class AlterdataActivity extends BaseActivity {
         }
         alter_name.setText(user.getNickname());
         alter_introduction.setText(user.getIntroduction());
-        alter_portrait.setImageURI(Uri.parse(picturePath));
+        //alter_portrait.setImageURI(Uri.parse(picturePath));
     }
 
     public void Yes(){
@@ -155,7 +154,7 @@ public class AlterdataActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         picturePath = user.getAvatar().getUrl();
-        alter_portrait.setImageURI(Uri.parse(picturePath));
+        //alter_portrait.setImageURI(Uri.parse(picturePath));
         Log.d("haha",picturePath);
     }
 }

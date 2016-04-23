@@ -35,7 +35,7 @@ public class AlteravatarActivity extends BaseActivity {
     public void initView() {
         user = MainApplication.getInstance().getUser();
         picturePath = user.getAvatar().getUrl();
-        avatar.setImageURI(Uri.parse(picturePath));
+        //avatar.setImageURI(Uri.parse(picturePath));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class AlteravatarActivity extends BaseActivity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             picturePath = cursor.getString(columnIndex);
             cursor.close();
-            avatar.setImageURI(Uri.parse(picturePath));
+            //avatar.setImageURI(Uri.parse(picturePath));
             Log.d("haha",picturePath);
         }
     }
