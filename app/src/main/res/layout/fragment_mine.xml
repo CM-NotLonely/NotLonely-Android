@@ -127,6 +127,7 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/user_icon"
+            android:clickable="true"
             android:scaleType="centerCrop"
             android:layout_width="60dp"
             android:layout_height="60dp"

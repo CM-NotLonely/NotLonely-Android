@@ -54,6 +54,6 @@ public class RefreshEvent {
 	
 	public enum RefreshType{
 		LOGIN,//登录
-
+		ALTERAVATAR//更换头像
 	}
 }

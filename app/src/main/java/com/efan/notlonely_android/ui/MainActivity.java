@@ -1,7 +1,7 @@
 package com.efan.notlonely_android.ui;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.efan.basecmlib.activity.BaseFragment;
 import com.efan.basecmlib.activity.BaseFragmentActivity;
@@ -16,11 +17,13 @@ import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.basecmlib.others.SystemBarTintManager;
+import com.efan.notlonely_android.MainApplication;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.FragmentTabAdapter;
 import com.efan.notlonely_android.ui.find.FindFragment;
 import com.efan.notlonely_android.ui.menu.MenuFragment;
 import com.efan.notlonely_android.ui.message.MessageFragment;
+import com.efan.notlonely_android.ui.mine.AlterpasswordActivity;
 import com.efan.notlonely_android.ui.mine.MineFragment;
 import com.efan.notlonely_android.ui.publish.PubActivityActivity;
 import com.efan.notlonely_android.utils.IntentUtils;
@@ -111,7 +114,7 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
     @Override
-    @OnClick(value = {R.id.tv_activity, R.id.tv_circle, R.id.menu, R.id.find, R.id.raise, R.id.message, R.id.mine})
+    @OnClick(value = {R.id.tv_activity, R.id.tv_circle, R.id.menu, R.id.find, R.id.raise, R.id.message, R.id.mine,R.id.setting})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.menu:
@@ -128,6 +131,13 @@ public class MainActivity extends BaseFragmentActivity {
                 break;
             case R.id.mine:
                 setSeletedBottomBar(5);
+                break;
+            case R.id.setting:
+                if (MainApplication.getInstance().isLogin()) {
+                    Intent intent = new Intent(this, AlterpasswordActivity.class);
+                    startActivity(intent);
+                }
+                else Toast.makeText(this, "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

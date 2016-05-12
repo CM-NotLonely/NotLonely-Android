@@ -17,6 +17,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iv_left"
+                android:layout_centerVertical="true"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

@@ -45,7 +45,7 @@
             android:paddingLeft="5dp"
             android:drawableLeft="@mipmap/ic_name"
             android:drawablePadding="10dp"
-            android:hint="手机号"
+            android:hint="用户名"
             android:background="@drawable/bg_edittext_white"/>
         <EditText
             android:id="@+id/set_password"

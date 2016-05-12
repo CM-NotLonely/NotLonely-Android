@@ -6,6 +6,8 @@ import com.efan.basecmlib.application.BaseApplication;
 import com.efan.notlonely_android.config.SPConfig;
 import com.efan.notlonely_android.entity.UserEntity;
 import com.efan.notlonely_android.utils.PreferencesUtils;
+import com.efan.request.RequestUtils;
+import com.efan.request.okhttp.OkhttpClient;
 
 /**
  * Created by 一帆 on 2016/3/22.
@@ -21,6 +23,9 @@ public class MainApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+//        RequestUtils.getInstance().setTimeOutConfig(new TimeOutConfig(5));
+        RequestUtils.getInstance().setRequestClient(new OkhttpClient());
     }
 
     public static MainApplication getInstance() {
@@ -58,18 +63,18 @@ public class MainApplication extends BaseApplication {
      * @param user
      */
     private void saveUserSP(UserEntity user) {
-        PreferencesUtils.putLong(getApplicationContext(), SPConfig.USER_ID, user.getUserid());
-        if(user.getUsername()!= null) {
-            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_NAME, user.getUsername());
-        }
-        if(user.getPassword()!= null) {
-            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_PASSWORD, user.getPassword());
-        }
+//        PreferencesUtils.putLong(getApplicationContext(), SPConfig.USER_ID, user.getUserid());
+//        if(user.getUsername()!= null) {
+//            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_NAME, user.getUsername());
+//        }
+//        if(user.getPassword()!= null) {
+//            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_PASSWORD, user.getPassword());
+//        }
         if(user.getIntroduction()!= null) {
             PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_INSTRODUCTION, user.getIntroduction());
         }
         if(user.getAvatar()!= null) {
-            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_URL, user.getAvatar().getUrl());
+            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_URL, user.getAvatar());
         }
         PreferencesUtils.putBoolean(getApplicationContext(), SPConfig.USER_SEX, user.getSex());
         Log.d("haha",PreferencesUtils.getString(getApplicationContext(),SPConfig.USER_URL,null)+"");

@@ -2,6 +2,7 @@ package com.efan.notlonely_android.ui.mine;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +13,6 @@ import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
-import com.efan.basecmlib.okhttputils.OkHttpUtils;
-import com.efan.basecmlib.okhttputils.callback.Callback;
 import com.efan.notlonely_android.MainApplication;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.config.APIConfig;
@@ -23,16 +22,13 @@ import com.efan.notlonely_android.entity.UserEntity;
 import com.efan.notlonely_android.event.RefreshEvent;
 import com.efan.notlonely_android.utils.PreferencesUtils;
 import com.efan.notlonely_android.view.BlurringView;
+import com.efan.request.RequestUtils;
+import com.efan.request.callback.Callback;
+import com.efan.request.response.Response;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by 一帆 on 2016/4/5.
@@ -57,15 +53,17 @@ public class LoginActivity extends BaseActivity {
 
     private String username;
     private String password;
+    private static final String TAG="LoginActivity";
 
     @Override
     public void initView() {
         blurringView.setBlurredView(background);
-        userIcon.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
+        userIcon.setImageURI(Uri.parse("res:///"+ R.mipmap.touxiang));
     }
 
     @Override
     public void initData() {
+        UserEntity user = MainApplication.getInstance().getUser();
         username = PreferencesUtils.getString(this, SPConfig.USER_NAME, null);
         password = PreferencesUtils.getString(this, SPConfig.USER_PASSWORD, null);
         if(username != null) {
@@ -105,29 +103,23 @@ public class LoginActivity extends BaseActivity {
      * @param password
      */
     private void login(String username, String password){
-        Map<String,String> params = new HashMap<>();
-        params.put("username",username);
-        params.put("password",password);
-
-        OkHttpUtils.post()
+        RequestUtils.post()
                 .url(APIConfig.LOGIN)
-                .params(params)
+                .addParams("username",username)
+                .addParams("password",password)
                 .build()
-                .execute(new Callback<UserEntity>() {
+                .execute(new Callback() {
                     @Override
-                    public UserEntity parseNetworkResponse(Response response) throws Exception {
-                        String string = response.body().string();
-                        LoginEntity register = new Gson().fromJson(string, LoginEntity.class);
-                        return register.getUser();
+                    public void onError(Exception e) {
+                        Log.d(TAG,e.toString());
                     }
 
                     @Override
-                    public void onError(Call call, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(UserEntity user) {
+                    public void onResponse(Response response) {
+                        String string = response.getBody();
+                        Log.d(TAG,string);
+                        LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
+                        UserEntity user = login.getUser();
                         if(user != null) {
                             MainApplication.getInstance().setLogin(true);
                             MainApplication.getInstance().setUser(user);
@@ -145,10 +137,10 @@ public class LoginActivity extends BaseActivity {
      * @return
      */
     private boolean checkLogin(String username, String password){
-        if (username == null){
+        if (username.equals("")){
             Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (username == password){
+        }else if (password.equals("")){
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }

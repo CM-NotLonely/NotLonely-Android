@@ -44,21 +44,27 @@
         <!--mine-->
         <activity android:name=".ui.mine.LoginActivity"
             android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.AlterdataActivity"
+        android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.AlterpasswordActivity"
+        android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.AttentionActivity"
+        android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.HomepageActivity"
+            android:theme="@style/activity"/>
         <activity android:name=".ui.mine.IdentityActivity"
+            android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.JoinActivity"
+            android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.PushActivity"
             android:theme="@style/activity"/>
         <activity android:name=".ui.mine.RegisterActivity"
             android:theme="@style/activity"/>
         <activity android:name=".ui.mine.SuccessActivity"
             android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.HomepageActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.AttentionActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.PushActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.JoinActivity"
-            android:theme="@style/activity"/>
         <activity android:name=".ui.mine.ZanActivity"
+            android:theme="@style/activity"/>
+        <activity android:name=".ui.mine.AlteravatarActivity"
             android:theme="@style/activity"/>
     </application>
 </manifest>

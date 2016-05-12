@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_headerbar_height"
@@ -12,6 +15,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iv_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -25,6 +29,160 @@
                 android:text="我的主页"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_max_20" />
+            <TextView
+                android:id="@+id/tv_alter"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="编辑"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_big_18" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="我的头像"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_mid_16" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/homepage_avatar"
+            android:layout_centerVertical="true"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp" />
+
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="昵称"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big_18" />
+
+        <TextView
+            android:id="@+id/homepage_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="小明"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_mid_16" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="性别"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_big_18" />
+
+        <TextView
+            android:id="@+id/homepage_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="男"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_mid_16" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="账号信息"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_mid_16" />
+
+        <TextView
+            android:id="@+id/homepage_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="12345678"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_mid_16" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_qianming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="个性签名： "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_mid_16" />
+
+        <TextView
+            android:id="@+id/tv_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/tv_qianming"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="keep life, keep love. "
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_mid_16" />
+    </RelativeLayout>
+
+
+
+
 </LinearLayout>

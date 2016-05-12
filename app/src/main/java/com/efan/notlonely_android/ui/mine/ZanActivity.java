@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
+import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.ui.adapter.MyzanAdapter;
@@ -55,7 +56,12 @@ public class ZanActivity extends BaseActivity {
     }
 
     @Override
+    @OnClick(value = {R.id.iv_left})
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.iv_left:
+                finish();
+                break;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.efan.notlonely_android.ui.mine;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import com.efan.notlonely_android.view.BlurringView;
 @ContentView(id = R.layout.activity_identity)
 public class IdentityActivity extends BaseActivity {
 
+    static Activity IdentityActivity;
     private Intent intent;
 
     @ViewInject(id = R.id.identity_blurring_view)
@@ -26,6 +28,7 @@ public class IdentityActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        IdentityActivity = this;
         blurringView.setBlurredView(background);
     }
 
@@ -40,7 +43,7 @@ public class IdentityActivity extends BaseActivity {
     }
 
     @Override
-    @OnClick(value = {R.id.next,R.id.registered_login})
+    @OnClick(value = {R.id.next, R.id.registered_login})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.next:
