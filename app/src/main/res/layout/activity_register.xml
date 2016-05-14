@@ -4,93 +4,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
     <ImageView
         android:id="@+id/accomplish_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/background"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background" />
+
     <com.efan.notlonely_android.view.BlurringView
-        android:layout_centerInParent="true"
         android:id="@+id/accomplish_blurring_view"
         android:layout_width="match_parent"
         android:layout_height="344dp"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/common_horizontal_margin"
         android:layout_marginRight="@dimen/common_horizontal_margin"
         app:blurRadius="5"
         app:downsampleFactor="5"
-        app:overlayColor="#15ffffff"/>
+        app:overlayColor="#15ffffff" />
+
     <RelativeLayout
+        android:id="@+id/rl_register_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <com.efan.notlonely_android.view.ProgressWheel
+            android:id="@+id/progresswheel"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            app:matProg_barColor="@color/common"
+            app:matProg_fillRadius="true"
+            app:matProg_progressIndeterminate="true"
+            app:matProg_rimColor="@color/common" />
+
+        <TextView
+            android:id="@+id/tv_register_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progresswheel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="注 册 成 功 ！"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_max_20" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_register"
         android:layout_width="match_parent"
         android:layout_height="344dp"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/common_horizontal_margin"
-        android:layout_marginRight="@dimen/common_horizontal_margin"
-        android:layout_centerInParent="true">
+        android:layout_marginRight="@dimen/common_horizontal_margin">
+
         <TextView
             android:id="@+id/accomplish"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:gravity="center"
-            android:textSize="28dp"
             android:text="注  册"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="28dp" />
+
         <EditText
             android:id="@+id/phone_number"
-            android:layout_below="@id/accomplish"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_below="@id/accomplish"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:paddingLeft="5dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_edittext_white"
             android:drawableLeft="@mipmap/ic_name"
             android:drawablePadding="10dp"
             android:hint="用户名"
-            android:background="@drawable/bg_edittext_white"/>
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/set_password"
-            android:layout_below="@id/phone_number"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_below="@id/phone_number"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:paddingLeft="5dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_edittext_white"
             android:drawableLeft="@mipmap/ic_passwd"
             android:drawablePadding="10dp"
             android:hint="设置密码"
-            android:background="@drawable/bg_edittext_white"/>
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/set_password_again"
-            android:layout_below="@id/set_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_below="@id/set_password"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:paddingLeft="5dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_edittext_white"
             android:drawableLeft="@mipmap/ic_name"
             android:drawablePadding="10dp"
             android:hint="再次输入密码"
-            android:background="@drawable/bg_edittext_white"/>
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
         <Button
             android:id="@+id/accomplish_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_big_18"
+            android:background="@drawable/bg_button_gradient_two"
             android:text="完成"
-            android:background="@drawable/bg_button_gradient_two"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big_18" />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/registered_login_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:textSize="@dimen/text_small_14"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
         android:text="已有账号？点击登录"
         android:textColor="@color/white"
-        android:layout_marginBottom="16dp"/>
+        android:textSize="@dimen/text_small_14" />
 </RelativeLayout>

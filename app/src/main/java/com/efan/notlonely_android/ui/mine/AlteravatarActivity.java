@@ -126,7 +126,7 @@ public class AlteravatarActivity extends BaseActivity {
                                 //更新成功，得到新的url，发送EvenBus更新MinFragment和AlterDataActivity头像
                                 Log.d(TAG,string);
                                 PreferencesUtils.putString(AlteravatarActivity.this,SPConfig.USER_URL,string);
-                                EventBus.getDefault().post(new RefreshEvent(RefreshEvent.RefreshType.ALTERAVATAR));
+                              //  EventBus.getDefault().post(new RefreshEvent(RefreshEvent.RefreshType.ALTERAVATAR));
                             }
                         });
                 finish();

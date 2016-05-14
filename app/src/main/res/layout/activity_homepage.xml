@@ -165,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="个性签名： "
+            android:text="个性签名 "
             android:textColor="@color/black"
             android:textSize="@dimen/text_mid_16" />
 
@@ -180,6 +180,25 @@
             android:text="keep life, keep love. "
             android:textColor="@color/gray"
             android:textSize="@dimen/text_mid_16" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_sign_out"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/common"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_mid_16" />
+
     </RelativeLayout>
 
 

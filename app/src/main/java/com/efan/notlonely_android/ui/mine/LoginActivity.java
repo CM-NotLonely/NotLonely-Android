@@ -3,6 +3,7 @@ package com.efan.notlonely_android.ui.mine;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,9 @@ import com.efan.notlonely_android.config.SPConfig;
 import com.efan.notlonely_android.entity.LoginEntity;
 import com.efan.notlonely_android.entity.UserEntity;
 import com.efan.notlonely_android.event.RefreshEvent;
+import com.efan.notlonely_android.utils.NetStateUtils;
 import com.efan.notlonely_android.utils.PreferencesUtils;
+import com.efan.notlonely_android.utils.ToastUtils;
 import com.efan.notlonely_android.view.BlurringView;
 import com.efan.request.RequestUtils;
 import com.efan.request.callback.Callback;
@@ -34,7 +37,7 @@ import org.greenrobot.eventbus.EventBus;
  * Created by 一帆 on 2016/4/5.
  */
 @ContentView(id = R.layout.activity_login)
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnKeyListener {
 
     private Intent intent;
 
@@ -67,6 +70,7 @@ public class LoginActivity extends BaseActivity {
         username = PreferencesUtils.getString(this, SPConfig.USER_NAME, null);
         password = PreferencesUtils.getString(this, SPConfig.USER_PASSWORD, null);
         if(username != null) {
+            Log.e(TAG,username);
             usernameEdit.setText(username);
         }
         if(password != null) {
@@ -76,7 +80,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-
+        passwordEdit.setOnKeyListener(this);
     }
 
     @OnClick(value = {R.id.login, R.id.login_register})
@@ -86,11 +90,15 @@ public class LoginActivity extends BaseActivity {
                 username = usernameEdit.getText().toString();
                 password = passwordEdit.getText().toString();
                 if (checkLogin(username, password)){
+                    //这里弹出进度框，显示转啊转，正在登陆中
+                     /*
+
+                     */
                     login(username, password);
                 }
                 break;
             case R.id.login_register:
-                intent = new Intent(this,IdentityActivity.class);
+                intent = new Intent(this,RegisterActivity.class);
                 startActivity(intent);
                 finish();
                 break;
@@ -102,7 +110,11 @@ public class LoginActivity extends BaseActivity {
      * @param username
      * @param password
      */
-    private void login(String username, String password){
+    private void login(final String username, final String password){
+        if(!NetStateUtils.hasNetWorkConnection(LoginActivity.this)){
+            ToastUtils.show(LoginActivity.this,"请检查网络连接设置");
+            return;
+        }
         RequestUtils.post()
                 .url(APIConfig.LOGIN)
                 .addParams("username",username)
@@ -120,11 +132,17 @@ public class LoginActivity extends BaseActivity {
                         Log.d(TAG,string);
                         LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
                         UserEntity user = login.getUser();
-                        if(user != null) {
+                        if( login.getCode()==0) {
                             MainApplication.getInstance().setLogin(true);
                             MainApplication.getInstance().setUser(user);
+                            Log.d(TAG,user.getUrl());
+                            Log.d(TAG,PreferencesUtils.getString(LoginActivity.this,SPConfig.USER_URL));
+                            PreferencesUtils.putString(LoginActivity.this,SPConfig.USER_NAME,username);
+                            PreferencesUtils.putString(LoginActivity.this,SPConfig.USER_PASSWORD,password);
                             EventBus.getDefault().post(new RefreshEvent(RefreshEvent.RefreshType.LOGIN));
                             finish();
+                        }else{
+                            ToastUtils.show(LoginActivity.this,login.getMsg());
                         }
                     }
                 });
@@ -145,5 +163,26 @@ public class LoginActivity extends BaseActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_ENTER){
+            switch (v.getId()){
+                case R.id.password:
+                    username = usernameEdit.getText().toString();
+                    password = passwordEdit.getText().toString();
+                    if (checkLogin(username, password)){
+                        //这里弹出进度框，显示转啊转，正在登陆中
+                     /*
+
+                     */
+                        login(username, password);
+                    }
+                    break;
+            }
+            return true;
+        }
+        return false;
     }
 }

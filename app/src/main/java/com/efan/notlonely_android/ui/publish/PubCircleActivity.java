@@ -32,10 +32,8 @@ import java.io.File;
  */
 @ContentView(id = R.layout.activity_pub_circle)
 public class PubCircleActivity extends BaseActivity {
-    @ViewInject(id=R.id.select)
+    @ViewInject(id = R.id.select)
     private SimpleDraweeView select;
-    @ViewInject(id=R.id.iv_back)
-    private ImageView iv_back;
 
     private static final String TAG = "PubCircleActivity";
     private Uri mDestinationUri;
@@ -48,7 +46,7 @@ public class PubCircleActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        select.setImageURI(Uri.parse("res:///"+R.mipmap.touxiang));
+        select.setImageURI(Uri.parse("res:///" + R.mipmap.touxiang));
     }
 
     @Override
@@ -62,11 +60,14 @@ public class PubCircleActivity extends BaseActivity {
     }
 
     @Override
-    @OnClick(value = {R.id.select})
+    @OnClick(value = {R.id.select, R.id.iv_back})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.select:
                 pickFromGallery();
+                break;
+            case R.id.iv_back:
+                finish();
                 break;
         }
     }
@@ -76,7 +77,7 @@ public class PubCircleActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_SELECT_PICTURE) {
                 final Uri selectedUri = data.getData();
-                Log.e(TAG,"selectedUri:"+selectedUri);
+                Log.e(TAG, "selectedUri:" + selectedUri);
                 if (selectedUri != null) {
                     startCropActivity(data.getData());
                 } else {
@@ -92,8 +93,8 @@ public class PubCircleActivity extends BaseActivity {
     }
 
     private void startCropActivity(@NonNull Uri uri) {
-        String imageName= uri.getLastPathSegment().toString();
-        Log.e(TAG,"uri:"+uri+",lastSegment:"+imageName);
+        String imageName = uri.getLastPathSegment().toString();
+        Log.e(TAG, "uri:" + uri + ",lastSegment:" + imageName);
         mDestinationUri = Uri.fromFile(new File(getCacheDir(), imageName));
         UCrop uCrop = UCrop.of(uri, mDestinationUri);
         uCrop = uCrop.useSourceImageAspectRatio();
@@ -173,8 +174,8 @@ public class PubCircleActivity extends BaseActivity {
     private void handleCropResult(@NonNull Intent result) {
         Uri resultUri = UCrop.getOutput(result);
         if (resultUri != null) {
-            Log.e(TAG,"resultUri:"+resultUri);
-         //   IntentUtils.startActivity(PublishCircleActivity.this,PublishCircleActivity.class);
+            Log.e(TAG, "resultUri:" + resultUri);
+            //   IntentUtils.startActivity(PublishCircleActivity.this,PublishCircleActivity.class);
             select.setImageURI(resultUri);
         } else {
             Toast.makeText(PubCircleActivity.this, R.string.toast_cannot_retrieve_cropped_image, Toast.LENGTH_SHORT).show();

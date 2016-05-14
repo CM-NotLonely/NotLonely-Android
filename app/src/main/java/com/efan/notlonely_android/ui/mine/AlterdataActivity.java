@@ -29,6 +29,7 @@ import com.efan.request.response.Response;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
@@ -58,6 +59,7 @@ public class AlterdataActivity extends BaseActivity {
     private String sex;
     private String picturePath;
     private UserEntity user;
+    private UserEntity altert_user;
     private FileParam fileParam;
     private static final String TAG = "AlterdataActivity";
     private static final int SELECT_AVATAR = 1;
@@ -112,51 +114,51 @@ public class AlterdataActivity extends BaseActivity {
     }
 
     public void Yes() {
-        //首先进行数据更新
+        altert_user=new UserEntity();
         if (btnMan.isChecked()) {
-            user.setSex(true);
+            altert_user.setSex(true);
         } else {
-            user.setSex(false);
+            altert_user.setSex(false);
         }
-        user.setNickname(alter_name.getText().toString());
-        user.setIntroduction(alter_introduction.getText().toString());
-        alterdata(user);
+        altert_user.setNickname(alter_name.getText().toString());
+        altert_user.setIntroduction(alter_introduction.getText().toString());
+        alterdata(altert_user);
     }
 
-    private boolean alterdata(final UserEntity user) {
+    private void alterdata(final UserEntity altert_user) {
         boolean update_avatar = false;
         boolean update_data = false;
-        if (user.getSex()) {
+        if (altert_user.getSex()) {
             sex = "true";
         } else {
             sex = "false";
         }
-        if (picturePath != null) {
-            File file = new File(picturePath);
-            MediaType mediaType = MediaType.parse("image/*");
-            fileParam = new FileParam("sss.png", file, mediaType);
-            Log.d("haha", "patch");
-            RequestUtils.patch()
-                    .url(APIConfig.Update_head_image)
-                    .addParams("avatar", fileParam)
-                    .build()
-                    .execute(new Callback() {
-                        @Override
-                        public void onError(Exception e) {
-                            Log.d("haha", "onError");
-                        }
-
-                        @Override
-                        public void onResponse(Response response) {
-                            String string = response.getBody();
-                            Log.d("haha", string);
-                        }
-                    });
-        }
+//        if (picturePath != null) {
+//            File file = new File(picturePath);
+//            MediaType mediaType = MediaType.parse("image/*");
+//            fileParam = new FileParam("sss.png", file, mediaType);
+//            Log.d("haha", "patch");
+//            RequestUtils.patch()
+//                    .url(APIConfig.Update_head_image)
+//                    .addParams("avatar", fileParam)
+//                    .build()
+//                    .execute(new Callback() {
+//                        @Override
+//                        public void onError(Exception e) {
+//                            Log.d("haha", "onError");
+//                        }
+//
+//                        @Override
+//                        public void onResponse(Response response) {
+//                            String string = response.getBody();
+//                            Log.d("haha", string);
+//                        }
+//                    });
+//        }
         RequestUtils.patch()
                 .url(APIConfig.Alterdata)
-                .addParams("nickname", user.getNickname())
-                .addParams("introduction", user.getIntroduction())
+                .addParams("nickname", altert_user.getNickname())
+                .addParams("introduction", altert_user.getIntroduction())
                 .addParams("sex", sex)
                 .build()
                 .execute(new Callback() {
@@ -172,13 +174,18 @@ public class AlterdataActivity extends BaseActivity {
                         AlterdataEntity alter = new Gson().fromJson(string, AlterdataEntity.class);
                         long code=alter.getCode();
                         if(code==0){
-                            MainApplication.getInstance().setUser(user);
+                            altert_user.setUrl(PreferencesUtils.getString(AlterdataActivity.this,SPConfig.USER_URL));
+                            user=altert_user;
+                            Log.e(TAG,"altert_user"+altert_user.toString());
+                            Log.e(TAG,"user"+user.toString());
+                            MainApplication.getInstance().setUser(altert_user);
+                            EventBus.getDefault().post(new RefreshEvent(RefreshEvent.RefreshType.UPDATA));
                         }
                         finish();
                     }
                 });
         //return update_avatar&&update_data;
-        return true;
+        //return true;
     }
 
     @Override
@@ -205,9 +212,9 @@ public class AlterdataActivity extends BaseActivity {
                 }
                 break;
         }
-        picturePath = user.getAvatar();
-        //alter_portrait.setImageURI(Uri.parse(picturePath));
-        Log.d("haha", picturePath);
+        //picturePath = user.getAvatar();
+        //alter_ portrait.setImageURI(Uri.parse(picturePath));
+        // Log.d("haha", picturePath);
     }
 
     @Subscribe

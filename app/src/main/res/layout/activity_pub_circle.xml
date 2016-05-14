@@ -13,6 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@id/iv_back"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:layout_marginLeft="20dp"
                 android:src="@mipmap/ic_back"
                 android:gravity="left"
@@ -48,6 +51,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="@dimen/text_big_18"
+        android:background="@drawable/bg_edittext_common"
+        android:singleLine="true"
         android:id="@+id/et_circle_name"
         android:gravity="center"
         android:hint="圈子名称"
@@ -55,6 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/select"/>
     <EditText
+        android:background="@drawable/bg_edittext_common"
+        android:singleLine="true"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -85,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_big_18"
-            android:text="邀请朋友"
+            android:text=" 邀请朋友"
             android:textColor="@color/common"/>
     </LinearLayout>
 

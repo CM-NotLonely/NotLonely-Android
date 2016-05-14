@@ -63,20 +63,17 @@ public class MainApplication extends BaseApplication {
      * @param user
      */
     private void saveUserSP(UserEntity user) {
-//        PreferencesUtils.putLong(getApplicationContext(), SPConfig.USER_ID, user.getUserid());
-//        if(user.getUsername()!= null) {
-//            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_NAME, user.getUsername());
-//        }
-//        if(user.getPassword()!= null) {
-//            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_PASSWORD, user.getPassword());
-//        }
+        if(user.getNickname()!= null) {
+            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_NICKNAME, user.getNickname());
+        }
         if(user.getIntroduction()!= null) {
             PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_INSTRODUCTION, user.getIntroduction());
         }
-        if(user.getAvatar()!= null) {
-            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_URL, user.getAvatar());
+        if(user.getUrl()!= null) {
+            PreferencesUtils.putString(getApplicationContext(), SPConfig.USER_URL, user.getUrl());
         }
         PreferencesUtils.putBoolean(getApplicationContext(), SPConfig.USER_SEX, user.getSex());
-        Log.d("haha",PreferencesUtils.getString(getApplicationContext(),SPConfig.USER_URL,null)+"");
+
+       // Log.d("haha",PreferencesUtils.getString(getApplicationContext(),SPConfig.USER_URL,null)+"");
     }
 }

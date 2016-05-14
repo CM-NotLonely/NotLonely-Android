@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
@@ -42,6 +43,8 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
     <RelativeLayout
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
         android:id="@+id/alter_portrait"
         android:layout_width="match_parent"
         android:layout_height="54dp">
@@ -61,10 +64,10 @@
             android:layout_marginRight="20dp"
             android:background="@mipmap/ic_launcher"/>
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+
     <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="54dp">
         <TextView
@@ -101,10 +104,10 @@
                 android:text="女"/>
         </RadioGroup>
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+
     <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="54dp">
     <TextView
@@ -129,10 +132,10 @@
             android:text="本宝宝"
             android:textColor="@color/gray"/>
 </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+
     <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="54dp">
         <TextView

@@ -54,6 +54,9 @@ public class RefreshEvent {
 	
 	public enum RefreshType{
 		LOGIN,//登录
-		ALTERAVATAR//更换头像
+		REGISTER,//注册
+		SIGNOUT,//退出登录
+		ALTERAVATAR,//更换头像
+		UPDATA//更新数据
 	}
 }

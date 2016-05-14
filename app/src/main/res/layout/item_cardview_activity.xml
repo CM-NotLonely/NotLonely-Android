@@ -106,10 +106,10 @@
 
             <ImageView
                 android:id="@+id/iv_zan"
-                android:layout_width="30dp"
+                android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:background="@color/common" />
+                android:src="@mipmap/ic_zan_unpressed" />
 
             <TextView
                 android:id="@+id/tv_zan"

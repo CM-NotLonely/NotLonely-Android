@@ -2,7 +2,9 @@ package com.efan.notlonely_android.ui;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.okhttputils.OkHttpUtils;
@@ -12,8 +14,14 @@ import com.efan.notlonely_android.config.APIConfig;
 import com.efan.notlonely_android.config.SPConfig;
 import com.efan.notlonely_android.entity.LoginEntity;
 import com.efan.notlonely_android.entity.UserEntity;
+import com.efan.notlonely_android.event.RefreshEvent;
+import com.efan.notlonely_android.utils.NetStateUtils;
 import com.efan.notlonely_android.utils.PreferencesUtils;
+import com.efan.notlonely_android.utils.ToastUtils;
+import com.efan.request.RequestUtils;
 import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,10 +87,13 @@ public class SplashActivity extends BaseActivity {
      * @param password
      */
     private void login(String username, String password) {
+        if(!NetStateUtils.hasNetWorkConnection(SplashActivity.this)){
+            ToastUtils.show(SplashActivity.this,"请检查网络连接设置", Toast.LENGTH_SHORT);
+            return;
+        }
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
         params.put("password", password);
-
         OkHttpUtils.post()
                 .url(APIConfig.LOGIN)
                 .params(params)
@@ -102,10 +113,7 @@ public class SplashActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(UserEntity user) {
-                        if (user != null) {
-                            MainApplication.getInstance().setLogin(true);
-                            MainApplication.getInstance().setUser(user);
-                        }
+
                     }
                 });
     }

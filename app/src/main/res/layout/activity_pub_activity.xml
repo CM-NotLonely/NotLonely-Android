@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_left"
+                android:id="@+id/iv_back"
                 android:layout_centerVertical="true"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -53,7 +53,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/ed_activity_name"
+                android:id="@+id/et_activity_name"
                 style="@style/edittext_style"
                 android:background="@drawable/bg_edittext_common"
                 android:gravity="center"
@@ -62,21 +62,21 @@
 
             <EditText
                 style="@style/edittext_style"
-                android:id="@+id/ed_activity_time"
+                android:id="@+id/et_activity_time"
                 android:drawableLeft="@mipmap/ic_time"
                 android:hint="活动时间"
                 android:background="@drawable/bg_edittext_common"/>
 
             <EditText
                 style="@style/edittext_style"
-                android:id="@+id/ed_activity_location"
+                android:id="@+id/et_activity_location"
                 android:drawableLeft="@mipmap/ic_location"
                 android:hint="活动地点"
                 android:background="@drawable/bg_edittext_common"/>
 
             <EditText
                 style="@style/edittext_style"
-                android:id="@+id/ed_activity_people"
+                android:id="@+id/et_activity_people"
                 android:drawableLeft="@mipmap/ic_people"
                 android:hint="计划人数"
                 android:background="@drawable/bg_edittext_common"/>
@@ -84,7 +84,7 @@
 
             <EditText
                 style="@style/edittext_style"
-                android:id="@+id/ed_activity_money"
+                android:id="@+id/et_activity_money"
                 android:drawableLeft="@mipmap/ic_money"
                 android:hint="人均花费"
                 android:layout_marginBottom="20dp"

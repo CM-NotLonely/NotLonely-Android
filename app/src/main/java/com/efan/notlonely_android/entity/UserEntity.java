@@ -9,7 +9,7 @@ public class UserEntity {
     private String nickname;
     private boolean sex;
     private String introduction;
-    private String avatar;
+    private String url;
 //    private AvatarEntity avatar;
 
 //    public String getUsername() {
@@ -52,12 +52,12 @@ public class UserEntity {
         this.introduction = introduction;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getUrl() {
+        return url;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class UserEntity {
                 ", nickname='" + nickname + '\'' +
                 ", sex='" + sex + '\'' +
                 ", introduction='" + introduction + '\'' +
-                ", avatar=" + avatar +
+                ", url=" + url +
                 '}';
     }
 }

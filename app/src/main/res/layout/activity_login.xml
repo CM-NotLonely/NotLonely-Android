@@ -3,82 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/background"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background" />
+
     <com.efan.notlonely_android.view.BlurringView
-        android:layout_centerInParent="true"
         android:id="@+id/blurring_view"
         android:layout_width="match_parent"
         android:layout_height="294dp"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/common_horizontal_margin"
         android:layout_marginRight="@dimen/common_horizontal_margin"
         app:blurRadius="5"
         app:downsampleFactor="5"
-        app:overlayColor="#15ffffff"/>
+        app:overlayColor="#15ffffff" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="294dp"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/common_horizontal_margin"
-        android:layout_marginRight="@dimen/common_horizontal_margin"
-        android:layout_centerInParent="true">
+        android:layout_marginRight="@dimen/common_horizontal_margin">
+
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/user_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="16dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             app:roundAsCircle="true"
             app:roundingBorderColor="@color/common"
             app:roundingBorderWidth="1dp" />
+
         <EditText
             android:id="@+id/username"
-            android:layout_below="@id/user_icon"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_below="@id/user_icon"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:paddingLeft="5dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_edittext_white"
             android:drawableLeft="@mipmap/ic_name"
             android:drawablePadding="10dp"
             android:hint="用户名"
-            android:background="@drawable/bg_edittext_white"/>
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/password"
-            android:layout_below="@id/username"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="16dp"
+            android:layout_below="@id/username"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:paddingLeft="5dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_edittext_white"
             android:drawableLeft="@mipmap/ic_passwd"
             android:drawablePadding="10dp"
             android:hint="密码"
-            android:background="@drawable/bg_edittext_white"/>
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_big_18"
+            android:background="@drawable/bg_button_gradient"
             android:text="YOU ARE NOT LONELY"
-            android:background="@drawable/bg_button_gradient"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big_18" />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:textSize="@dimen/text_small_14"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
         android:text="没有账号？点击注册"
         android:textColor="@color/white"
-        android:layout_marginBottom="16dp"/>
+        android:textSize="@dimen/text_small_14" />
 </RelativeLayout>

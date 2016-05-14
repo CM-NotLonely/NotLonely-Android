@@ -71,6 +71,9 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
         if (event.type == RefreshEvent.RefreshType.LOGIN) {
             changeLoginLayout(true);
         }
+        if (event.type == RefreshEvent.RefreshType.SIGNOUT) {
+            changeLoginLayout(false);
+        }
         if (event.type == RefreshEvent.RefreshType.ALTERAVATAR) {
             String url=PreferencesUtils.getString(getContext(),SPConfig.USER_URL);
             simpleDraweeView.setImageURI(Uri.parse("http://"+url));
@@ -109,7 +112,6 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
         simpleDraweeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.show(getContext(),"clicked");
                 if (MainApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(),HomepageActivity.class);
                     startActivity(intent);
@@ -140,35 +142,35 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
                     intent = new Intent(getActivity(),HomepageActivity.class);
                     startActivity(intent);
                 }
-                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
+                else ToastUtils.show(getActivity().getApplicationContext(), "主人还未登录哦~~~");
                 break;
             case R.id.mine_attention:
                 if (MainApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(),AttentionActivity.class);
                     startActivity(intent);
                 }
-                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
+                else ToastUtils.show(getActivity().getApplicationContext(), "主人还未登录哦~~~");
                 break;
             case R.id.mine_push:
                 if (MainApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(),PushActivity.class);
                     startActivity(intent);
                 }
-                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
+                else ToastUtils.show(getActivity().getApplicationContext(), "主人还未登录哦~~~");
                 break;
             case R.id.mine_join:
                 if (MainApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(),JoinActivity.class);
                     startActivity(intent);
                 }
-                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
+                else ToastUtils.show(getActivity().getApplicationContext(), "主人还未登录哦~~~");
                 break;
             case R.id.mine_praise:
                 if (MainApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(),ZanActivity.class);
                     startActivity(intent);
                 }
-                else Toast.makeText(getContext(), "主人还未登录哦~~~", Toast.LENGTH_SHORT).show();
+                else ToastUtils.show(getActivity().getApplicationContext(), "主人还未登录哦~~~");
                 break;
             case R.id.login_layout:
                 intent = new Intent(getActivity(),AlterdataActivity.class);
@@ -196,8 +198,9 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
      * 根据登陆状态进行头像的修改
      */
     private void initAvatar() {
-        String url=PreferencesUtils.getString(getContext(), SPConfig.USER_URL);
-        Log.e(TAG,url);
+        String url=PreferencesUtils.getString(getContext(),SPConfig.USER_URL);
+        System.out.println("URL:---->"+url);
+      //  Log.e(TAG,url);
         simpleDraweeView.setImageURI(Uri.parse("https://"+url));
     }
 
