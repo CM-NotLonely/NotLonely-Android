@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:background="@color/transparent">
+
+    <com.efan.notlonely_android.view.SpinKit.SpinKitView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/spinkit"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:fitsSystemWindows="true"
+        android:indeterminate="true"/>
+
+
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/spinkit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="正在登陆"
+        android:textSize="@dimen/text_max_20"
+        android:textColor="@color/common"/>
+
+
+
+
+</RelativeLayout>

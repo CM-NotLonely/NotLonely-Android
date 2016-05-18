@@ -2,19 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.efan.notlonely_android">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.efan.notlonely_android.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SplashActivity"
+        <activity
+            android:name=".ui.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,50 +23,72 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"
+        <activity
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/activity"/>
-        <!--menu-->
-        <activity android:name=".ui.menu.CricleDetailsActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.menu.ActivityDetailsActivity"
-            android:theme="@style/activity"/>
-        <!--find-->
+            android:theme="@style/activity" />
+        <!-- menu -->
+        <activity
+            android:name=".ui.menu.CricleDetailsActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.menu.ActivityDetailsActivity"
+            android:theme="@style/activity" />
+        <!-- find -->
 
-        <!--publish-->
-        <activity android:name=".ui.publish.UCropActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.publish.PubActivityActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.publish.PubCircleActivity"
-            android:theme="@style/activity"/>
 
-        <!--message-->
+        <!-- publish -->
+        <activity
+            android:name=".ui.publish.UCropActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.publish.PubActivityActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.publish.PubCircleActivity"
+            android:theme="@style/activity" />
 
-        <!--mine-->
-        <activity android:name=".ui.mine.LoginActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.AlterdataActivity"
-        android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.AlterpasswordActivity"
-        android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.AttentionActivity"
-        android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.HomepageActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.IdentityActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.JoinActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.PushActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.RegisterActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.SuccessActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.ZanActivity"
-            android:theme="@style/activity"/>
-        <activity android:name=".ui.mine.AlteravatarActivity"
-            android:theme="@style/activity"/>
+        <!-- message -->
+
+
+        <!-- mine -->
+        <activity
+            android:name=".ui.mine.LoginActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.AlterdataActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.AlterpasswordActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.AttentionActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.HomepageActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.IdentityActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.JoinActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.PushActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.RegisterActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.SuccessActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.ZanActivity"
+            android:theme="@style/activity" />
+        <activity
+            android:name=".ui.mine.AlteravatarActivity"
+            android:theme="@style/activity" />
+        <activity android:name=".ui.mine.MeCenterActivity"></activity>
     </application>
+
 </manifest>

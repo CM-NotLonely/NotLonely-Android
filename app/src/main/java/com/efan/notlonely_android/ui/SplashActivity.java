@@ -88,7 +88,7 @@ public class SplashActivity extends BaseActivity {
      */
     private void login(String username, String password) {
         if(!NetStateUtils.hasNetWorkConnection(SplashActivity.this)){
-            ToastUtils.show(SplashActivity.this,"请检查网络连接设置", Toast.LENGTH_SHORT);
+            ToastUtils.show(getApplicationContext(),"请检查网络连接设置", Toast.LENGTH_SHORT);
             return;
         }
         Map<String, String> params = new HashMap<>();

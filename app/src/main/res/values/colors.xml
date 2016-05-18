@@ -21,5 +21,7 @@
     <color name="title_unselected">#77ffffff</color>
     <!--Bottom-->
     <color name="bottomColor">#aaFFFFFF</color>
+    <!--dialog background-->
+    <color name="dialog_background">#898989</color>
 
 </resources>

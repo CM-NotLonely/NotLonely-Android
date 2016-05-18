@@ -43,8 +43,8 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
 
     @ViewInject(id = R.id.image)
     private View mImageView;
-    @ViewInject(id = R.id.scroll)
-    private ObservableScrollView mScrollView;
+//    @ViewInject(id = R.id.scroll)
+//    private ObservableScrollView mScrollView;
     @ViewInject(id = R.id.title)
     private TextView mTitleView;
     @ViewInject(id = R.id.login_layout)
@@ -98,13 +98,13 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
     public void initData() {
         mFlexibleSpaceImageHeight = 300;
         mActionBarSize = 50;
-        mScrollView.setScrollViewCallbacks(this);
-        ScrollUtils.addOnGlobalLayoutListener(mScrollView, new Runnable() {
-            @Override
-            public void run() {
-                mScrollView.scrollTo(0, -mFlexibleSpaceImageHeight-mActionBarSize);
-            }
-        });
+//        mScrollView.setScrollViewCallbacks(this);
+//        ScrollUtils.addOnGlobalLayoutListener(mScrollView, new Runnable() {
+//            @Override
+//            public void run() {
+//                mScrollView.scrollTo(0, -mFlexibleSpaceImageHeight-mActionBarSize);
+//            }
+//        });
     }
 
     @Override
@@ -139,7 +139,7 @@ public class MineFragment extends BaseFragment implements ObservableScrollViewCa
                 }
             case R.id.mine_homepage:
                 if (MainApplication.getInstance().isLogin()){
-                    intent = new Intent(getActivity(),HomepageActivity.class);
+                    intent = new Intent(getActivity(),MeCenterActivity.class);
                     startActivity(intent);
                 }
                 else ToastUtils.show(getActivity().getApplicationContext(), "主人还未登录哦~~~");

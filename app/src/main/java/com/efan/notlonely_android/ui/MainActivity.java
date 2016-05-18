@@ -26,7 +26,9 @@ import com.efan.notlonely_android.ui.message.MessageFragment;
 import com.efan.notlonely_android.ui.mine.AlterpasswordActivity;
 import com.efan.notlonely_android.ui.mine.MineFragment;
 import com.efan.notlonely_android.ui.publish.PubActivityActivity;
+import com.efan.notlonely_android.utils.ActivityUtils;
 import com.efan.notlonely_android.utils.IntentUtils;
+import com.efan.notlonely_android.utils.ToastUtils;
 import com.efan.notlonely_android.view.BlurringView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
@@ -215,5 +217,14 @@ public class MainActivity extends BaseFragmentActivity {
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setTintColor(getResources().getColor(R.color.common));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(ActivityUtils.exitTwice()){
+            super.onBackPressed();
+        }else {
+            ToastUtils.show(getApplicationContext(),"再按一次退出程序");
+        }
     }
 }

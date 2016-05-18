@@ -135,7 +135,7 @@ public class RegisterActivity extends BaseActivity implements View.OnKeyListener
 
     private void Register(final String username, final String password, String password_confirmation) {
         if(!NetStateUtils.hasNetWorkConnection(RegisterActivity.this)){
-            ToastUtils.show(RegisterActivity.this,"请检查网络连接设置");
+            ToastUtils.show(getApplicationContext(),"请检查网络连接设置");
             return;
         }
         RequestUtils.post()
@@ -147,7 +147,7 @@ public class RegisterActivity extends BaseActivity implements View.OnKeyListener
                 .execute(new Callback() {
                     @Override
                     public void onError(Exception e) {
-
+                        ToastUtils.show(getApplicationContext(),"服务器异常，请稍后再试~");
                     }
 
                     @Override
@@ -178,13 +178,13 @@ public class RegisterActivity extends BaseActivity implements View.OnKeyListener
      */
     private boolean checkRegister(String username, String password, String password_confirmation) {
         if (username.equals("")) {
-            Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "用户名不能为空", Toast.LENGTH_SHORT).show();
             return false;
         } else if (password.equals("")) {
-            Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
             return false;
         } else if (!password_confirmation.equals(password)) {
-            Toast.makeText(this, "您输入的密码不一致，请重新输入", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "您输入的密码不一致，请重新输入", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

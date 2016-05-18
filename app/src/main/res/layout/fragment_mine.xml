@@ -7,25 +7,59 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/touxiang" />
 
-    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+    <!--<com.github.ksoichiro.android.observablescrollview.ObservableScrollView-->
+        <!--android:id="@+id/scroll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:scrollbars="none">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <View
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:background="@android:color/transparent" />
+            <RelativeLayout
+                android:id="@+id/me_center"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.efan.notlonely_android.view.PagerSlidingTabStrip
+                    android:id="@+id/slidingTabStrip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:allowWidthFull="true"
+                    app:slidingBlock="@drawable/sliding_tab_strip_background">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_weight="1"
+                            style="@style/text_slidingTabTitle"
+                            android:text="我发布的" />
+                        <TextView
+                            android:layout_weight="1"
+                            style="@style/text_slidingTabTitle"
+                            android:text="我参与的" />
+                    </LinearLayout>
+                </com.efan.notlonely_android.view.PagerSlidingTabStrip>
+                <android.support.v4.view.ViewPager
+                    android:layout_below="@id/slidingTabStrip"
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_items"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -116,16 +150,16 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
         </LinearLayout>
-    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+    <!--</com.github.ksoichiro.android.observablescrollview.ObservableScrollView>-->
 
     <RelativeLayout
         android:id="@+id/login_layout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="center"
+        android:layout_height="250dp"
         android:visibility="gone">
 
         <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_centerInParent="true"
             android:id="@+id/user_icon"
             android:clickable="true"
             android:scaleType="centerCrop"
@@ -133,16 +167,48 @@
             android:layout_height="60dp"
             app:roundAsCircle="true"/>
         <TextView
+            android:layout_centerHorizontal="true"
             android:id="@+id/user_name"
             android:layout_below="@id/user_icon"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/common_text_big"
-            android:text="闫一帆"/>
+            android:text="本宝宝"/>
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_introduction"
+            android:layout_below="@id/user_name"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/common_text_medium"
+            android:text="懒癌晚期，没有简介"/>
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_introduction"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_people"
+                android:textColor="@color/common"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/common_text_small"
+                android:text="22人"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/common_text_small"
+                android:text="关注了我"/>
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="visible"
         android:id="@+id/notlogin_layout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -151,8 +217,8 @@
             android:id="@+id/register"
             android:layout_width="70dp"
             android:layout_height="35dp"
-            android:background="@drawable/shape_join_background"
-            android:textColor="@color/colorPrimary"
+            android:background="@drawable/shape_login_background"
+            android:textColor="@color/white"
             android:text="注册"/>
         <Button
             android:id="@+id/login"
@@ -160,8 +226,8 @@
             android:layout_height="35dp"
             android:layout_toRightOf="@id/register"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/shape_join_background"
-            android:textColor="@color/colorPrimary"
+            android:background="@drawable/shape_login_background"
+            android:textColor="@color/white"
             android:text="登录"/>
     </RelativeLayout>
 </RelativeLayout>

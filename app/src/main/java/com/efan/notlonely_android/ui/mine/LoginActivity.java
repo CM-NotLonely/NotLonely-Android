@@ -2,6 +2,9 @@ package com.efan.notlonely_android.ui.mine;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Looper;
+import android.speech.tts.Voice;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,6 +17,7 @@ import com.efan.basecmlib.activity.BaseActivity;
 import com.efan.basecmlib.annotate.ContentView;
 import com.efan.basecmlib.annotate.OnClick;
 import com.efan.basecmlib.annotate.ViewInject;
+import com.efan.basecmlib.okhttputils.OkHttpUtils;
 import com.efan.notlonely_android.MainApplication;
 import com.efan.notlonely_android.R;
 import com.efan.notlonely_android.config.APIConfig;
@@ -25,6 +29,8 @@ import com.efan.notlonely_android.utils.NetStateUtils;
 import com.efan.notlonely_android.utils.PreferencesUtils;
 import com.efan.notlonely_android.utils.ToastUtils;
 import com.efan.notlonely_android.view.BlurringView;
+import com.efan.notlonely_android.view.Dialog.MeDialogFragment;
+import com.efan.notlonely_android.view.SpinKit.style.ThreeBounce;
 import com.efan.request.RequestUtils;
 import com.efan.request.callback.Callback;
 import com.efan.request.response.Response;
@@ -32,6 +38,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
+
+import okhttp3.Call;
 
 /**
  * Created by 一帆 on 2016/4/5.
@@ -56,12 +64,15 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
 
     private String username;
     private String password;
-    private static final String TAG="LoginActivity";
+    private MeDialogFragment meDialogFragment;
+    private AsyncTask asyncTask;
+    private static final String TAG = "LoginActivity";
 
     @Override
     public void initView() {
         blurringView.setBlurredView(background);
-        userIcon.setImageURI(Uri.parse("res:///"+ R.mipmap.touxiang));
+        meDialogFragment = new MeDialogFragment();
+        userIcon.setImageURI(Uri.parse("res:///" + R.mipmap.touxiang));
     }
 
     @Override
@@ -69,15 +80,16 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
         UserEntity user = MainApplication.getInstance().getUser();
         username = PreferencesUtils.getString(this, SPConfig.USER_NAME, null);
         password = PreferencesUtils.getString(this, SPConfig.USER_PASSWORD, null);
-        if(username != null) {
-            Log.e(TAG,username);
+        if (username != null) {
+            Log.e(TAG, username);
             usernameEdit.setText(username);
         }
-        if(password != null) {
+        if (password != null) {
             passwordEdit.setText(password);
         }
     }
 
+    //设置输入完成密码后的回车确认监听
     @Override
     public void initEvent() {
         passwordEdit.setOnKeyListener(this);
@@ -85,20 +97,37 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
 
     @OnClick(value = {R.id.login, R.id.login_register})
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.login:
                 username = usernameEdit.getText().toString();
                 password = passwordEdit.getText().toString();
-                if (checkLogin(username, password)){
+                if (checkLogin(username, password)) {
                     //这里弹出进度框，显示转啊转，正在登陆中
-                     /*
-
-                     */
-                    login(username, password);
+//                    new MeDialogFragment().show(getFragmentManager(), "login");
+                    asyncTask=new AsyncTask() {
+                        @Override
+                        protected void onPreExecute() {
+                            meDialogFragment.show(getFragmentManager(),"dialog");
+                            Log.e("dialogBB","dialog show");
+                        }
+                        @Override
+                        protected void onPostExecute(Object o) {
+                            meDialogFragment.dismiss();
+                            Log.e("dialogBB","dialog dismiss");
+                        }
+                        @Override
+                        protected Object doInBackground(Object[] params) {
+                            login(username, password);
+                            Log.e("dialogBB","login ing");
+                            return null;
+                        }
+                    };
+                    asyncTask.execute();
+//                    login(username, password);
                 }
                 break;
             case R.id.login_register:
-                intent = new Intent(this,RegisterActivity.class);
+                intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 finish();
                 break;
@@ -107,42 +136,46 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
 
     /**
      * 网络请求-登录
+     *
      * @param username
      * @param password
      */
-    private void login(final String username, final String password){
-        if(!NetStateUtils.hasNetWorkConnection(LoginActivity.this)){
-            ToastUtils.show(LoginActivity.this,"请检查网络连接设置");
+    private void login(final String username, final String password) {
+        if (!NetStateUtils.hasNetWorkConnection(LoginActivity.this)) {
+            ToastUtils.show(getApplicationContext(), "请检查网络连接设置");
             return;
         }
         RequestUtils.post()
                 .url(APIConfig.LOGIN)
-                .addParams("username",username)
-                .addParams("password",password)
+                .addParams("username", username)
+                .addParams("password", password)
                 .build()
                 .execute(new Callback() {
                     @Override
                     public void onError(Exception e) {
-                        Log.d(TAG,e.toString());
+                        Log.d(TAG, e.toString());
+                        login.setText("YOU ARE NOT LONELY");
+                        login.setCompoundDrawables(null, null, null, null);
+                        ToastUtils.show(getApplicationContext(), "服务器异常，请稍后再试~");
                     }
 
                     @Override
                     public void onResponse(Response response) {
                         String string = response.getBody();
-                        Log.d(TAG,string);
+                        Log.d(TAG, string);
                         LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
                         UserEntity user = login.getUser();
-                        if( login.getCode()==0) {
+                        if (login.getCode() == 0) {
                             MainApplication.getInstance().setLogin(true);
                             MainApplication.getInstance().setUser(user);
-                            Log.d(TAG,user.getUrl());
-                            Log.d(TAG,PreferencesUtils.getString(LoginActivity.this,SPConfig.USER_URL));
-                            PreferencesUtils.putString(LoginActivity.this,SPConfig.USER_NAME,username);
-                            PreferencesUtils.putString(LoginActivity.this,SPConfig.USER_PASSWORD,password);
+                            Log.d(TAG, user.getUrl());
+                            Log.d(TAG, PreferencesUtils.getString(LoginActivity.this, SPConfig.USER_URL));
+                            PreferencesUtils.putString(LoginActivity.this, SPConfig.USER_NAME, username);
+                            PreferencesUtils.putString(LoginActivity.this, SPConfig.USER_PASSWORD, password);
                             EventBus.getDefault().post(new RefreshEvent(RefreshEvent.RefreshType.LOGIN));
                             finish();
-                        }else{
-                            ToastUtils.show(LoginActivity.this,login.getMsg());
+                        } else {
+                            ToastUtils.show(getApplicationContext(), login.getMsg());
                         }
                     }
                 });
@@ -150,15 +183,16 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
 
     /**
      * 输入合法性检查
+     *
      * @param username
      * @param password
      * @return
      */
-    private boolean checkLogin(String username, String password){
-        if (username.equals("")){
+    private boolean checkLogin(String username, String password) {
+        if (username.equals("")) {
             Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (password.equals("")){
+        } else if (password.equals("")) {
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -167,16 +201,14 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
 
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_ENTER){
-            switch (v.getId()){
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            switch (v.getId()) {
                 case R.id.password:
                     username = usernameEdit.getText().toString();
                     password = passwordEdit.getText().toString();
-                    if (checkLogin(username, password)){
+                    if (checkLogin(username, password)) {
                         //这里弹出进度框，显示转啊转，正在登陆中
-                     /*
-
-                     */
+                        new MeDialogFragment().show(getFragmentManager(), "login");
                         login(username, password);
                     }
                     break;

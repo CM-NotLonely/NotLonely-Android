@@ -20,4 +20,10 @@
 
     <dimen name="flexible_space_image_height">200dp</dimen>
     <dimen name="flexible_space_show_fab_offset">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--dialog width and height-->
+    <dimen name="dialog_width">200dp</dimen>
+    <dimen name="dialog_height">200dp</dimen>
 </resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true">
+    <com.efan.notlonely_android.view.PagerSlidingTabStrip
+        android:id="@+id/slidingTabStrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:allowWidthFull="false"
+        app:slidingBlock="@drawable/sliding_tab_strip_background">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_slidingTabTitle"
+                android:text="\@我" />
+
+            <TextView
+                style="@style/text_slidingTabTitle"
+                android:text="我关注的" />
+
+            <TextView
+                style="@style/text_slidingTabTitle"
+                android:text="点赞" />
+        </LinearLayout>
+    </com.efan.notlonely_android.view.PagerSlidingTabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_below="@id/slidingTabStrip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
