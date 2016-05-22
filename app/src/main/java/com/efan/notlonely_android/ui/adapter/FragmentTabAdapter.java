@@ -58,7 +58,7 @@ public class FragmentTabAdapter {
         if(fragment.isAdded()){
             fragment.onResume(); // 启动目标tab的onResume()
         }else{
-            ft.add(fragmentContentId, fragment);
+            ft.add(fragmentContentId, fragment,"index");
         }
         showTab(index); // 显示目标tab
         ft.commit();

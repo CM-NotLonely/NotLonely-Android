@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.speech.tts.Voice;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -33,13 +35,20 @@ import com.efan.notlonely_android.view.Dialog.MeDialogFragment;
 import com.efan.notlonely_android.view.SpinKit.style.ThreeBounce;
 import com.efan.request.RequestUtils;
 import com.efan.request.callback.Callback;
+import com.efan.request.config.TimeOutConfig;
+import com.efan.request.okhttp.OkhttpClient;
 import com.efan.request.response.Response;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Created by 一帆 on 2016/4/5.
@@ -65,8 +74,8 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
     private String username;
     private String password;
     private MeDialogFragment meDialogFragment;
-    private AsyncTask asyncTask;
-    private static final String TAG = "LoginActivity";
+    private MyLogin asyncTask;
+    private static final String TAG = "<LoginActivity>";
 
     @Override
     public void initView() {
@@ -81,7 +90,7 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
         username = PreferencesUtils.getString(this, SPConfig.USER_NAME, null);
         password = PreferencesUtils.getString(this, SPConfig.USER_PASSWORD, null);
         if (username != null) {
-            Log.e(TAG, username);
+            Log.d(TAG, username);
             usernameEdit.setText(username);
         }
         if (password != null) {
@@ -103,27 +112,8 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
                 password = passwordEdit.getText().toString();
                 if (checkLogin(username, password)) {
                     //这里弹出进度框，显示转啊转，正在登陆中
-//                    new MeDialogFragment().show(getFragmentManager(), "login");
-                    asyncTask=new AsyncTask() {
-                        @Override
-                        protected void onPreExecute() {
-                            meDialogFragment.show(getFragmentManager(),"dialog");
-                            Log.e("dialogBB","dialog show");
-                        }
-                        @Override
-                        protected void onPostExecute(Object o) {
-                            meDialogFragment.dismiss();
-                            Log.e("dialogBB","dialog dismiss");
-                        }
-                        @Override
-                        protected Object doInBackground(Object[] params) {
-                            login(username, password);
-                            Log.e("dialogBB","login ing");
-                            return null;
-                        }
-                    };
+                    asyncTask=new MyLogin();
                     asyncTask.execute();
-//                    login(username, password);
                 }
                 break;
             case R.id.login_register:
@@ -145,25 +135,33 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
             ToastUtils.show(getApplicationContext(), "请检查网络连接设置");
             return;
         }
-        RequestUtils.post()
+        OkHttpUtils.post()
                 .url(APIConfig.LOGIN)
                 .addParams("username", username)
                 .addParams("password", password)
                 .build()
-                .execute(new Callback() {
+                .readTimeOut(3000)
+                .writeTimeOut(3000)
+                .connTimeOut(3000)
+                .execute(new com.efan.basecmlib.okhttputils.callback.Callback() {
                     @Override
-                    public void onError(Exception e) {
-                        Log.d(TAG, e.toString());
-                        login.setText("YOU ARE NOT LONELY");
-                        login.setCompoundDrawables(null, null, null, null);
-                        ToastUtils.show(getApplicationContext(), "服务器异常，请稍后再试~");
+                    public Object parseNetworkResponse(okhttp3.Response response) throws Exception {
+                        String string =response.body().string();
+                        Log.d(TAG, string);
+                        LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
+                        return login;
                     }
 
                     @Override
-                    public void onResponse(Response response) {
-                        String string = response.getBody();
-                        Log.d(TAG, string);
-                        LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
+                    public void onError(Call call, Exception e) {
+                        Log.d(TAG, e.toString());
+                        ToastUtils.show(getApplicationContext(), "服务器异常，请稍后再试~");
+                        asyncTask.onProgressUpdate(null);
+                    }
+
+                    @Override
+                    public void onResponse(Object response) {
+                        LoginEntity login= (LoginEntity) response;
                         UserEntity user = login.getUser();
                         if (login.getCode() == 0) {
                             MainApplication.getInstance().setLogin(true);
@@ -177,8 +175,43 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
                         } else {
                             ToastUtils.show(getApplicationContext(), login.getMsg());
                         }
+                        //asyncTask.onProgressUpdate(null);
                     }
                 });
+//        RequestUtils requestUtils=RequestUtils.getInstance();
+//        requestUtils.setTimeOutConfig(new TimeOutConfig(5000));
+//        requestUtils.post()
+//                .url(APIConfig.LOGIN)
+//                .addParams("username", username)
+//                .addParams("password", password)
+//                .build()
+//                .execute(new Callback() {
+//                    @Override
+//                    public void onError(Exception e) {
+//                        Log.d(TAG, e.toString());
+//                        ToastUtils.show(getApplicationContext(), "服务器异常，请稍后再试~");
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Response response) {
+//                        String string = response.getBody();
+//                        Log.d(TAG, string);
+//                        LoginEntity login = new Gson().fromJson(string, LoginEntity.class);
+//                        UserEntity user = login.getUser();
+//                        if (login.getCode() == 0) {
+//                            MainApplication.getInstance().setLogin(true);
+//                            MainApplication.getInstance().setUser(user);
+//                            Log.d(TAG, user.getUrl());
+//                            Log.d(TAG, PreferencesUtils.getString(LoginActivity.this, SPConfig.USER_URL));
+//                            PreferencesUtils.putString(LoginActivity.this, SPConfig.USER_NAME, username);
+//                            PreferencesUtils.putString(LoginActivity.this, SPConfig.USER_PASSWORD, password);
+//                            EventBus.getDefault().post(new RefreshEvent(RefreshEvent.RefreshType.LOGIN));
+//                            finish();
+//                        } else {
+//                            ToastUtils.show(getApplicationContext(), login.getMsg());
+//                        }
+//                    }
+//                });
     }
 
     /**
@@ -208,13 +241,34 @@ public class LoginActivity extends BaseActivity implements View.OnKeyListener {
                     password = passwordEdit.getText().toString();
                     if (checkLogin(username, password)) {
                         //这里弹出进度框，显示转啊转，正在登陆中
-                        new MeDialogFragment().show(getFragmentManager(), "login");
-                        login(username, password);
+                        asyncTask=new MyLogin();
+                        asyncTask.execute();
                     }
                     break;
             }
             return true;
         }
         return false;
+    }
+
+    class MyLogin extends AsyncTask{
+
+        @Override
+        protected void onPreExecute() {
+            meDialogFragment.show(getFragmentManager(),"dialog");
+            Log.d(TAG,"dialog show at"+ SystemClock.uptimeMillis());
+        }
+        @Override
+        protected Object doInBackground(Object[] params) {
+            login(username, password);
+            Log.d(TAG,"login ing");
+            return null;
+        }
+        @Override
+        protected void onProgressUpdate(Object[] values) {
+            meDialogFragment.dismiss();
+            Log.d(TAG,"dialog finish at "+SystemClock.uptimeMillis());
+        }
+
     }
 }
